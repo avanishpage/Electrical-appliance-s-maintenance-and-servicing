@@ -1,0 +1,42 @@
+<mxfile host="65bd71144e">
+    <diagram id="cjHa-G-awGQMrfxXP6pf" name="Page-1">
+        <mxGraphModel dx="715" dy="590" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="5" style="edgeStyle=none;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="2" target="4">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="7" style="edgeStyle=none;html=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=-0.018;entryY=0.548;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="2" target="3">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="20" y="320"/>
+                            <mxPoint x="20" y="740"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="2" value="CUSTOMER&lt;br&gt;ID&lt;br&gt;FIRST NAME&lt;br&gt;LAST NAME&lt;br&gt;EMAIL ID&lt;br&gt;PASSWORD&lt;br&gt;ADDRESS&lt;br&gt;CONTACT NO" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#1ba1e2;fontColor=#ffffff;strokeColor=#006EAF;" vertex="1" parent="1">
+                    <mxGeometry x="100" y="180" width="140" height="280" as="geometry"/>
+                </mxCell>
+                <mxCell id="6" style="edgeStyle=none;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=-0.001;entryY=0.578;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="3" target="4">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="10" style="edgeStyle=none;html=1;exitX=1;exitY=0.75;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="3" target="9">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="3" value="VENDOR&lt;br&gt;ID&lt;br&gt;FIRST NAME&lt;br&gt;LAST NAME&lt;br&gt;ADDRESS&lt;br&gt;CONTACT NO&lt;br&gt;EMAIL ID&lt;br&gt;PASSWORD&lt;br&gt;SHOP STATUS&lt;br&gt;ADHARCARD&lt;br&gt;CUSTOMERS SERVED(LIST)&lt;br&gt;SERVICES(LIST)" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#1ba1e2;fontColor=#ffffff;strokeColor=#006EAF;" vertex="1" parent="1">
+                    <mxGeometry x="100" y="580" width="140" height="280" as="geometry"/>
+                </mxCell>
+                <mxCell id="4" value="ORDER&lt;br&gt;ID&lt;br&gt;CUSTOMER REF&lt;br&gt;VENDOR REF&lt;br&gt;STATUS (SCHEDULED,WORKING,COMPELETE)&lt;br&gt;TIME OF STATUS CHANGE" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#1ba1e2;fontColor=#ffffff;strokeColor=#006EAF;" vertex="1" parent="1">
+                    <mxGeometry x="780" y="530" width="280" height="160" as="geometry"/>
+                </mxCell>
+                <mxCell id="8" value="CART&lt;br&gt;ID&lt;br&gt;SERVICES (LIST)&lt;br&gt;TOTAL PRICE" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#1ba1e2;fontColor=#ffffff;strokeColor=#006EAF;" vertex="1" parent="1">
+                    <mxGeometry x="410" y="250" width="210" height="120" as="geometry"/>
+                </mxCell>
+                <mxCell id="9" value="SERVICE&lt;br&gt;ID&lt;br&gt;VENDOR REF&lt;br&gt;DETAIL &lt;br&gt;CATEGORY&lt;br&gt;APPLIANCE(ENUM)&lt;br&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#1ba1e2;fontColor=#ffffff;strokeColor=#006EAF;" vertex="1" parent="1">
+                    <mxGeometry x="410" y="700" width="210" height="120" as="geometry"/>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+</mxfile>
