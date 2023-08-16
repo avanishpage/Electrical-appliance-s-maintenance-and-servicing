@@ -4,13 +4,17 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.MapsId;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.persistence.Table;
 
 import com.app.enums.JobStatus;
 
@@ -24,17 +28,19 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
+@Table(name = "orders")
 public class Order {
 	
 	@Id
 	private Long id;
 	
+	@ManyToOne(fetch = FetchType.LAZY)
 	private Vendor vendor;
 	
-	
+	@ManyToOne(fetch = FetchType.LAZY)
 	private Customer customer;
 	
-	@OneToMany(mappedBy = "order")
+	@OneToMany(mappedBy = "order",cascade = CascadeType.ALL,orphanRemoval = true)
 	private List<Service> services=new ArrayList<>();
 	
 	@Enumerated

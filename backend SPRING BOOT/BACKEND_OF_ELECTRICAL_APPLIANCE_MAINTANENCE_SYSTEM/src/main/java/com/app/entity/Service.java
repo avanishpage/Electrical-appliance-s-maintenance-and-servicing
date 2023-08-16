@@ -2,7 +2,9 @@ package com.app.entity;
 
 import javax.persistence.Entity;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 import com.app.enums.Category;
 
@@ -33,10 +35,13 @@ public class Service {
 	//we will do imgsrc afterwards
 	//remember to delete this after completing
 	
+	@ManyToOne(fetch = FetchType.LAZY)
 	private Vendor vendor;
 	
+	@ManyToOne(fetch = FetchType.LAZY)
 	private Cart cart;
 	
+	@ManyToOne(fetch = FetchType.LAZY)
 	private Order order;
 	
 	

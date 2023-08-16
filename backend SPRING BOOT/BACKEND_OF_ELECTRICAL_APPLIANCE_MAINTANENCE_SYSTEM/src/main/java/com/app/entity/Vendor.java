@@ -13,13 +13,13 @@ import lombok.*;
 @NoArgsConstructor
 @Entity
 public class Vendor extends Person{
-	@OneToMany(mappedBy = "id")
+	@OneToMany(mappedBy = "vendor",cascade = CascadeType.ALL,orphanRemoval = true)
 	private List<Service> services=new ArrayList<>();
 	
-	@OneToMany(mappedBy = "id")
+	@OneToMany(mappedBy = "vendor",cascade = CascadeType.ALL,orphanRemoval = true)
 	private List<Order> orders=new ArrayList<>();
 	
-	@OneToMany(mappedBy = "id")
+	@OneToMany(mappedBy = "vendor",cascade = CascadeType.ALL,orphanRemoval = true)
 	private List<Rating> ratings=new ArrayList<>();
 	
 }
