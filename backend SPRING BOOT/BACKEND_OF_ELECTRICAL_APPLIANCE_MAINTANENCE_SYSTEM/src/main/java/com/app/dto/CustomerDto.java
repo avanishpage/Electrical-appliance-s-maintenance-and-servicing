@@ -9,7 +9,7 @@ import lombok.*;
 
 
 
-
+@ToString
 @Getter
 @Setter
 @AllArgsConstructor
@@ -36,4 +36,7 @@ public class CustomerDto {
 	
 	@NotBlank(message = "phone number cannot be blank!!")
 	private String phoneNumber;
+	
+	
+	
 }
