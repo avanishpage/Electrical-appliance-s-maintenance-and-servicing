@@ -5,6 +5,7 @@ import javax.persistence.*;
 @MappedSuperclass
 public class Person {
 	@Id
+	@GeneratedValue
 	private Long id;
 	
 	@Column(name="first_name")
@@ -12,6 +13,8 @@ public class Person {
 
 	@Column(name="last_name")
 	private String lastName;
+	
+	private String email;
 	
 	private String password;
 	
