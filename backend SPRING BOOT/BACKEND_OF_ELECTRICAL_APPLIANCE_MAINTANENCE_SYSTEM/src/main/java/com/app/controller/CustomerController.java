@@ -4,7 +4,7 @@ import javax.validation.Valid;
 import javax.websocket.server.PathParam;
 
 import org.springframework.beans.factory.annotation.Autowired;
-<<<<<<< HEAD
+
 import org.springframework.data.repository.query.Param;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -15,14 +15,14 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.app.dto.CustomerDto;
-=======
+
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.app.entity.Customer;
 import com.app.repository.CustomerRepositoryIF;
->>>>>>> 8270ddc198c6b7b7d322befb097b46558d2ae5b6
+
 import com.app.service.CustomerServiceLayerIF;
 import com.app.service.CustomerServiceLayerImpl;
 
@@ -33,7 +33,7 @@ public class CustomerController {
 	@Autowired
 	private CustomerServiceLayerIF serviceLayer;
 
-<<<<<<< HEAD
+
 	@PostMapping("/add")
 	public void createCustomer(@RequestBody @Valid CustomerDto custDto) {
 		
@@ -48,7 +48,7 @@ public class CustomerController {
 		
 	}
 	
-=======
+
 	// @PostMapping
 	// public void createCustomer(@RequestBody ) {
 	
@@ -71,5 +71,5 @@ public class CustomerController {
 		return serviceLayer.getCustomerDetails(customerId);
 	}
 
->>>>>>> 8270ddc198c6b7b7d322befb097b46558d2ae5b6
+
 }
