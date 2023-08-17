@@ -1,28 +1,16 @@
 package com.app.service;
 
-import java.util.Optional;
-
 import javax.transaction.Transactional;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.app.dto.CustomerDto;
 import com.app.dto.CustomerLoginDto;
+import com.app.dto.PersonDto;
 import com.app.entity.Customer;
 import com.app.exceptions.CustomerNotFoundException;
 import com.app.exceptions.CustomerPasswordNotMatchingException;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
-
-import org.modelmapper.ModelMapper;
-import org.springframework.beans.factory.annotation.Autowired;
-
-import com.app.entity.Customer;
-
 import com.app.repository.CustomerRepositoryIF;
 
 @Service
@@ -35,7 +23,7 @@ public class CustomerServiceLayerImpl implements CustomerServiceLayerIF {
 	private ModelMapper mapper;
 
 	@Override
-	public void addCustomer(CustomerDto custDto) {
+	public void addCustomer(PersonDto custDto) {
 		// System.out.println(custDto);
 
 		Customer customerEntity = new Customer();
@@ -46,7 +34,7 @@ public class CustomerServiceLayerImpl implements CustomerServiceLayerIF {
 	}
 
 	@Override
-	public void updateCust(CustomerDto custDto, Long id) {
+	public void updateCust(PersonDto custDto, Long id) {
 		System.out.println(id);
 
 		Customer customerEntity = custRepo.findById(id)
@@ -72,14 +60,14 @@ public class CustomerServiceLayerImpl implements CustomerServiceLayerIF {
 	}
 
 	@Override
-	public CustomerDto verifyCustomer(CustomerLoginDto customerLoginDto) {
+	public PersonDto verifyCustomer(CustomerLoginDto customerLoginDto) {
 		Customer customer = custRepo.findByEmail(customerLoginDto.getEmail());
 		if(customer==null)
 			throw new CustomerNotFoundException("no such customer exists!");
 		if (!customer.getPassword().equals(customerLoginDto.getPassword())) {
 			throw new CustomerPasswordNotMatchingException("wrong password");
 		}
-		return mapper.map(customer, CustomerDto.class);
+		return mapper.map(customer, PersonDto.class);
 
 	}
 

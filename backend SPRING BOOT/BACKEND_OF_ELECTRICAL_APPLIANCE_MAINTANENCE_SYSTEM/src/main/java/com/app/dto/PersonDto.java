@@ -14,7 +14,7 @@ import lombok.*;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class CustomerDto {
+public class PersonDto {
 	
 	@NotBlank(message = "first name cannot be blank!!")
 	private String firstName;

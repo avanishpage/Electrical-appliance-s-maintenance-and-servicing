@@ -15,8 +15,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.app.dto.ApiResponse;
-import com.app.dto.CustomerDto;
 import com.app.dto.CustomerLoginDto;
+import com.app.dto.PersonDto;
 import com.app.entity.Customer;
 import com.app.service.CustomerServiceLayerIF;
 
@@ -29,7 +29,7 @@ public class CustomerController {
 
 	//post method for adding a new customer entry
 	@PostMapping("/add")
-	public ApiResponse createCustomer(@RequestBody @Valid CustomerDto custDto) {
+	public ApiResponse createCustomer(@RequestBody @Valid PersonDto custDto) {
 		
 		serviceLayer.addCustomer(custDto);
 		return new ApiResponse(LocalDateTime.now(), "customer successfully created!");
@@ -38,7 +38,7 @@ public class CustomerController {
 	
 	//put method for updating existing customer's details
 	@PutMapping("/update/{customerId}")
-	public ApiResponse updateCustomer(@RequestBody CustomerDto custDto,@PathVariable Long customerId) {
+	public ApiResponse updateCustomer(@RequestBody PersonDto custDto,@PathVariable Long customerId) {
 		
 		serviceLayer.updateCust(custDto,customerId);
 		return new ApiResponse(LocalDateTime.now(), "customer information successfully updated!");
@@ -63,7 +63,7 @@ public class CustomerController {
     
     //customer login
     @PostMapping("/login")
-    public CustomerDto loginCustomer(@RequestBody CustomerLoginDto customerLoginDto) {
+    public PersonDto loginCustomer(@RequestBody CustomerLoginDto customerLoginDto) {
     	
     	return serviceLayer.verifyCustomer(customerLoginDto);
     }
