@@ -26,7 +26,7 @@ public class CustomerController {
 	@Autowired
 	private CustomerServiceLayerIF serviceLayer;
 
-
+	//post method for adding a new customer entry
 	@PostMapping("/add")
 	public ApiResponse createCustomer(@RequestBody @Valid CustomerDto custDto) {
 		
@@ -35,6 +35,7 @@ public class CustomerController {
 		
 	}
 	
+	//put method for updating existing customer's details
 	@PutMapping("/update/{customerId}")
 	public ApiResponse updateCustomer(@RequestBody CustomerDto custDto,@PathVariable Long customerId) {
 		
@@ -44,28 +45,14 @@ public class CustomerController {
 	}
 	
 
-	// @PostMapping
-	// public void createCustomer(@RequestBody ) {
-	
-	//to get all details of customer
-	
-//    @GetMapping("/{customerId}")
-//    public ResponseEntity<Customer> getCustomerById(@PathVariable Long customerId) {
-//        Optional<Customer> optionalCustomer = CustomerServiceLayerImpl.findById(customerId);
-//        if (optionalCustomer.isPresent()) {
-//            Customer customer = optionalCustomer.get();
-//            return ResponseEntity.ok(customer);
-//        } else {
-//            return ResponseEntity.notFound().build();
-//        }
-//    }
-    
+	//get method to get customer details
     @GetMapping("/{customerId}") // path var or URI template var
 	public Customer getEmpDetails(@PathVariable Long customerId) {
 		System.out.println("in get customer " + customerId);
 		return serviceLayer.getCustomerDetails(customerId);
 	}
     
+    //delete method to delete a customer permanantly
     @DeleteMapping("/delete/{customerId}")
     public ApiResponse deleteCustomer(@PathVariable Long customerId) {
     	serviceLayer.deleteCustomer(customerId);
