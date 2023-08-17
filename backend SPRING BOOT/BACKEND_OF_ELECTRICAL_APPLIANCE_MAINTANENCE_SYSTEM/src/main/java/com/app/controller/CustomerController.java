@@ -46,9 +46,8 @@ public class CustomerController {
 	}
 
 	// get method to get customer details
-	@GetMapping("/{customerId}") // path var or URI template var
-	public Customer getEmpDetails(@PathVariable Long customerId) {
-		System.out.println("in get customer " + customerId);
+	@GetMapping("/{customerId}")
+	public PersonDto getEmpDetails(@PathVariable Long customerId) {
 		return serviceLayer.getCustomerDetails(customerId);
 	}
 

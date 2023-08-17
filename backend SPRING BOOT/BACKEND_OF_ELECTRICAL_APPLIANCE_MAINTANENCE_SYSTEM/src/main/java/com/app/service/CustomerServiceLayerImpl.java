@@ -43,13 +43,14 @@ public class CustomerServiceLayerImpl implements CustomerServiceLayerIF {
 
 	}
 
-	@Autowired
-	private ModelMapper modelMapper;
-
+	
 	@Override
-	public Customer getCustomerDetails(Long customerId) {
+	public PersonDto getCustomerDetails(Long customerId) {
 
-		return custRepo.findById(customerId).orElseThrow(() -> new RuntimeException("Invalid emp id !!!!!"));
+		Customer customer = custRepo.findById(customerId)
+				.orElseThrow(() -> new RuntimeException("Invalid Customer id !!!!!"));
+		PersonDto person = mapper.map(customer, PersonDto.class);
+		return person;
 	}
 
 	@Override
@@ -61,7 +62,7 @@ public class CustomerServiceLayerImpl implements CustomerServiceLayerIF {
 
 	@Override
 	public PersonDto verifyCustomer(PersonLoginDto customerLoginDto) {
-		Customer customer = custRepo.findByEmail(customerLoginDto.getEmail());
+		Customer customer = custRepo.findByEmail(customerLoginDto.getemail());
 		if(customer==null)
 			throw new CustomerNotFoundException("no such customer exists!");
 		if (!customer.getPassword().equals(customerLoginDto.getPassword())) {
