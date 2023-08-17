@@ -1,31 +1,23 @@
 package com.app.controller;
 
+import java.time.LocalDateTime;
+
 import javax.validation.Valid;
-import javax.websocket.server.PathParam;
 
 import org.springframework.beans.factory.annotation.Autowired;
-
-import org.springframework.data.repository.query.Param;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.app.dto.ApiResponse;
 import com.app.dto.CustomerDto;
-
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
-
 import com.app.entity.Customer;
-import com.app.repository.CustomerRepositoryIF;
-
 import com.app.service.CustomerServiceLayerIF;
-import com.app.service.CustomerServiceLayerImpl;
 
 @RestController
 @RequestMapping("/customer")
@@ -36,16 +28,18 @@ public class CustomerController {
 
 
 	@PostMapping("/add")
-	public void createCustomer(@RequestBody @Valid CustomerDto custDto) {
+	public ApiResponse createCustomer(@RequestBody @Valid CustomerDto custDto) {
 		
 		serviceLayer.addCustomer(custDto);
+		return new ApiResponse(LocalDateTime.now(), "customer successfully created!");
 		
 	}
 	
-	@PutMapping("/update/{id}")
-	public void updateCustomer(@RequestBody CustomerDto custDto,@PathVariable Long id) {
+	@PutMapping("/update/{customerId}")
+	public ApiResponse updateCustomer(@RequestBody CustomerDto custDto,@PathVariable Long customerId) {
 		
-		serviceLayer.updateCust(custDto,id);
+		serviceLayer.updateCust(custDto,customerId);
+		return new ApiResponse(LocalDateTime.now(), "customer information successfully updated!");
 		
 	}
 	
@@ -72,9 +66,10 @@ public class CustomerController {
 		return serviceLayer.getCustomerDetails(customerId);
 	}
     
-    @DeleteMapping("/{customerId}")
-    public void deleteCustomer(@PathVariable Long customerId) {
+    @DeleteMapping("/delete/{customerId}")
+    public ApiResponse deleteCustomer(@PathVariable Long customerId) {
     	serviceLayer.deleteCustomer(customerId);
+    	return new ApiResponse(LocalDateTime.now(), "customer successfully deleted!");
     }
 
 
