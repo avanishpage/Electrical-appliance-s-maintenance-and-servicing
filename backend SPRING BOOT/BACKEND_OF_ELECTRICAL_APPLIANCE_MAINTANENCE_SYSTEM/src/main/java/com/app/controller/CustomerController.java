@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.app.dto.CustomerDto;
 
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
@@ -70,6 +71,11 @@ public class CustomerController {
 		System.out.println("in get customer " + customerId);
 		return serviceLayer.getCustomerDetails(customerId);
 	}
+    
+    @DeleteMapping("/{customerId}")
+    public void deleteCustomer(@PathVariable Long customerId) {
+    	serviceLayer.deleteCustomer(customerId);
+    }
 
 
 }

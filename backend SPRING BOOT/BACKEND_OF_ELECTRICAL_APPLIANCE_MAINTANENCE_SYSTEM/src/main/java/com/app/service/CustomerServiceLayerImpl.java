@@ -65,5 +65,12 @@ public class CustomerServiceLayerImpl implements CustomerServiceLayerIF {
 		return custRepo.findById(customerId).orElseThrow(() -> new RuntimeException("Invalid emp id !!!!!"));
 	}
 
+	@Override
+	public void deleteCustomer(Long customerId) {
+
+		custRepo.deleteById(customerId);
+		
+	}
+
 //	
 }

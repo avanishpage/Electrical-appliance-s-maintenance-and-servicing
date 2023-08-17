@@ -22,7 +22,7 @@ public interface CustomerServiceLayerIF {
 
 	Customer getCustomerDetails(Long customerId);
 
-
+	void deleteCustomer(Long customerId);
 	
 	
 }
