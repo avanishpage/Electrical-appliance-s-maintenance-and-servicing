@@ -12,7 +12,7 @@ public interface CustomerServiceLayerIF {
 
 	void updateCust(PersonDto custDto, Long id);
 
-	Customer getCustomerDetails(Long customerId);
+	PersonDto getCustomerDetails(Long customerId);
 
 	void deleteCustomer(Long customerId);
 
