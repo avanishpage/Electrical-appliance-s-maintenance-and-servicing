@@ -1,16 +1,19 @@
 package com.app.service;
 
-import com.app.dto.CustomerDto;
+import com.app.dto.PersonDto;
+import com.app.dto.PersonLoginDto;
 import com.app.entity.Vendor;
 
 public interface VendorServiceLayerIF {
 	
-	void addVendor(CustomerDto custDto);
+	public void addVendor(PersonDto custDto);
 
-	void updateVendor(CustomerDto custDto, Long id);
+	public void updateVendor(PersonDto custDto, Long id);
 
-	Vendor getVendorDetails(Long vendorId);
+	public PersonDto getVendorDetails(Long vendorId);
 
-	void deleteVendor(Long vendorId);
+	public void deleteVendor(Long vendorId);
+
+	public PersonDto verifyVendor(PersonLoginDto vendorLoginDto);
 
 }

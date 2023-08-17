@@ -3,11 +3,11 @@ package com.app.service;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.app.dto.CustomerDto;
-import com.app.entity.Customer;
+import com.app.dto.PersonDto;
+import com.app.dto.PersonLoginDto;
 import com.app.entity.Vendor;
-import com.app.exceptions.CustomerNotFoundException;
 import com.app.exceptions.VendorNotFoundException;
+import com.app.exceptions.VendorPasswordNotMatchingException;
 import com.app.repository.VendorRepositoryIF;
 
 public class VendorServiceLayerImpl implements VendorServiceLayerIF{
@@ -19,27 +19,27 @@ public class VendorServiceLayerImpl implements VendorServiceLayerIF{
 	private ModelMapper mapper;
 	
 	@Override
-	public void addVendor(CustomerDto custDto) {
+	public void addVendor(PersonDto vendorDto) {
 		
 		Vendor vendorEntity=new Vendor();
-				mapper.map(custDto, vendorEntity);
+				mapper.map(vendorDto, vendorEntity);
 		
 				vendorRepo.save(vendorEntity);
 		
 	}
 
 	@Override
-	public void updateVendor(CustomerDto custDto, Long id) {
+	public void updateVendor(PersonDto vendorDto, Long id) {
 		System.out.println(id);
 		
 		Vendor vendorEntity=vendorRepo.findById(id).orElseThrow(()->  new VendorNotFoundException("vendor by id "+id+" not present"));
-		mapper.map(custDto, vendorEntity);
+		mapper.map(vendorDto, vendorEntity);
 	}
 
 	@Override
-	public Vendor getVendorDetails(Long vendorId) {
+	public PersonDto getVendorDetails(Long vendorId) {
 
-		return vendorRepo.findById(vendorId).orElseThrow(() -> new RuntimeException("Invalid vendor id !!!!!"));
+		return mapper.map(vendorRepo.findById(vendorId).orElseThrow(() -> new RuntimeException("Invalid vendor id !!!!!")),PersonDto.class) ;
 
 	}
 
@@ -47,6 +47,20 @@ public class VendorServiceLayerImpl implements VendorServiceLayerIF{
 	public void deleteVendor(Long vendorId) {
 
 		vendorRepo.deleteById(vendorId);
+		
+	}
+
+	@Override
+	public PersonDto verifyVendor(PersonLoginDto vendorLoginDto) {
+		
+		Vendor vendor= vendorRepo.findByEmail(vendorLoginDto.getEmail());
+		if(vendor==null)
+			throw new VendorNotFoundException("invalid email!!");
+		if(!vendor.getPassword().equals(vendorLoginDto.getPassword()))
+			throw new VendorPasswordNotMatchingException("wrong password!!");
+		
+		return mapper.map(vendor, PersonDto.class);
+		
 		
 	}
 

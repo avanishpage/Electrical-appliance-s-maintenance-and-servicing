@@ -6,8 +6,8 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.app.dto.CustomerLoginDto;
 import com.app.dto.PersonDto;
+import com.app.dto.PersonLoginDto;
 import com.app.entity.Customer;
 import com.app.exceptions.CustomerNotFoundException;
 import com.app.exceptions.CustomerPasswordNotMatchingException;
@@ -60,7 +60,7 @@ public class CustomerServiceLayerImpl implements CustomerServiceLayerIF {
 	}
 
 	@Override
-	public PersonDto verifyCustomer(CustomerLoginDto customerLoginDto) {
+	public PersonDto verifyCustomer(PersonLoginDto customerLoginDto) {
 		Customer customer = custRepo.findByEmail(customerLoginDto.getEmail());
 		if(customer==null)
 			throw new CustomerNotFoundException("no such customer exists!");
