@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.app.dto.ApiResponse;
 import com.app.dto.CustomerDto;
+import com.app.dto.CustomerLoginDto;
 import com.app.entity.Customer;
 import com.app.service.CustomerServiceLayerIF;
 
@@ -59,5 +60,15 @@ public class CustomerController {
     	return new ApiResponse(LocalDateTime.now(), "customer successfully deleted!");
     }
 
+    
+    //customer login
+    @PostMapping("/login")
+    public CustomerDto loginCustomer(@RequestBody CustomerLoginDto customerLoginDto) {
+    	
+    	return serviceLayer.verifyCustomer(customerLoginDto);
+    }
+    
+    
+    
 
 }

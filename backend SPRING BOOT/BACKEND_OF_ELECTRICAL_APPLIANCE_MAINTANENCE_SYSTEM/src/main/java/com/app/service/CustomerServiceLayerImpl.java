@@ -1,6 +1,5 @@
 package com.app.service;
 
-
 import java.util.Optional;
 
 import javax.transaction.Transactional;
@@ -10,8 +9,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.app.dto.CustomerDto;
+import com.app.dto.CustomerLoginDto;
 import com.app.entity.Customer;
 import com.app.exceptions.CustomerNotFoundException;
+import com.app.exceptions.CustomerPasswordNotMatchingException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -35,33 +36,31 @@ public class CustomerServiceLayerImpl implements CustomerServiceLayerIF {
 
 	@Override
 	public void addCustomer(CustomerDto custDto) {
-		//System.out.println(custDto);
-		
-		Customer customerEntity=new Customer();
-				mapper.map(custDto, customerEntity);
-		
+		// System.out.println(custDto);
+
+		Customer customerEntity = new Customer();
+		mapper.map(custDto, customerEntity);
+
 		custRepo.save(customerEntity);
-		
-		
-		
-		
+
 	}
 
 	@Override
 	public void updateCust(CustomerDto custDto, Long id) {
 		System.out.println(id);
-	
-		Customer customerEntity=custRepo.findById(id).orElseThrow(()->  new CustomerNotFoundException("customer by id "+id+" not present"));
+
+		Customer customerEntity = custRepo.findById(id)
+				.orElseThrow(() -> new CustomerNotFoundException("customer by id " + id + " not present"));
 		mapper.map(custDto, customerEntity);
-		
+
 	}
-	
+
 	@Autowired
 	private ModelMapper modelMapper;
 
 	@Override
 	public Customer getCustomerDetails(Long customerId) {
-		
+
 		return custRepo.findById(customerId).orElseThrow(() -> new RuntimeException("Invalid emp id !!!!!"));
 	}
 
@@ -69,7 +68,19 @@ public class CustomerServiceLayerImpl implements CustomerServiceLayerIF {
 	public void deleteCustomer(Long customerId) {
 
 		custRepo.deleteById(customerId);
-		
+
+	}
+
+	@Override
+	public CustomerDto verifyCustomer(CustomerLoginDto customerLoginDto) {
+		Customer customer = custRepo.findByEmail(customerLoginDto.getEmail());
+		if(customer==null)
+			throw new CustomerNotFoundException("no such customer exists!");
+		if (!customer.getPassword().equals(customerLoginDto.getPassword())) {
+			throw new CustomerPasswordNotMatchingException("wrong password");
+		}
+		return mapper.map(customer, CustomerDto.class);
+
 	}
 
 //	

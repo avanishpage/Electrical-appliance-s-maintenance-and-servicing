@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 
 
 import com.app.dto.CustomerDto;
-
+import com.app.dto.CustomerLoginDto;
 import com.app.entity.Customer;
 
 import com.app.repository.CustomerRepositoryIF;
@@ -23,6 +23,8 @@ public interface CustomerServiceLayerIF {
 	Customer getCustomerDetails(Long customerId);
 
 	void deleteCustomer(Long customerId);
+
+	CustomerDto verifyCustomer(CustomerLoginDto customerLoginDto);
 	
 	
 }
