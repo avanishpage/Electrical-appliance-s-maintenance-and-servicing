@@ -22,4 +22,12 @@ public class Vendor extends Person{
 	@OneToMany(mappedBy = "vendor",cascade = CascadeType.ALL,orphanRemoval = true)
 	private List<Rating> ratings=new ArrayList<>();
 	
+	
+	
+	//helper methods of vendor
+	public void addService(Service service) {
+		services.add(service);
+		service.setVendor(this);
+	}
+	
 }

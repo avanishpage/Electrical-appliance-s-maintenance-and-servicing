@@ -1,7 +1,10 @@
 package com.app.service;
 
+import javax.transaction.Transactional;
+
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.app.dto.PersonDto;
 import com.app.dto.PersonLoginDto;
@@ -10,6 +13,8 @@ import com.app.exceptions.VendorNotFoundException;
 import com.app.exceptions.VendorPasswordNotMatchingException;
 import com.app.repository.VendorRepositoryIF;
 
+@Service
+@Transactional
 public class VendorServiceLayerImpl implements VendorServiceLayerIF{
 
 	
