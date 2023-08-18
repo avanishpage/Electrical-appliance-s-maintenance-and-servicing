@@ -1,5 +1,7 @@
 package com.app.controller;
 
+import java.util.List;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +14,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.app.dto.*;
+import com.app.dto.PersonDto;
+import com.app.dto.PersonLoginDto;
+import com.app.dto.ServiceDto;
 import com.app.service.VendorServiceLayerIF;
 
 @RestController
@@ -20,13 +24,13 @@ import com.app.service.VendorServiceLayerIF;
 public class VendorController {
 
 	@Autowired
-	private VendorServiceLayerIF serviceLayer;
+	private VendorServiceLayerIF vendorServiceLayer;
 	
 	//create vendor
 	@PostMapping("/add")
 	public void createVendor(@RequestBody @Valid PersonDto vendorDto) {
 
-		serviceLayer.addVendor(vendorDto);
+		vendorServiceLayer.addVendor(vendorDto);
 
 	}
 
@@ -34,26 +38,32 @@ public class VendorController {
 	@PutMapping("/update/{id}")
 	public void updateVendor(@RequestBody PersonDto vendorDto, @PathVariable Long id) {
 
-		serviceLayer.updateVendor(vendorDto, id);
+		vendorServiceLayer.updateVendor(vendorDto, id);
 	}
 
 	//get method for getting vendor information
 	@GetMapping("/{vendorId}")
 	public PersonDto getVendorDetails(@PathVariable Long vendorId) {
 		System.out.println("in get customer " + vendorId);
-		return serviceLayer.getVendorDetails(vendorId);
+		return vendorServiceLayer.getVendorDetails(vendorId);
 	}
 
 	//delete method for deleting vendor
 	@DeleteMapping("/delete/{vendorId}")
 	public void deleteVendor(@PathVariable Long vendorId) {
-		serviceLayer.deleteVendor(vendorId);
+		vendorServiceLayer.deleteVendor(vendorId);
 	}
 	
 	//post method for login
 	@PostMapping("/login")
 	public PersonDto loginVendor(@RequestBody PersonLoginDto vendorLoginDto) {
-		return serviceLayer.verifyVendor(vendorLoginDto);
+		return vendorServiceLayer.verifyVendor(vendorLoginDto);
+	}
+	
+	@GetMapping("/services/{vendorId}")
+	public List<ServiceDto> getServicesOfVendor(@PathVariable Long vendorId){
+		
+		return vendorServiceLayer.getAllServicesOf(vendorId);
 	}
 	
 	

@@ -1,5 +1,8 @@
 package com.app.service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.transaction.Transactional;
 
 import org.modelmapper.ModelMapper;
@@ -8,9 +11,11 @@ import org.springframework.stereotype.Service;
 
 import com.app.dto.PersonDto;
 import com.app.dto.PersonLoginDto;
+import com.app.dto.ServiceDto;
 import com.app.entity.Vendor;
 import com.app.exceptions.VendorNotFoundException;
 import com.app.exceptions.VendorPasswordNotMatchingException;
+import com.app.repository.ServiceRepositoryIF;
 import com.app.repository.VendorRepositoryIF;
 
 @Service
@@ -22,6 +27,8 @@ public class VendorServiceLayerImpl implements VendorServiceLayerIF{
 	private VendorRepositoryIF vendorRepo;
 	@Autowired
 	private ModelMapper mapper;
+	@Autowired
+	private ServiceRepositoryIF serviceRepo;
 	
 	@Override
 	public void addVendor(PersonDto vendorDto) {
@@ -67,6 +74,20 @@ public class VendorServiceLayerImpl implements VendorServiceLayerIF{
 		return mapper.map(vendor, PersonDto.class);
 		
 		
+	}
+
+	@Override
+	public List<ServiceDto> getAllServicesOf(Long vendorId) {
+		
+		Vendor vendor=vendorRepo.findById(vendorId).orElseThrow(()->new VendorNotFoundException("invalid vendor id"));
+		
+		List<com.app.entity.Service> services=vendor.getServices();
+		services.size();
+		
+		List<ServiceDto> servicesDto=new ArrayList<>();
+		
+		services.forEach((s)->servicesDto.add(mapper.map(s, ServiceDto.class)));
+		return servicesDto;
 	}
 
 }

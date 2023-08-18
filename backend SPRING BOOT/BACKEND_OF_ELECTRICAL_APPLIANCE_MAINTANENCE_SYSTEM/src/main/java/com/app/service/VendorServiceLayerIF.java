@@ -1,8 +1,10 @@
 package com.app.service;
 
+import java.util.List;
+
 import com.app.dto.PersonDto;
 import com.app.dto.PersonLoginDto;
-import com.app.entity.Vendor;
+import com.app.dto.ServiceDto;
 
 public interface VendorServiceLayerIF {
 	
@@ -15,5 +17,7 @@ public interface VendorServiceLayerIF {
 	public void deleteVendor(Long vendorId);
 
 	public PersonDto verifyVendor(PersonLoginDto vendorLoginDto);
+
+	public List<ServiceDto> getAllServicesOf(Long vendorId);
 
 }
