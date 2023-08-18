@@ -1,0 +1,9 @@
+#home-parentdiv{
+    
+    border: 2px solid black;
+    display: flex;
+}
+.home-childdiv{
+    width: 50%;
+    border: 2px solid red;
+}
