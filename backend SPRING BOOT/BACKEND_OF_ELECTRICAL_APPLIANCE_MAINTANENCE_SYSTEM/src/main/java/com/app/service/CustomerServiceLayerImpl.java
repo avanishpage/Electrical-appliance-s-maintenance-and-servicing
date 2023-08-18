@@ -62,7 +62,7 @@ public class CustomerServiceLayerImpl implements CustomerServiceLayerIF {
 
 	@Override
 	public PersonDto verifyCustomer(PersonLoginDto customerLoginDto) {
-		Customer customer = custRepo.findByEmail(customerLoginDto.getemail());
+		Customer customer = custRepo.findByEmail(customerLoginDto.getEmail());
 		if(customer==null)
 			throw new CustomerNotFoundException("no such customer exists!");
 		if (!customer.getPassword().equals(customerLoginDto.getPassword())) {
