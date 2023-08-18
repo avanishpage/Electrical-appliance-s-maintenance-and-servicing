@@ -32,7 +32,7 @@ public class CustomerController {
 	public ApiResponse createCustomer(@RequestBody @Valid PersonDto custDto) {
 
 		serviceLayer.addCustomer(custDto);
-		return new ApiResponse(LocalDateTime.now(), "customer successfully created!");
+		return new ApiResponse("customer successfully created!");
 
 	}
 
@@ -41,7 +41,7 @@ public class CustomerController {
 	public ApiResponse updateCustomer(@RequestBody PersonDto custDto, @PathVariable Long customerId) {
 
 		serviceLayer.updateCust(custDto, customerId);
-		return new ApiResponse(LocalDateTime.now(), "customer information successfully updated!");
+		return new ApiResponse("customer information successfully updated!");
 
 	}
 
@@ -51,11 +51,11 @@ public class CustomerController {
 		return serviceLayer.getCustomerDetails(customerId);
 	}
 
-	// delete method to delete a customer permanantly
+	// delete method to delete a customer permanently
 	@DeleteMapping("/delete/{customerId}")
 	public ApiResponse deleteCustomer(@PathVariable Long customerId) {
 		serviceLayer.deleteCustomer(customerId);
-		return new ApiResponse(LocalDateTime.now(), "customer successfully deleted!");
+		return new ApiResponse("customer successfully deleted!");
 	}
 
 	// customer login

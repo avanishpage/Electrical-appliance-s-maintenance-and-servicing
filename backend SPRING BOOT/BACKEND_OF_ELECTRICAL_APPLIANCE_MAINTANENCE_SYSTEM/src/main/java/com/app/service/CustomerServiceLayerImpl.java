@@ -60,6 +60,8 @@ public class CustomerServiceLayerImpl implements CustomerServiceLayerIF {
 
 	}
 
+	//method called during customer login
+
 	@Override
 	public PersonDto verifyCustomer(PersonLoginDto customerLoginDto) {
 		Customer customer = custRepo.findByEmail(customerLoginDto.getEmail());

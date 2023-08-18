@@ -62,6 +62,7 @@ public class VendorServiceLayerImpl implements VendorServiceLayerIF{
 		
 	}
 
+	//method called during vendor login
 	@Override
 	public PersonDto verifyVendor(PersonLoginDto vendorLoginDto) {
 		

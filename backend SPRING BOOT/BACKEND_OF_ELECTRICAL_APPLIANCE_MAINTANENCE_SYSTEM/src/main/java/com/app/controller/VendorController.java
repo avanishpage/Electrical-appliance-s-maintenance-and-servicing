@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.app.dto.ApiResponse;
 import com.app.dto.PersonDto;
 import com.app.dto.PersonLoginDto;
 import com.app.dto.ServiceDto;
@@ -28,17 +29,19 @@ public class VendorController {
 	
 	//create vendor
 	@PostMapping("/add")
-	public void createVendor(@RequestBody @Valid PersonDto vendorDto) {
+	public ApiResponse createVendor(@RequestBody @Valid PersonDto vendorDto) {
 
 		vendorServiceLayer.addVendor(vendorDto);
+		return new ApiResponse("Vendor is added successfully");
 
 	}
 
 	//put method for updating vendor information
 	@PutMapping("/update/{id}")
-	public void updateVendor(@RequestBody PersonDto vendorDto, @PathVariable Long id) {
+	public ApiResponse updateVendor(@RequestBody PersonDto vendorDto, @PathVariable Long id) {
 
 		vendorServiceLayer.updateVendor(vendorDto, id);
+		return new ApiResponse("Vendor Updating");
 	}
 
 	//get method for getting vendor information
@@ -50,8 +53,9 @@ public class VendorController {
 
 	//delete method for deleting vendor
 	@DeleteMapping("/delete/{vendorId}")
-	public void deleteVendor(@PathVariable Long vendorId) {
+	public ApiResponse deleteVendor(@PathVariable Long vendorId) {
 		vendorServiceLayer.deleteVendor(vendorId);
+		return new ApiResponse("Vendor deleted SIUUUU");
 	}
 	
 	//post method for login
