@@ -70,4 +70,13 @@ public class GlobalExceptionHandler {
 		return new ApiResponse(e.getMessage());
 	}
 
+	
+	@ExceptionHandler(OrderNotFoundException.class)
+	@ResponseStatus(value = HttpStatus.UNAUTHORIZED)
+	public ApiResponse handleCustomerNotFoundException(OrderNotFoundException e) {
+		return new ApiResponse(e.getMessage());
+	}
+
+	
+	
 }
