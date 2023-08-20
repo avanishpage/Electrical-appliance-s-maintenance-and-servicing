@@ -18,6 +18,7 @@ import com.app.dto.ApiResponse;
 import com.app.dto.PersonDto;
 import com.app.dto.PersonLoginDto;
 import com.app.dto.ServiceDto;
+import com.app.service.ServiceServiceLayerIF;
 import com.app.service.VendorServiceLayerIF;
 
 @RestController
@@ -26,6 +27,9 @@ public class VendorController {
 
 	@Autowired
 	private VendorServiceLayerIF vendorServiceLayer;
+	
+	@Autowired
+	private ServiceServiceLayerIF serviceService;
 	
 	//create vendor
 	@PostMapping("/add")
@@ -78,10 +82,18 @@ public class VendorController {
 	}
 	
 	
+	@DeleteMapping("/vendor/{vendorId}/service/delete/{serviceId}")
+		public ApiResponse deleteServiceOfVendorId(@PathVariable Long vendorId,@PathVariable Long serviceId ) {
+		
+			return serviceService.deleteServiceUsingVendorId(vendorId, serviceId);
+		}
+	}
+	
+	
+	
 	
 	
 	
 	
 	
 
-}
