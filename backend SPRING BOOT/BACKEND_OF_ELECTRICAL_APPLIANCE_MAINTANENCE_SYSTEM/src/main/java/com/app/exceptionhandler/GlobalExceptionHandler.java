@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 import com.app.dto.ApiResponse;
 import com.app.exceptions.CustomerNotFoundException;
 import com.app.exceptions.CustomerPasswordNotMatchingException;
-import com.app.exceptions.ServiceNotFoundException;
+import com.app.exceptions.*;
 import com.app.exceptions.VendorNotFoundException;
 import com.app.exceptions.VendorPasswordNotMatchingException;
 
