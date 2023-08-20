@@ -81,7 +81,7 @@ public class VendorController {
 			return serviceService.deleteServiceUsingVendorId(vendorId, serviceId);
 		}
 	
-	@PutMapping("/update/{id}/service/{serviceId}")
+	@PutMapping("/update/{vendorid}/service/{serviceId}")
 	public ApiResponse updateServiceforVendor(@RequestBody ServiceDto servicedto, @PathVariable Long vendorid,@PathVariable Long serviceId) {
 
 		vendorServiceLayer.updateServiceofVendor(servicedto, vendorid, serviceId);

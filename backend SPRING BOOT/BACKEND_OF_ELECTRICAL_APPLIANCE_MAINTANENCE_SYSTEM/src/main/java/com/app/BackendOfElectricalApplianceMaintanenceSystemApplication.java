@@ -19,5 +19,6 @@ public class BackendOfElectricalApplianceMaintanenceSystemApplication {
 		mapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
 		return mapper;
 	}
+	
 
 }
