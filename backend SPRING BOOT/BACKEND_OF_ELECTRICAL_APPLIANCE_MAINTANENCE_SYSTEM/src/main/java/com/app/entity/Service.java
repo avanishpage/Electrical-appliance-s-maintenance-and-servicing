@@ -1,18 +1,22 @@
 package com.app.entity;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import javax.persistence.Entity;
 import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 
 import com.app.enums.Category;
 
 import lombok.AllArgsConstructor;
-import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 //@Getter
 //@Setter
@@ -40,11 +44,21 @@ public class Service {
 	@ManyToOne(fetch = FetchType.LAZY)
 	private Vendor vendor;
 	
-	@ManyToOne(fetch = FetchType.LAZY)
-	private Cart cart;
 	
-	@ManyToOne(fetch = FetchType.LAZY)
-	private Order order;
+	@ManyToMany
+	@JoinTable(name = "service_cart",
+	joinColumns = @JoinColumn(name="service_id"),
+	inverseJoinColumns=@JoinColumn(name="cart_id")
+	)
+	private Set<Cart> carts=new HashSet<>();
+	
+	
+	@ManyToMany
+	@JoinTable(name = "service_order",
+	joinColumns = @JoinColumn(name="service_id"),
+	inverseJoinColumns=@JoinColumn(name="order_id")
+	)
+	private Set<Order> orders=new HashSet<>();
 
 	public Long getId() {
 		return id;
@@ -94,20 +108,27 @@ public class Service {
 		this.vendor = vendor;
 	}
 
-	public Cart getCart() {
-		return cart;
+	public Set<Cart> getCart() {
+		return carts;
 	}
 
-	public void setCart(Cart cart) {
-		this.cart = cart;
+	
+
+
+	public Set<Cart> getCarts() {
+		return carts;
 	}
 
-	public Order getOrder() {
-		return order;
+	public void setCarts(Set<Cart> carts) {
+		this.carts = carts;
 	}
 
-	public void setOrder(Order order) {
-		this.order = order;
+	public Set<Order> getOrders() {
+		return orders;
+	}
+
+	public void setOrders(Set<Order> orders) {
+		this.orders = orders;
 	}
 	
 }
