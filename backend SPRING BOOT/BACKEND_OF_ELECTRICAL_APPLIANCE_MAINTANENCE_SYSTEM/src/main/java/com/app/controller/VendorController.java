@@ -27,11 +27,11 @@ public class VendorController {
 
 	@Autowired
 	private VendorServiceLayerIF vendorServiceLayer;
-	
+
 	@Autowired
 	private ServiceServiceLayerIF serviceService;
-	
-	//create vendor
+
+	// create vendor
 	@PostMapping("/add")
 	public ApiResponse createVendor(@RequestBody @Valid PersonDto vendorDto) {
 
@@ -40,7 +40,7 @@ public class VendorController {
 
 	}
 
-	//put method for updating vendor information
+	// put method for updating vendor information
 	@PutMapping("/update/{id}")
 	public ApiResponse updateVendor(@RequestBody PersonDto vendorDto, @PathVariable Long id) {
 
@@ -48,54 +48,46 @@ public class VendorController {
 		return new ApiResponse("Vendor Updating");
 	}
 
-	//get method for getting vendor information
+	// get method for getting vendor information
 	@GetMapping("/{vendorId}")
 	public PersonDto getVendorDetails(@PathVariable Long vendorId) {
-		System.out.println("in get customer " + vendorId);
+		//System.out.println("in get customer " + vendorId);
 		return vendorServiceLayer.getVendorDetails(vendorId);
 	}
 
-	//delete method for deleting vendor
+	// delete method for deleting vendor
 	@DeleteMapping("/delete/{vendorId}")
 	public ApiResponse deleteVendor(@PathVariable Long vendorId) {
 		vendorServiceLayer.deleteVendor(vendorId);
 		return new ApiResponse("Vendor deleted SIUUUU");
 	}
-	
-	//post method for login
+
+	// post method for login
 	@PostMapping("/login")
 	public PersonDto loginVendor(@RequestBody PersonLoginDto vendorLoginDto) {
 		return vendorServiceLayer.verifyVendor(vendorLoginDto);
 	}
-	
+
 	@GetMapping("/services/{vendorId}")
-	public List<ServiceDto> getServicesOfVendor(@PathVariable Long vendorId){
-		
+	public List<ServiceDto> getServicesOfVendor(@PathVariable Long vendorId) {
+
 		return vendorServiceLayer.getAllServicesOf(vendorId);
 	}
-	
-	
+
 	@DeleteMapping("/vendor/{vendorId}/service/delete/{serviceId}")
-		public ApiResponse deleteServiceOfVendorId(@PathVariable Long vendorId,@PathVariable Long serviceId ) {
-		
-			return serviceService.deleteServiceUsingVendorId(vendorId, serviceId);
-		}
-	
-	@PutMapping("/update/{id}/service/{serviceId}")
-	public ApiResponse updateServiceforVendor(@RequestBody ServiceDto servicedto, @PathVariable Long vendorid,@PathVariable Long serviceId) {
+	public ApiResponse deleteServiceOfVendorId(@PathVariable Long vendorId, @PathVariable Long serviceId) {
+
+		return serviceService.deleteServiceUsingVendorId(vendorId, serviceId);
+	}
+
+	@PutMapping("/update/{vendorid}/service/{serviceId}")
+	public ApiResponse updateServiceforVendor(@RequestBody ServiceDto servicedto, @PathVariable Long vendorid,
+			@PathVariable Long serviceId) {
 
 		vendorServiceLayer.updateServiceofVendor(servicedto, vendorid, serviceId);
-		return new ApiResponse("Service"+ serviceId + "vendor" + vendorid + "updated successfully");
-	}
-
-	
+		return new ApiResponse("Service" + serviceId + "vendor" + vendorid + "updated successfully");
 	}
 	
 	
-	
-	
-	
-	
-	
-	
 
+}

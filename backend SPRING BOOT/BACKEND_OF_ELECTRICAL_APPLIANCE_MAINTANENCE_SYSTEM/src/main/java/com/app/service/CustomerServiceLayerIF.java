@@ -8,7 +8,7 @@ import com.app.entity.Customer;
 public interface CustomerServiceLayerIF {
 
 
-	void addCustomer(PersonDto custDto);
+	void addCustomerAndCart(PersonDto custDto);
 
 	void updateCust(PersonDto custDto, Long id);
 

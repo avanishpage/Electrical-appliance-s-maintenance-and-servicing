@@ -31,7 +31,7 @@ public class CustomerController {
 	@PostMapping("/add")
 	public ApiResponse createCustomer(@RequestBody @Valid PersonDto custDto) {
 
-		serviceLayer.addCustomer(custDto);
+		serviceLayer.addCustomerAndCart(custDto);
 		return new ApiResponse("customer successfully created!");
 
 	}
@@ -64,5 +64,7 @@ public class CustomerController {
 
 		return serviceLayer.verifyCustomer(customerLoginDto);
 	}
+	
+	
 
 }

@@ -22,22 +22,25 @@ import lombok.Setter;
 @Entity
 public class Customer extends Person {
 
-	@OneToOne(mappedBy = "customer")
-	private Cart cart;
+	
 	
 	@OneToMany(mappedBy = "customer",cascade = CascadeType.ALL,orphanRemoval = true)
 	private List<Order> orders=new ArrayList<>();
 	
 	@Column(name="total_payment_made")
 	private Long totalPaymentMade;
+	
+	//helper methods for cart
+	
+	
+	
+	
+	
+	
+	
+	
 
-	public Cart getCart() {
-		return cart;
-	}
-
-	public void setCart(Cart cart) {
-		this.cart = cart;
-	}
+	
 
 	public List<Order> getOrders() {
 		return orders;
