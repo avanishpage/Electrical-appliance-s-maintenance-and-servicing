@@ -52,4 +52,19 @@ public class Cart {
 		
 		
 	}
+	
+	//to add a service to cart
+	public void associateServiceWithCart(Service service) {
+		this.services.add(service);
+		service.getCarts().add(this);
+	}
+	
+	//to delete a service from cart
+	public void disassociateServiceWithCart(Service service) {
+		this.services.remove(service);
+		service.getCarts().remove(this);
+	}
+	
+	
+	
 }
