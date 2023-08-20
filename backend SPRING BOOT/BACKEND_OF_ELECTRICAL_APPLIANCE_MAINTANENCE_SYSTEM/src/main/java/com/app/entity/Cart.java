@@ -9,6 +9,7 @@ import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
@@ -32,8 +33,8 @@ public class Cart {
 	@GeneratedValue
 	private Long id;
 	
-	@OneToOne
-	@MapsId("id")
+	@OneToOne(fetch = FetchType.LAZY)
+	@MapsId
 	private Customer customer;
 	
 	@ManyToMany(mappedBy = "carts")
@@ -41,4 +42,14 @@ public class Cart {
 	
 	@Column(name="time_stamp")
 	private LocalDateTime timeStamp;
+	
+	
+	
+	//helper methods of cart
+	public void addCartToCustomer(Customer customer) {
+		
+		this.customer=customer;
+		
+		
+	}
 }

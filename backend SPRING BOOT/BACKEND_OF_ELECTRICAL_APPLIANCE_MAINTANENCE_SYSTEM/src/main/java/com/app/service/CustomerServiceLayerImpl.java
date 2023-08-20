@@ -8,9 +8,11 @@ import org.springframework.stereotype.Service;
 
 import com.app.dto.PersonDto;
 import com.app.dto.PersonLoginDto;
+import com.app.entity.Cart;
 import com.app.entity.Customer;
 import com.app.exceptions.CustomerNotFoundException;
 import com.app.exceptions.CustomerPasswordNotMatchingException;
+import com.app.repository.CartRepository;
 import com.app.repository.CustomerRepositoryIF;
 
 @Service
@@ -21,15 +23,23 @@ public class CustomerServiceLayerImpl implements CustomerServiceLayerIF {
 	private CustomerRepositoryIF custRepo;
 	@Autowired
 	private ModelMapper mapper;
+	@Autowired
+	private CartRepository cartRepo;
 
 	@Override
-	public void addCustomer(PersonDto custDto) {
+	public void addCustomerAndCart(PersonDto custDto) {
 		// System.out.println(custDto);
 
 		Customer customerEntity = new Customer();
 		mapper.map(custDto, customerEntity);
-
+		
+		Cart cart=new Cart();
+		
+		cart.addCartToCustomer(customerEntity);
+		
+		
 		custRepo.save(customerEntity);
+		cartRepo.save(cart);
 
 	}
 
