@@ -6,4 +6,5 @@ public interface ServiceServiceLayerIF {
 
 	void attachServiceToVendor(ServiceDto serviceDto, Long vendorId);
 
+	//void updateService()
 }
