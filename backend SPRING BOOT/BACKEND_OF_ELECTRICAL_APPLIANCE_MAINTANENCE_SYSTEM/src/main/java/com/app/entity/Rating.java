@@ -4,8 +4,11 @@ import javax.persistence.Entity;
 import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.MapsId;
 import javax.persistence.OneToOne;
 
 import com.app.enums.Stars;
@@ -23,7 +26,7 @@ import lombok.Setter;
 public class Rating {
 
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
@@ -32,12 +35,18 @@ public class Rating {
 	
 	//private Customer customer;
 	
+	@OneToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name="order_id")
+	@MapsId
+	private Order order;
+	
+	
+	
 	@Enumerated
 	private Stars stars;
 	
 	private String Description;
 	
-	@OneToOne
-	private Order order;
+	
 	
 }

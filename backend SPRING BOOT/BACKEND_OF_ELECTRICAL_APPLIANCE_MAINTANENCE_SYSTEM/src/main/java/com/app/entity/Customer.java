@@ -30,7 +30,6 @@ public class Customer extends Person {
 	@Column(name="total_payment_made")
 	private Long totalPaymentMade;
 	
-	//helper methods for cart
 	
 	
 	

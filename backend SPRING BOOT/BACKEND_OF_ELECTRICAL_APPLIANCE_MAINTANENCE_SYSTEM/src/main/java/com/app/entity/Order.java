@@ -12,6 +12,7 @@ import javax.persistence.Entity;
 import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
@@ -36,7 +37,7 @@ import lombok.Setter;
 public class Order {
 	
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
@@ -52,9 +53,6 @@ public class Order {
 	@Column(name="job_status")
 	private JobStatus jobStatus; 
 
-	@OneToOne
-	@MapsId("id")
-	private Rating rating;
 	
 	private LocalDateTime timeStamp;
 }

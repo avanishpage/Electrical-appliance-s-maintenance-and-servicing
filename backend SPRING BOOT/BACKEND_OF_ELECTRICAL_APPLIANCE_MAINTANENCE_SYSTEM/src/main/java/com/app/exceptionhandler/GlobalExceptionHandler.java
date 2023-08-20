@@ -56,12 +56,12 @@ public class GlobalExceptionHandler {
 		return new ApiResponse(e.getMessage());
 	}
 
-	// any remaining runtime exception
-	@ExceptionHandler(RuntimeException.class)
-	@ResponseStatus(value = HttpStatus.INTERNAL_SERVER_ERROR)
-	public ApiResponse handleRuntimeException(RuntimeException e) {
-		return new ApiResponse(e.getMessage());
-	}
+//	// any remaining runtime exception
+//	@ExceptionHandler(RuntimeException.class)
+//	@ResponseStatus(value = HttpStatus.INTERNAL_SERVER_ERROR)
+//	public ApiResponse handleRuntimeException(RuntimeException e) {
+//		return new ApiResponse(e.getMessage());
+//	}
 
 	// service not found
 	@ExceptionHandler(ServiceNotFoundException.class)
