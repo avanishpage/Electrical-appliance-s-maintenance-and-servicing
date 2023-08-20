@@ -19,5 +19,7 @@ public interface VendorServiceLayerIF {
 	public PersonDto verifyVendor(PersonLoginDto vendorLoginDto);
 
 	public List<ServiceDto> getAllServicesOf(Long vendorId);
+	
+	public void updateServiceofVendor(ServiceDto servicedto,Long vendorId, Long serviceId);
 
 }

@@ -80,6 +80,15 @@ public class VendorController {
 		
 			return serviceService.deleteServiceUsingVendorId(vendorId, serviceId);
 		}
+	
+	@PutMapping("/update/{id}/service/{serviceId}")
+	public ApiResponse updateServiceforVendor(@RequestBody ServiceDto servicedto, @PathVariable Long vendorid,@PathVariable Long serviceId) {
+
+		vendorServiceLayer.updateServiceofVendor(servicedto, vendorid, serviceId);
+		return new ApiResponse("Service"+ serviceId + "vendor" + vendorid + "updated successfully");
+	}
+
+	
 	}
 	
 	
