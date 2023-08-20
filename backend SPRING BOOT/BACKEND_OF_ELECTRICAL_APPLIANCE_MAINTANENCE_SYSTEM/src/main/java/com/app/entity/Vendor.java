@@ -34,6 +34,11 @@ public class Vendor extends Person {
 		services.remove(service);
 		service.setVendor(null);
 	}
+	
+	public void addRating(Rating rating) {
+		ratings.add(rating);
+		rating.setVendor(this);
+	}
 
 	public List<Service> getServices() {
 		return services;
