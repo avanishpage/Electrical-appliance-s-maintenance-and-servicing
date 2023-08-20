@@ -2,7 +2,9 @@ package com.app.entity;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -11,6 +13,7 @@ import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.MapsId;
 import javax.persistence.OneToMany;
@@ -42,8 +45,8 @@ public class Order {
 	@ManyToOne(fetch = FetchType.LAZY)
 	private Customer customer;
 	
-	@OneToMany(mappedBy = "order",cascade = CascadeType.ALL,orphanRemoval = true)
-	private List<Service> services=new ArrayList<>();
+	@ManyToMany(mappedBy = "orders")
+	private Set<Service> services=new HashSet<>();
 	
 	@Enumerated
 	@Column(name="job_status")
