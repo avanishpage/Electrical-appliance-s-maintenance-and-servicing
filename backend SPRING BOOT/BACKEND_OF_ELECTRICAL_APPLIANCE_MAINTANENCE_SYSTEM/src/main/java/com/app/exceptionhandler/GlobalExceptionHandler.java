@@ -56,6 +56,7 @@ public class GlobalExceptionHandler {
 		return new ApiResponse(e.getMessage());
 	}
 
+
 //	 any remaining runtime exception
 	@ExceptionHandler(RuntimeException.class)
 	@ResponseStatus(value = HttpStatus.INTERNAL_SERVER_ERROR)
@@ -70,4 +71,13 @@ public class GlobalExceptionHandler {
 		return new ApiResponse(e.getMessage());
 	}
 
+	
+	@ExceptionHandler(OrderNotFoundException.class)
+	@ResponseStatus(value = HttpStatus.UNAUTHORIZED)
+	public ApiResponse handleCustomerNotFoundException(OrderNotFoundException e) {
+		return new ApiResponse(e.getMessage());
+	}
+
+	
+	
 }

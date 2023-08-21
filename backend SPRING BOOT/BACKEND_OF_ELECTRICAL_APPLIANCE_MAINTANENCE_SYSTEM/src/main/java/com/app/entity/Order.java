@@ -53,6 +53,7 @@ public class Order {
 
 	@OneToOne(mappedBy = "order")
 	private Rating rating;
+
 	
 	private LocalDateTime timeStamp;
 	

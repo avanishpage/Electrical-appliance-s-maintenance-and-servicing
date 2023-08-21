@@ -26,6 +26,7 @@ import lombok.Setter;
 public class Rating {
 
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
@@ -38,8 +39,10 @@ public class Rating {
 	@JoinColumn(name = "order_id")
 	private Order order;
 	
+	
 	@Enumerated
 	private Stars stars;
 	
 	private String Description;
+
 }
