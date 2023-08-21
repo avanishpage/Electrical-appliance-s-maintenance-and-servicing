@@ -75,12 +75,7 @@ public class VendorController {
 		return vendorServiceLayer.getAllServicesOf(vendorId);
 	}
 
-	@DeleteMapping("/vendor/{vendorId}/service/delete/{serviceId}")
 
-		public ApiResponse deleteServiceOfVendorId(@PathVariable Long vendorId,@PathVariable Long serviceId ) {
-		
-			return serviceService.deleteServiceUsingVendorId(vendorId, serviceId);
-		}
 	
 	@PutMapping("/update/{vendorid}/service/{serviceId}")
 	public ApiResponse updateServiceforVendor(@RequestBody ServiceDto servicedto, @PathVariable Long vendorid,@PathVariable Long serviceId) {

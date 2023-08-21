@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.app.dto.ApiResponse;
+import com.app.dto.OrderDto;
 import com.app.dto.ServiceDto;
 import com.app.entity.Cart;
 import com.app.entity.Order;
@@ -61,6 +62,18 @@ public class OrderServiceImpl implements OrderServiceIF {
 		services.forEach(s->serviceDtos.add(mapper.map(s, ServiceDto.class)));
 		
 		return serviceDtos;
+	}
+
+	@Override
+	public List<OrderDto> getOrdersByJobStatus(JobStatus jobstatus) {
+		
+		List<Order> orders = orderRepo.findByJobStatus(jobstatus);
+		
+		List<OrderDto> orderdtos = new ArrayList<OrderDto>();
+		
+		orders.forEach(o -> orderdtos.add(mapper.map(o, OrderDto.class)));
+		return orderdtos;
+		
 	}
 
 }
