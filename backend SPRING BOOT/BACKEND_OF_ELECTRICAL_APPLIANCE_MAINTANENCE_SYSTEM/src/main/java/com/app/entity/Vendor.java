@@ -7,8 +7,8 @@ import javax.persistence.*;
 
 import lombok.*;
 
-//@Getter
-//@Setter
+@Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
@@ -38,30 +38,6 @@ public class Vendor extends Person {
 	public void addRating(Rating rating) {
 		ratings.add(rating);
 		rating.setVendor(this);
-	}
-
-	public List<Service> getServices() {
-		return services;
-	}
-
-	public void setServices(List<Service> services) {
-		this.services = services;
-	}
-
-	public List<Order> getOrders() {
-		return orders;
-	}
-
-	public void setOrders(List<Order> orders) {
-		this.orders = orders;
-	}
-
-	public List<Rating> getRatings() {
-		return ratings;
-	}
-
-	public void setRatings(List<Rating> ratings) {
-		this.ratings = ratings;
 	}
 
 }

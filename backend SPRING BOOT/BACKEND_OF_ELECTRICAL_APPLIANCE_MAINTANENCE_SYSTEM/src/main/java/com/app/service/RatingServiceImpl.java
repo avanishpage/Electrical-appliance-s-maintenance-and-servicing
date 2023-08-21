@@ -89,4 +89,5 @@ public class RatingServiceImpl implements RatingServiceIF {
 		return ratingdto;
 	}
 
+
 }

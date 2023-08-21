@@ -57,8 +57,26 @@ public class Order {
 	
 	private LocalDateTime timeStamp;
 	
+	
+	//helper methods
 	public void giveRating(Rating rating) {
 		this.rating = rating;
 		rating.setOrder(this);
 	}
+	
+	public void setRelationWithCart(Set<Service> services, Customer customer, Vendor vendor, JobStatus scheduled) {
+		
+		
+		services.forEach(s->this.services.add(s.clone()));
+		this.customer=customer;
+		this.vendor=vendor;
+		this.jobStatus=scheduled;
+		this.timeStamp=LocalDateTime.now();
+		this.services.forEach(s->s.getOrders().add(this));
+		
+		
+	}
+	
+	
+	
 }
