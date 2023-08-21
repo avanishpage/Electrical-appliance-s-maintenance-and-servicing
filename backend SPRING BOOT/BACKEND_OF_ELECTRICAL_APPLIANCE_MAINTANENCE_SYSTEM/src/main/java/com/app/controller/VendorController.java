@@ -75,19 +75,17 @@ public class VendorController {
 	}
 
 	@DeleteMapping("/vendor/{vendorId}/service/delete/{serviceId}")
-	public ApiResponse deleteServiceOfVendorId(@PathVariable Long vendorId, @PathVariable Long serviceId) {
 
-		return serviceService.deleteServiceUsingVendorId(vendorId, serviceId);
-	}
-
+		public ApiResponse deleteServiceOfVendorId(@PathVariable Long vendorId,@PathVariable Long serviceId ) {
+		
+			return serviceService.deleteServiceUsingVendorId(vendorId, serviceId);
+		}
+	
 	@PutMapping("/update/{vendorid}/service/{serviceId}")
-	public ApiResponse updateServiceforVendor(@RequestBody ServiceDto servicedto, @PathVariable Long vendorid,
-			@PathVariable Long serviceId) {
+	public ApiResponse updateServiceforVendor(@RequestBody ServiceDto servicedto, @PathVariable Long vendorid,@PathVariable Long serviceId) {
 
 		vendorServiceLayer.updateServiceofVendor(servicedto, vendorid, serviceId);
-		return new ApiResponse("Service" + serviceId + "vendor" + vendorid + "updated successfully");
+		return new ApiResponse("Service"+ serviceId + "vendor" + vendorid + "updated successfully");
 	}
-	
-	
 
 }

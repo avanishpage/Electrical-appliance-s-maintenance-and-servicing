@@ -26,14 +26,21 @@ import lombok.Setter;
 public class Rating {
 
 	@Id
+<<<<<<< HEAD
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+=======
+>>>>>>> 549cea8c3d2101981626d166f7c0bd9d12c477c5
 	private Long id;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "vendor_id")
 	private Vendor vendor;
 	
-	
-	//private Customer customer;
+		
+	@OneToOne(fetch = FetchType.LAZY)
+	@MapsId
+	@JoinColumn(name = "order_id")
+	private Order order;
 	
 	@OneToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name="order_id")
@@ -46,7 +53,10 @@ public class Rating {
 	private Stars stars;
 	
 	private String Description;
+<<<<<<< HEAD
 	
 	
 	
+=======
+>>>>>>> 549cea8c3d2101981626d166f7c0bd9d12c477c5
 }
