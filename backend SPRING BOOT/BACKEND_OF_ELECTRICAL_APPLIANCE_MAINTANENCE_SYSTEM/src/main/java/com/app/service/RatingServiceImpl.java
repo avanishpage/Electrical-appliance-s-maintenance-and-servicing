@@ -18,7 +18,7 @@ import com.app.exceptions.OrderNotFoundException;
 import com.app.exceptions.VendorNotFoundException;
 
 import com.app.repository.OrderRepositoryIF;
-import com.app.repository.RatingRepository;
+import com.app.repository.RatingRepositoryIF;
 import com.app.repository.VendorRepositoryIF;
 
 @Service
@@ -26,7 +26,7 @@ import com.app.repository.VendorRepositoryIF;
 public class RatingServiceImpl implements RatingServiceIF {
 
 	@Autowired
-	private RatingRepository ratingRepo;
+	private RatingRepositoryIF ratingRepo;
 	
 	@Autowired
 	private OrderRepositoryIF orderRepo;
@@ -77,6 +77,16 @@ public class RatingServiceImpl implements RatingServiceIF {
 		
 		return totalRating/ratings.size();
 	
+	}
+
+	@Override
+	public RatingDto getRatingForOrder(Long orderId) {
+
+		Order order = orderRepo.findById(orderId).orElseThrow(()-> new OrderNotFoundException("Order does not exists !!!"));
+		
+		RatingDto ratingdto = mapper.map(order.getRating(), RatingDto.class);
+		
+		return ratingdto;
 	}
 
 }
