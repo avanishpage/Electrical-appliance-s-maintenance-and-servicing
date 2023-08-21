@@ -52,7 +52,7 @@ public class VendorServiceLayerImpl implements VendorServiceLayerIF{
 	@Override
 	public PersonDto getVendorDetails(Long vendorId) {
 
-		return mapper.map(vendorRepo.findById(vendorId).orElseThrow(() -> new RuntimeException("Invalid vendor id !!!!!")),PersonDto.class) ;
+		return mapper.map(vendorRepo.findById(vendorId).orElseThrow(() -> new VendorNotFoundException("Invalid vendor id !!!!!")),PersonDto.class) ;
 
 	}
 
