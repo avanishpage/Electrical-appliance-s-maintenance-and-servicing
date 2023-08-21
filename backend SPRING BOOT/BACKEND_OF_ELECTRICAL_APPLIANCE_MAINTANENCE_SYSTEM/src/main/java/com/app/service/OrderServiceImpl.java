@@ -43,23 +43,8 @@ public class OrderServiceImpl implements OrderServiceIF {
 		
 		com.app.entity.Service service=(com.app.entity.Service)cart.getServices().toArray()[0];
 		
-		Set<com.app.entity.Service> services=new HashSet<>();
-		
-		cart.getServices().forEach((s)->services.add(s));
-		
-	
-		
-		order.setServices(services);
-		order.setCustomer(cart.getCustomer());
-		order.setVendor(service.getVendor());
-		order.setJobStatus(JobStatus.SCHEDULED);
-		order.setTimeStamp(LocalDateTime.now());
-		
-		order.getServices().forEach(s->System.out.println(s.getPrice()));;
-		
-		
-		
-		
+		order.setRelationWithCart(cart.getServices(),cart.getCustomer(),service.getVendor(),JobStatus.SCHEDULED);
+				
 		orderRepo.save(order);
 		
 		return new ApiResponse("order created successfully");

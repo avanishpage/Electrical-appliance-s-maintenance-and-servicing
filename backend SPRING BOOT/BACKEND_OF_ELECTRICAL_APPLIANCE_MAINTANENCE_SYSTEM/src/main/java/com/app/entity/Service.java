@@ -26,7 +26,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-public class Service {
+public class Service implements Cloneable{
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -62,5 +62,18 @@ public class Service {
 	inverseJoinColumns=@JoinColumn(name="order_id")
 	)
 	private Set<Order> orders=new HashSet<>();
+
+
+	@Override
+	protected Service clone() {
+		// TODO Auto-generated method stub
+		try {
+			return (Service)super.clone();
+		} catch (CloneNotSupportedException e) {
+			throw new RuntimeException(e);
+		}
+	}
+	
+	
 	
 }
