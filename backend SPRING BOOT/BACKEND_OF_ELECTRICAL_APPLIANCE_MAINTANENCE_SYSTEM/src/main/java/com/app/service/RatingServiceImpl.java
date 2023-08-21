@@ -79,5 +79,4 @@ public class RatingServiceImpl implements RatingServiceIF {
 	
 	}
 
-=======
 }

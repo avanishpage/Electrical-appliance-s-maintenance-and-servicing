@@ -51,11 +51,9 @@ public class Order {
 	@Column(name="job_status")
 	private JobStatus jobStatus; 
 
-<<<<<<< HEAD
-=======
 	@OneToOne(mappedBy = "order")
 	private Rating rating;
->>>>>>> 549cea8c3d2101981626d166f7c0bd9d12c477c5
+
 	
 	private LocalDateTime timeStamp;
 	
