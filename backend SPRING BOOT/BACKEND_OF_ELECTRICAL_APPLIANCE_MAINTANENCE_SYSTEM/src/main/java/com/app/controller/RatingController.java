@@ -36,34 +36,28 @@ public class RatingController {
 		
 	}
 	
-<<<<<<< HEAD
+
 	@GetMapping("/average/{vendor_id}")
 	public Double getAverageRating(@PathVariable Long vendor_id) {
 		
-=======
 	@GetMapping("/{vendor_id}")
 	public Double getAverageRating(@PathVariable Long vendor_id) {
 		
 	//	System.out.println(vendor_id);
->>>>>>> 898a27059c7f585f324c9eb891022324fca41bc7
 	return ratingService.calculateAverageRatingforVendor(vendor_id);
-		
 	}
 	
 	@GetMapping("/order/{order_id}")
 	public RatingDto getRatingForOrder(@PathVariable Long order_id) {
 		
-		return ratingService.getRatingForOrder(order_id);
-		
+		return ratingService.getRatingForOrder(order_id);	
 	}
-<<<<<<< HEAD
 	
 	@GetMapping("/{vendorId}")
 	public List<RatingDto> getRatingOfVendor(@PathVariable Long vendorId)
 	{
 		return vendorServiceLayer.getVendorRating(vendorId);
 	}
-=======
->>>>>>> 898a27059c7f585f324c9eb891022324fca41bc7
+
 
 }
