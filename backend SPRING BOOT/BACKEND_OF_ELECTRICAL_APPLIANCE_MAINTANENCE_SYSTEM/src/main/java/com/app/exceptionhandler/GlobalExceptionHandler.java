@@ -56,12 +56,21 @@ public class GlobalExceptionHandler {
 		return new ApiResponse(e.getMessage());
 	}
 
+<<<<<<< HEAD
+//	// any remaining runtime exception
+//	@ExceptionHandler(RuntimeException.class)
+//	@ResponseStatus(value = HttpStatus.INTERNAL_SERVER_ERROR)
+//	public ApiResponse handleRuntimeException(RuntimeException e) {
+//		return new ApiResponse(e.getMessage());
+//	}
+=======
 //	 any remaining runtime exception
 	@ExceptionHandler(RuntimeException.class)
 	@ResponseStatus(value = HttpStatus.INTERNAL_SERVER_ERROR)
 	public ApiResponse handleRuntimeException(RuntimeException e) {
 		return new ApiResponse(e.getMessage());
 	}
+>>>>>>> 549cea8c3d2101981626d166f7c0bd9d12c477c5
 
 	// service not found
 	@ExceptionHandler(ServiceNotFoundException.class)
@@ -70,4 +79,13 @@ public class GlobalExceptionHandler {
 		return new ApiResponse(e.getMessage());
 	}
 
+	
+	@ExceptionHandler(OrderNotFoundException.class)
+	@ResponseStatus(value = HttpStatus.UNAUTHORIZED)
+	public ApiResponse handleCustomerNotFoundException(OrderNotFoundException e) {
+		return new ApiResponse(e.getMessage());
+	}
+
+	
+	
 }
