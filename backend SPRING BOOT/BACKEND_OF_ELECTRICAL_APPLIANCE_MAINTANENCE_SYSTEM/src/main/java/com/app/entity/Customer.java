@@ -15,8 +15,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 
-//@Getter
-//@Setter
+@Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
@@ -31,33 +31,6 @@ public class Customer extends Person {
 	private Long totalPaymentMade;
 	
 	//helper methods for cart
-	
-	
-	
-	
-	
-	
-	
-	
-
-	
-
-	public List<Order> getOrders() {
-		return orders;
-	}
-
-	public void setOrders(List<Order> orders) {
-		this.orders = orders;
-	}
-
-	public Long getTotalPaymentMade() {
-		return totalPaymentMade;
-	}
-
-	public void setTotalPaymentMade(Long totalPaymentMade) {
-		this.totalPaymentMade = totalPaymentMade;
-	}
-	
 	
 	
 }

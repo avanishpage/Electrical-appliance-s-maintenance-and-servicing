@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.app.dto.PersonDto;
 import com.app.dto.PersonLoginDto;
+import com.app.dto.RatingDto;
 import com.app.dto.ServiceDto;
 
 public interface VendorServiceLayerIF {
@@ -21,5 +22,7 @@ public interface VendorServiceLayerIF {
 	public List<ServiceDto> getAllServicesOf(Long vendorId);
 	
 	public void updateServiceofVendor(ServiceDto servicedto,Long vendorId, Long serviceId);
+
+	public List<RatingDto> getVendorRating(Long vendorId);
 
 }
