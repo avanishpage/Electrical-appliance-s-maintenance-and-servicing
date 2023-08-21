@@ -1,5 +1,6 @@
 package com.app.service;
 
+
 import java.util.List;
 
 import javax.transaction.Transactional;
@@ -13,7 +14,9 @@ import com.app.entity.Order;
 import com.app.entity.Rating;
 import com.app.entity.Vendor;
 import com.app.exceptions.OrderNotFoundException;
+
 import com.app.exceptions.VendorNotFoundException;
+
 import com.app.repository.OrderRepositoryIF;
 import com.app.repository.RatingRepository;
 import com.app.repository.VendorRepositoryIF;
@@ -29,9 +32,11 @@ public class RatingServiceImpl implements RatingServiceIF {
 	private OrderRepositoryIF orderRepo;
 	
 	@Autowired
+
 	private VendorRepositoryIF vendorRepo;
 	
 	@Autowired
+
 	private ModelMapper mapper;
 	
 	@Override
@@ -74,4 +79,5 @@ public class RatingServiceImpl implements RatingServiceIF {
 	
 	}
 
+=======
 }
