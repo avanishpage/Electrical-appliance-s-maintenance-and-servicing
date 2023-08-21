@@ -13,6 +13,7 @@ import com.app.dto.PersonDto;
 import com.app.dto.PersonLoginDto;
 import com.app.dto.ServiceDto;
 import com.app.entity.Vendor;
+import com.app.exceptions.ResourceNotFound;
 import com.app.exceptions.VendorNotFoundException;
 import com.app.exceptions.VendorPasswordNotMatchingException;
 import com.app.repository.ServiceRepositoryIF;
@@ -51,7 +52,7 @@ public class VendorServiceLayerImpl implements VendorServiceLayerIF{
 	@Override
 	public PersonDto getVendorDetails(Long vendorId) {
 
-		return mapper.map(vendorRepo.findById(vendorId).orElseThrow(() -> new RuntimeException("Invalid vendor id !!!!!")),PersonDto.class) ;
+		return mapper.map(vendorRepo.findById(vendorId).orElseThrow(() -> new VendorNotFoundException("Invalid vendor id !!!!!")),PersonDto.class) ;
 
 	}
 
@@ -91,4 +92,21 @@ public class VendorServiceLayerImpl implements VendorServiceLayerIF{
 		return servicesDto;
 	}
 
+
+	@Override
+	public void updateServiceofVendor(ServiceDto servicedto, Long vendorId, Long serviceId) {
+
+		Vendor vendor = vendorRepo.findById(vendorId).orElseThrow(()->new VendorNotFoundException("invalid vendor id"));
+		
+		com.app.entity.Service service = vendor.getServices().stream()
+                .filter(p -> p.getId().equals(serviceId))
+                .findFirst()
+                .orElseThrow(() -> new ResourceNotFound("Service not found for this vendor"));
+		
+		mapper.map(servicedto,service);
+		serviceRepo.save(service);
+		
+	
+}
+	
 }

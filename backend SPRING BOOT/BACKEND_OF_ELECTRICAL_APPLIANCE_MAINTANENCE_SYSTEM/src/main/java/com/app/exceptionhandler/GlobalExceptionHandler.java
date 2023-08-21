@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 import com.app.dto.ApiResponse;
 import com.app.exceptions.CustomerNotFoundException;
 import com.app.exceptions.CustomerPasswordNotMatchingException;
-import com.app.exceptions.ServiceNotFoundException;
+import com.app.exceptions.*;
 import com.app.exceptions.VendorNotFoundException;
 import com.app.exceptions.VendorPasswordNotMatchingException;
 
@@ -56,7 +56,7 @@ public class GlobalExceptionHandler {
 		return new ApiResponse(e.getMessage());
 	}
 
-	// any remaining runtime exception
+//	 any remaining runtime exception
 	@ExceptionHandler(RuntimeException.class)
 	@ResponseStatus(value = HttpStatus.INTERNAL_SERVER_ERROR)
 	public ApiResponse handleRuntimeException(RuntimeException e) {

@@ -2,13 +2,17 @@ package com.app.entity;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.MapsId;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
@@ -29,13 +33,38 @@ public class Cart {
 	@GeneratedValue
 	private Long id;
 	
-	@OneToOne
-	@MapsId("id")
+	@OneToOne(fetch = FetchType.LAZY)
+	@MapsId
 	private Customer customer;
 	
-	@OneToMany(mappedBy = "cart",cascade = CascadeType.ALL,orphanRemoval = true)
-	private List<Service> services=new ArrayList<>();
+	@ManyToMany(mappedBy = "carts")
+	private Set<Service> services=new HashSet<>();
 	
 	@Column(name="time_stamp")
 	private LocalDateTime timeStamp;
+	
+	
+	
+	//helper methods of cart
+	public void addCartToCustomer(Customer customer) {
+		
+		this.customer=customer;
+		
+		
+	}
+	
+	//to add a service to cart
+	public void associateServiceWithCart(Service service) {
+		this.services.add(service);
+		service.getCarts().add(this);
+	}
+	
+	//to delete a service from cart
+	public void disassociateServiceWithCart(Service service) {
+		this.services.remove(service);
+		service.getCarts().remove(this);
+	}
+	
+	
+	
 }

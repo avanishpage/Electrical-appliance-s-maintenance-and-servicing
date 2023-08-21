@@ -1,19 +1,19 @@
 package com.app.entity;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
-import javax.persistence.MapsId;
-import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -33,25 +33,31 @@ import lombok.Setter;
 public class Order {
 	
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "vendor_id")
 	private Vendor vendor;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "customer_id")
 	private Customer customer;
 	
-	@OneToMany(mappedBy = "order",cascade = CascadeType.ALL,orphanRemoval = true)
-	private List<Service> services=new ArrayList<>();
+	@ManyToMany(mappedBy = "orders")
+	private Set<Service> services=new HashSet<>();
 	
 	@Enumerated
 	@Column(name="job_status")
 	private JobStatus jobStatus; 
 
-	@OneToOne
-	@MapsId("id")
+	@OneToOne(mappedBy = "order")
 	private Rating rating;
 	
 	private LocalDateTime timeStamp;
+	
+	public void giveRating(Rating rating) {
+		this.rating = rating;
+		rating.setOrder(this);
+	}
 }
