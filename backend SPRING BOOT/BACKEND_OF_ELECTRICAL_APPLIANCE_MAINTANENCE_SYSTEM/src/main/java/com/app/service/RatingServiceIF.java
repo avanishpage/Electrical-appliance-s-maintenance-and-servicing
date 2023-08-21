@@ -9,4 +9,5 @@ public interface RatingServiceIF {
 
 	public Double calculateAverageRatingforVendor(Long vendorId);
 
+	public RatingDto getRatingForOrder(Long orderId);
 }

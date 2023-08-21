@@ -20,7 +20,7 @@ import com.app.enums.JobStatus;
 import com.app.exceptions.CartNotFoundException;
 import com.app.exceptions.OrderNotFoundException;
 import com.app.repository.CartRepository;
-import com.app.repository.OrderRepository;
+import com.app.repository.OrderRepositoryIF;
 
 
 @Service
@@ -30,7 +30,7 @@ public class OrderServiceImpl implements OrderServiceIF {
 	@Autowired
 	private CartRepository cartRepo;
 	@Autowired
-	private OrderRepository orderRepo;
+	private OrderRepositoryIF orderRepo;
 	@Autowired
 	private ModelMapper mapper;
 

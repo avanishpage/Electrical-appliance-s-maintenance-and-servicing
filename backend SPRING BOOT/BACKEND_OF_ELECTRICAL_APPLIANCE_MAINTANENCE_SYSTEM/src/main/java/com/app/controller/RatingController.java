@@ -30,11 +30,18 @@ public class RatingController {
 		
 	}
 	
-	@GetMapping("/rating/{vendor_id}")
+	@GetMapping("/{vendor_id}")
 	public Double getAverageRating(@PathVariable Long vendor_id) {
 		
-		System.out.println(vendor_id);
+	//	System.out.println(vendor_id);
 	return ratingService.calculateAverageRatingforVendor(vendor_id);
+		
+	}
+	
+	@GetMapping("/order/{order_id}")
+	public RatingDto getRatingForOrder(@PathVariable Long order_id) {
+		
+		return ratingService.getRatingForOrder(order_id);
 		
 	}
 
