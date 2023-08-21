@@ -1,5 +1,7 @@
 package com.app.controller;
 
+import java.util.List;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,10 +10,13 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.app.dto.ApiResponse;
 import com.app.dto.ServiceDto;
+import com.app.entity.Service;
+import com.app.enums.Category;
 import com.app.service.ServiceServiceLayerIF;
 
 @RestController
@@ -31,6 +36,12 @@ public class ServiceController {
 		return new ApiResponse("service added to vendor successfully");
 		
 		
+	}
+	
+	@GetMapping("/category")
+	public List<ServiceDto> getServiceByCategory(@RequestParam Category category){
+		
+		return serviceService.getServicesByCategory(category);
 	}
 	
 	

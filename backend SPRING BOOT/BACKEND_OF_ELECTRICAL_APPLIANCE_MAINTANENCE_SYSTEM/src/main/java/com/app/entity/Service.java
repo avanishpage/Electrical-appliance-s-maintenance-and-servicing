@@ -41,7 +41,7 @@ public class Service implements Cloneable{
 	@Enumerated
 	private Category category;
 	
-	//we will do imgsrc afterwards
+	//we will do image source afterwards
 	//remember to delete this after completing
 	
 	@ManyToOne(fetch = FetchType.LAZY)

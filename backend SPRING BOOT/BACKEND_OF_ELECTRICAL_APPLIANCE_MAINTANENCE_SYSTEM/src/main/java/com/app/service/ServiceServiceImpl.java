@@ -1,5 +1,8 @@
 package com.app.service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.transaction.Transactional;
 
 import org.modelmapper.ModelMapper;
@@ -9,6 +12,7 @@ import org.springframework.stereotype.Service;
 import com.app.dto.ApiResponse;
 import com.app.dto.ServiceDto;
 import com.app.entity.Vendor;
+import com.app.enums.Category;
 import com.app.exceptions.ServiceNotFoundException;
 import com.app.exceptions.VendorNotFoundException;
 import com.app.repository.ServiceRepositoryIF;
@@ -51,6 +55,17 @@ public class ServiceServiceImpl implements ServiceServiceLayerIF {
 
 	        return new ApiResponse("Service deleted successfully");
 	    }
+
+	@Override
+	public List<ServiceDto> getServicesByCategory(Category category) {
+
+		List<com.app.entity.Service> services =  serviceRepo.findByCategory(category);
+		
+		List<ServiceDto> serviceDtos = new ArrayList<>();
+		
+		services.forEach(s -> serviceDtos.add(mapper.map(s, ServiceDto.class)));
+		return serviceDtos;
+	}
 	}
 	
 
