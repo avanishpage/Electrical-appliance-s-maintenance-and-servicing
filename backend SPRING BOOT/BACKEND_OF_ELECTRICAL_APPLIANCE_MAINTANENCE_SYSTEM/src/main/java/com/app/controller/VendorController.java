@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.app.dto.ApiResponse;
 import com.app.dto.PersonDto;
 import com.app.dto.PersonLoginDto;
+import com.app.dto.RatingDto;
 import com.app.dto.ServiceDto;
 import com.app.service.ServiceServiceLayerIF;
 import com.app.service.VendorServiceLayerIF;
@@ -88,4 +89,10 @@ public class VendorController {
 		return new ApiResponse("Service"+ serviceId + "vendor" + vendorid + "updated successfully");
 	}
 
+	
+	@GetMapping("/{vendorId}/rating")
+	public List<RatingDto> getRatingOfVendor(@PathVariable Long vendorId)
+	{
+		return vendorServiceLayer.getVendorRating(vendorId);
+	}
 }

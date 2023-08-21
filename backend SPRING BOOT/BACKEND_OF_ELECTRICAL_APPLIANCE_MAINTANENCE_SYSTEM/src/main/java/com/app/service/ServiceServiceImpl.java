@@ -44,7 +44,7 @@ public class ServiceServiceImpl implements ServiceServiceLayerIF {
 	 public ApiResponse  deleteServiceUsingVendorId(Long vendorId, Long serviceId) {
 		
 	        Vendor vendor=vendorRepo.findById(vendorId).orElseThrow(()->new VendorNotFoundException("invalid vendor id!!"));
-	        com.app.entity.Service service=serviceRepo.findById(serviceId).orElseThrow(()->new ServiceNotFoundException("invalid service id!!"));
+	        com.app.entity.Service service=serviceRepo.findById(serviceId).orElseThrow(()->new ServiceNotFoundException("invalid serviceW id!!"));
 	        
 	        vendor.deleteService(service);
 	        serviceRepo.delete(service);

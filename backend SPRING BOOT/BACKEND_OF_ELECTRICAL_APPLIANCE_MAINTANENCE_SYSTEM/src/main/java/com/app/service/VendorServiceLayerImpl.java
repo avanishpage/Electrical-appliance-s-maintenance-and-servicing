@@ -11,7 +11,9 @@ import org.springframework.stereotype.Service;
 
 import com.app.dto.PersonDto;
 import com.app.dto.PersonLoginDto;
+import com.app.dto.RatingDto;
 import com.app.dto.ServiceDto;
+import com.app.entity.Rating;
 import com.app.entity.Vendor;
 import com.app.exceptions.ResourceNotFound;
 import com.app.exceptions.VendorNotFoundException;
@@ -108,5 +110,16 @@ public class VendorServiceLayerImpl implements VendorServiceLayerIF{
 		
 	
 }
+
+	@Override
+	public List<RatingDto> getVendorRating(Long vendorId) {
+		Vendor vendor = vendorRepo.findById(vendorId).orElseThrow(()->new VendorNotFoundException("invalid vendor id"));
+		List<Rating> rating=vendor.getRatings();
+		rating.size();
+		List<RatingDto> ratingDto = new ArrayList<>();
+		
+		rating.forEach((r)->ratingDto.add(mapper.map(r, RatingDto.class)));
+		return ratingDto;
+	}
 	
 }
