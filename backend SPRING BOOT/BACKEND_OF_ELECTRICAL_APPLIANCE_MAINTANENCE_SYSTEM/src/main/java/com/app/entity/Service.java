@@ -73,6 +73,19 @@ public class Service implements Cloneable{
 			throw new RuntimeException(e);
 		}
 	}
+
+
+	public Service(String name, String description, Long price, Category category, Vendor vendor, Set<Cart> carts,
+			Set<Order> orders) {
+		super();
+		this.name = name;
+		this.description = description;
+		this.price = price;
+		this.category = category;
+		this.vendor = vendor;
+		this.carts = carts;
+		this.orders = orders;
+	}
 	
 	
 	

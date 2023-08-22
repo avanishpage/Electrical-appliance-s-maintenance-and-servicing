@@ -10,5 +10,9 @@ import com.app.enums.JobStatus;
 public interface OrderRepositoryIF extends JpaRepository<Order, Long>{
 	
 	public ArrayList<Order> findByJobStatus(JobStatus jobstatus);
+<<<<<<< HEAD
+=======
+
+>>>>>>> 206d3803727cf7a86fa94202d094b6e41dc65825
 	
 }

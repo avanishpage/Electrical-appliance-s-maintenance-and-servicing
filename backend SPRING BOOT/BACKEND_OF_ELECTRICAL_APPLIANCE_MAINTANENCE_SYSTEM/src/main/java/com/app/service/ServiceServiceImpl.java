@@ -74,21 +74,19 @@ public class ServiceServiceImpl implements ServiceServiceLayerIF {
 	@Override
 	public List<Category> getAllCategories() {
 		return Arrays.asList(Category.values());
-		
+
 	}
 
 	@Override
 	public List<ServiceDto> getServicesByCity(String city) {
-		List<com.app.entity.Service> services=serviceRepo
-				.findAll().stream()
-				.filter(s->s.getVendor().getAddress().equals(city))
-				.collect(Collectors.toList());
-		if(services.size()==0)
-			throw new ServiceNotFoundException("invalid city name,cannot find services for city "+city);
-		List<ServiceDto> serviceDtos=new ArrayList<>();
-		
-		services.forEach(s->serviceDtos.add(mapper.map(s, ServiceDto.class)));
-		
+		List<com.app.entity.Service> services = serviceRepo.findAll().stream()
+				.filter(s -> s.getVendor().getAddress().getCity().equals(city)).collect(Collectors.toList());
+		if (services.size() == 0)
+			throw new ServiceNotFoundException("invalid city name,cannot find services for city " + city);
+		List<ServiceDto> serviceDtos = new ArrayList<>();
+
+		services.forEach(s -> serviceDtos.add(mapper.map(s, ServiceDto.class)));
+
 		return serviceDtos;
 	}
 }
