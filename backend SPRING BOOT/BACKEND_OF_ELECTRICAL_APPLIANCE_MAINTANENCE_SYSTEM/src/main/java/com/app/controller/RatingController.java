@@ -59,5 +59,4 @@ public class RatingController {
 		return vendorServiceLayer.getVendorRating(vendorId);
 	}
 
-
 }
