@@ -2,10 +2,12 @@ package com.app.controller;
 
 import java.util.List;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 
-import org.springframework.web.bind.annotation.GetMapping;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -40,9 +42,6 @@ public class RatingController {
 	@GetMapping("/average/{vendor_id}")
 	public Double getAverageRating(@PathVariable Long vendor_id) {
 		
-	@GetMapping("/{vendor_id}")
-	public Double getAverageRating(@PathVariable Long vendor_id) {
-		
 	//	System.out.println(vendor_id);
 	return ratingService.calculateAverageRatingforVendor(vendor_id);
 	}
@@ -53,14 +52,7 @@ public class RatingController {
 		return ratingService.getRatingForOrder(order_id);	
 	}
 	
-	@GetMapping("/{vendorId}")
-	public List<RatingDto> getRatingOfVendor(@PathVariable Long vendorId)
-	{
-		return vendorServiceLayer.getVendorRating(vendorId);
-	}
 
-
-	
 	@GetMapping("/{vendorId}")
 	public List<RatingDto> getRatingOfVendor(@PathVariable Long vendorId)
 	{

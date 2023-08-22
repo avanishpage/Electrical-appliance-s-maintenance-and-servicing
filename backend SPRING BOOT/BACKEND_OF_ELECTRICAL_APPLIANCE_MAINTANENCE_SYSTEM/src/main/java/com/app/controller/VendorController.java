@@ -81,6 +81,6 @@ public class VendorController {
 
 		vendorServiceLayer.updateServiceofVendor(servicedto, vendorid, serviceId);
 		return new ApiResponse("Service"+ serviceId + "vendor" + vendorid + "updated successfully");
-	}
+	} 
 
 }
