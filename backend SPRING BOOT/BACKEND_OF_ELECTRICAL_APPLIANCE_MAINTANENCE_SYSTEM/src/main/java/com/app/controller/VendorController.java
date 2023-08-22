@@ -74,6 +74,7 @@ public class VendorController {
 
 		return vendorServiceLayer.getAllServicesOf(vendorId);
 	}
+
 	
 	@PutMapping("/update/{vendorid}/service/{serviceId}")
 	public ApiResponse updateServiceforVendor(@RequestBody ServiceDto servicedto, @PathVariable Long vendorid,@PathVariable Long serviceId) {
