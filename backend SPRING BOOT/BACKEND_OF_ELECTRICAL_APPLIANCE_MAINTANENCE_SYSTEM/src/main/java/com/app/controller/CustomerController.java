@@ -18,6 +18,7 @@ import com.app.dto.ApiResponse;
 import com.app.dto.PersonDto;
 import com.app.dto.PersonLoginDto;
 import com.app.entity.Customer;
+import com.app.entity.Person;
 import com.app.service.CustomerServiceLayerIF;
 
 @RestController
@@ -64,7 +65,5 @@ public class CustomerController {
 
 		return serviceLayer.verifyCustomer(customerLoginDto);
 	}
-	
-	
 
 }
