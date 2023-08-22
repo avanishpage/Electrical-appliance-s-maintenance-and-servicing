@@ -26,8 +26,7 @@ public class OrderController {
 	
 	
 	@PostMapping("/add/cart/{cartId}")
-	public ApiResponse createOrderFromCart(@PathVariable Long cartId) {
-		
+	public ApiResponse createOrderFromCart(@PathVariable Long cartId) {	
 		return orderService.addOrderFromCart(cartId);
 		
 	}
@@ -39,16 +38,18 @@ public class OrderController {
 	
 	@GetMapping("/jobstatus")
 	public List<OrderDto> getOrdersByJobStatus(@RequestParam JobStatus jobstatus){
-		return orderService.getOrdersByJobStatus(jobstatus);
-		
-		
+		return orderService.getOrdersByJobStatus(jobstatus);		
 	}
 	
 	@GetMapping("/vendor/{vendorId}")
-	public List<OrderDto> getOrdersByVendorId(@PathVariable Long vendorId){
-		
+	public List<OrderDto> getOrdersByVendorId(@PathVariable Long vendorId){	
 		return orderService.getAllOrdersOfVendor(vendorId);
-		
 	}
+	
+	@GetMapping("/{orderid}")
+	public OrderDto getOrderById(@PathVariable Long orderId) {
+		return orderService.getOrderBtOrderId(orderId);
+	}
+
 
 }
