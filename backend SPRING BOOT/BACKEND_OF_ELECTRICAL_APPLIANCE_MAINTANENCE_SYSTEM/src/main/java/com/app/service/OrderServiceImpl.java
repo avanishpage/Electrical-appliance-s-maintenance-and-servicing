@@ -77,4 +77,13 @@ public class OrderServiceImpl implements OrderServiceIF {
 		
 	}
 
+	@Override
+	public ApiResponse changeJobStatus(Long orderId, JobStatus jobStatus) {
+		Order order=orderRepo.findById(orderId).orElseThrow(()->new OrderNotFoundException("invalid order id!!"));		
+		order.setJobStatus(jobStatus);
+		return new ApiResponse("Job status updated successfully!!");
+	}
+
+	
+
 }

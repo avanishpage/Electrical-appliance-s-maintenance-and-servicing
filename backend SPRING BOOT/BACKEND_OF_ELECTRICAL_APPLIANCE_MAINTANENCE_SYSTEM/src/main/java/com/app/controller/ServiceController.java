@@ -52,13 +52,6 @@ public class ServiceController {
 		return serviceService.deleteServiceUsingVendorId(vendorId, serviceId);
 	}
 	
-	@DeleteMapping("/{serviceId}/vendor/{vendorId}/delete/")
-
-	public ApiResponse deleteServiceOfVendorId(@PathVariable Long vendorId,@PathVariable Long serviceId ) {
-	
-		return serviceService.deleteServiceUsingVendorId(vendorId, serviceId);
-	}
-	
 	
 	
 }
