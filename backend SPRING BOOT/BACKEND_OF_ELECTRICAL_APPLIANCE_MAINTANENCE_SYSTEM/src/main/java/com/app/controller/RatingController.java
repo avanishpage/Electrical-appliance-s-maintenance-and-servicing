@@ -59,6 +59,4 @@ public class RatingController {
 		return ratingService.getVendorRating(vendorId);
 	}
 
-
-	
 }
