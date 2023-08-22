@@ -87,12 +87,12 @@ public class VendorController {
 
 		vendorServiceLayer.updateServiceofVendor(servicedto, vendorid, serviceId);
 		return new ApiResponse("Service"+ serviceId + "vendor" + vendorid + "updated successfully");
-	}
+	} 
 
 	
-	@GetMapping("/{vendorId}/rating")
-	public List<RatingDto> getRatingOfVendor(@PathVariable Long vendorId)
-	{
-		return vendorServiceLayer.getVendorRating(vendorId);
-	}
+//	@GetMapping("/{vendorId}/rating")
+//	public List<RatingDto> getRatingOfVendor(@PathVariable Long vendorId)
+//	{
+//		return vendorServiceLayer.getVendorRating(vendorId);
+//	}
 }

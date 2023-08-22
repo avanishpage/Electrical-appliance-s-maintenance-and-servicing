@@ -23,6 +23,6 @@ public interface VendorServiceLayerIF {
 	
 	public void updateServiceofVendor(ServiceDto servicedto,Long vendorId, Long serviceId);
 
-	public List<RatingDto> getVendorRating(Long vendorId);
+//	public List<RatingDto> getVendorRating(Long vendorId);
 
 }

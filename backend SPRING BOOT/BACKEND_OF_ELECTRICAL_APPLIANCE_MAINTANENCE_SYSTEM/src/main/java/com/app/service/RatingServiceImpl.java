@@ -1,6 +1,7 @@
 package com.app.service;
 
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.transaction.Transactional;
@@ -14,9 +15,7 @@ import com.app.entity.Order;
 import com.app.entity.Rating;
 import com.app.entity.Vendor;
 import com.app.exceptions.OrderNotFoundException;
-
 import com.app.exceptions.VendorNotFoundException;
-
 import com.app.repository.OrderRepositoryIF;
 import com.app.repository.RatingRepositoryIF;
 import com.app.repository.VendorRepositoryIF;
@@ -88,6 +87,16 @@ public class RatingServiceImpl implements RatingServiceIF {
 		
 		return ratingdto;
 	}
-
-
+	
+	@Override
+	public List<RatingDto> getVendorRating(Long vendorId) {
+		Vendor vendor = vendorRepo.findById(vendorId).orElseThrow(()->new VendorNotFoundException("invalid vendor id"));
+		List<Rating> rating=vendor.getRatings();
+		rating.size();
+		List<RatingDto> ratingDto = new ArrayList<>();
+		
+		rating.forEach((r)->ratingDto.add(mapper.map(r, RatingDto.class)));
+		return ratingDto;
+	}
+	
 }
