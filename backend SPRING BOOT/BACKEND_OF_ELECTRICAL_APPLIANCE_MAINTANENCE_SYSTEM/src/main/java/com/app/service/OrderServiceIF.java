@@ -2,12 +2,10 @@ package com.app.service;
 
 import java.util.List;
 
-import javax.transaction.Transactional;
-
-import org.springframework.stereotype.Service;
-
 import com.app.dto.ApiResponse;
+import com.app.dto.OrderDto;
 import com.app.dto.ServiceDto;
+import com.app.enums.JobStatus;
 
 
 public interface OrderServiceIF {
@@ -16,5 +14,5 @@ public interface OrderServiceIF {
 
 	public List<ServiceDto> getServices(Long orderId);
 	
-
+	public List<OrderDto> getOrdersByJobStatus(JobStatus jobstatus);
 }
