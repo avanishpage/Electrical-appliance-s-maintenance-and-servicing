@@ -3,6 +3,7 @@ package com.app.service;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import javax.transaction.Transactional;
 
@@ -74,5 +75,20 @@ public class ServiceServiceImpl implements ServiceServiceLayerIF {
 	public List<Category> getAllCategories() {
 		return Arrays.asList(Category.values());
 		
+	}
+
+	@Override
+	public List<ServiceDto> getServicesByCity(String city) {
+		List<com.app.entity.Service> services=serviceRepo
+				.findAll().stream()
+				.filter(s->s.getVendor().getAddress().equals(city))
+				.collect(Collectors.toList());
+		if(services.size()==0)
+			throw new ServiceNotFoundException("invalid city name,cannot find services for city "+city);
+		List<ServiceDto> serviceDtos=new ArrayList<>();
+		
+		services.forEach(s->serviceDtos.add(mapper.map(s, ServiceDto.class)));
+		
+		return serviceDtos;
 	}
 }

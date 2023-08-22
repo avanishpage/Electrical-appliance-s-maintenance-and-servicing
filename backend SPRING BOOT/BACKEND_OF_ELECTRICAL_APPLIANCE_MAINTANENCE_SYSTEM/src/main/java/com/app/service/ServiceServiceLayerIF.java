@@ -17,4 +17,6 @@ public interface ServiceServiceLayerIF {
 
 	List<Category> getAllCategories();
 
+	List<ServiceDto> getServicesByCity(String city);
+
 }

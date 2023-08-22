@@ -58,6 +58,11 @@ public class ServiceController {
 		
 	}
 	
+	@GetMapping("/{city}")
+	public List<ServiceDto> getAllServicesByCity(@PathVariable String city){
+		return serviceService.getServicesByCity(city);
+	}
+	
 	
 	
 	
