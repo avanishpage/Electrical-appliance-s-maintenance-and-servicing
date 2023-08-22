@@ -56,7 +56,7 @@ public class RatingController {
 	@GetMapping("/{vendorId}")
 	public List<RatingDto> getRatingOfVendor(@PathVariable Long vendorId)
 	{
-		return vendorServiceLayer.getVendorRating(vendorId);
+		return ratingService.getVendorRating(vendorId);
 	}
 
 
