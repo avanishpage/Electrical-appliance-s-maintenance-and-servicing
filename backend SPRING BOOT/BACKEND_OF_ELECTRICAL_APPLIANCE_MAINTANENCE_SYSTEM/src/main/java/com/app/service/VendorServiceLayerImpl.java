@@ -111,15 +111,4 @@ public class VendorServiceLayerImpl implements VendorServiceLayerIF{
 	
 }
 
-//	@Override
-//	public List<RatingDto> getVendorRating(Long vendorId) {
-//		Vendor vendor = vendorRepo.findById(vendorId).orElseThrow(()->new VendorNotFoundException("invalid vendor id"));
-//		List<Rating> rating=vendor.getRatings();
-//		rating.size();
-//		List<RatingDto> ratingDto = new ArrayList<>();
-//		
-//		rating.forEach((r)->ratingDto.add(mapper.map(r, RatingDto.class)));
-//		return ratingDto;
-//	}
-	
 }

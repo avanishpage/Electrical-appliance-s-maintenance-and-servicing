@@ -14,5 +14,5 @@ public interface RatingServiceIF {
 	public RatingDto getRatingForOrder(Long orderId);
 	
 	public List<RatingDto> getVendorRating(Long vendorId);
-
+	
 }
