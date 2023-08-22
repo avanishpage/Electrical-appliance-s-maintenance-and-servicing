@@ -1,10 +1,7 @@
 package com.app.service;
 
-import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 import javax.transaction.Transactional;
 
@@ -17,11 +14,14 @@ import com.app.dto.OrderDto;
 import com.app.dto.ServiceDto;
 import com.app.entity.Cart;
 import com.app.entity.Order;
+import com.app.entity.Vendor;
 import com.app.enums.JobStatus;
 import com.app.exceptions.CartNotFoundException;
 import com.app.exceptions.OrderNotFoundException;
+import com.app.exceptions.VendorNotFoundException;
 import com.app.repository.CartRepository;
 import com.app.repository.OrderRepositoryIF;
+import com.app.repository.VendorRepositoryIF;
 
 
 @Service
@@ -34,6 +34,8 @@ public class OrderServiceImpl implements OrderServiceIF {
 	private OrderRepositoryIF orderRepo;
 	@Autowired
 	private ModelMapper mapper;
+	@Autowired
+	private VendorRepositoryIF vendorRepo;
 
 	@Override
 	public ApiResponse addOrderFromCart(Long cartId) {
@@ -75,6 +77,18 @@ public class OrderServiceImpl implements OrderServiceIF {
 		orders.forEach(o -> orderdtos.add(mapper.map(o, OrderDto.class)));
 		return orderdtos;
 		
+	}
+
+	@Override
+	public List<OrderDto> getAllOrdersOfVendor(Long vendorId) {
+		List<Order> orders=vendorRepo.findById(vendorId)
+				.orElseThrow(()->new VendorNotFoundException("invalid vendor ID!")).getOrders();
+		
+		List<OrderDto> orderDtos=new ArrayList<>();
+		
+		orders.forEach(o->orderDtos.add(mapper.map(o, OrderDto.class)));
+		
+		return orderDtos;
 	}
 
 }

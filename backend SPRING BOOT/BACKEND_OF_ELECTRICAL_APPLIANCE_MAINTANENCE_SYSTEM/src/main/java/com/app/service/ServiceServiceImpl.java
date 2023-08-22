@@ -1,6 +1,7 @@
 package com.app.service;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import javax.transaction.Transactional;
@@ -30,46 +31,48 @@ public class ServiceServiceImpl implements ServiceServiceLayerIF {
 
 	@Override
 	public void attachServiceToVendor(ServiceDto serviceDto, Long vendorId) {
-		
+
 		System.out.println(serviceDto);
-		
-		
-		Vendor vendor=vendorRepo.findById(vendorId).orElseThrow(()->new VendorNotFoundException("invalid vendor id!!"));
-		
-		com.app.entity.Service service= new com.app.entity.Service();
-		service=mapper.map(serviceDto, com.app.entity.Service.class);
+
+		Vendor vendor = vendorRepo.findById(vendorId)
+				.orElseThrow(() -> new VendorNotFoundException("invalid vendor id!!"));
+
+		com.app.entity.Service service = new com.app.entity.Service();
+		service = mapper.map(serviceDto, com.app.entity.Service.class);
 		serviceRepo.save(service);
-		
+
 		vendor.addService(service);
-		
+
 	}
 
 	@Override
-	 public ApiResponse  deleteServiceUsingVendorId(Long vendorId, Long serviceId) {
-		
-	        Vendor vendor=vendorRepo.findById(vendorId).orElseThrow(()->new VendorNotFoundException("invalid vendor id!!"));
-	        com.app.entity.Service service=serviceRepo.findById(serviceId).orElseThrow(()->new ServiceNotFoundException("invalid serviceW id!!"));
-	        
-	        vendor.deleteService(service);
-	        serviceRepo.delete(service);
+	public ApiResponse deleteServiceUsingVendorId(Long vendorId, Long serviceId) {
 
-	        return new ApiResponse("Service deleted successfully");
-	    }
+		Vendor vendor = vendorRepo.findById(vendorId)
+				.orElseThrow(() -> new VendorNotFoundException("invalid vendor id!!"));
+		com.app.entity.Service service = serviceRepo.findById(serviceId)
+				.orElseThrow(() -> new ServiceNotFoundException("invalid serviceW id!!"));
+
+		vendor.deleteService(service);
+		serviceRepo.delete(service);
+
+		return new ApiResponse("Service deleted successfully");
+	}
 
 	@Override
 	public List<ServiceDto> getServicesByCategory(Category category) {
 
-		List<com.app.entity.Service> services =  serviceRepo.findByCategory(category);
-		
+		List<com.app.entity.Service> services = serviceRepo.findByCategory(category);
+
 		List<ServiceDto> serviceDtos = new ArrayList<>();
-		
+
 		services.forEach(s -> serviceDtos.add(mapper.map(s, ServiceDto.class)));
 		return serviceDtos;
 	}
+
+	@Override
+	public List<Category> getAllCategories() {
+		return Arrays.asList(Category.values());
+		
 	}
-	
-
-
-
-
-
+}

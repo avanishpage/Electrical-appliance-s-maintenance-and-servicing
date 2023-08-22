@@ -24,5 +24,6 @@ public class OrderDto {
 
 	private JobStatus jobStatus; 
 
+	private LocalDateTime timeStamp;
 	
 }

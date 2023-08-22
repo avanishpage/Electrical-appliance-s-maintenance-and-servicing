@@ -15,4 +15,6 @@ public interface OrderServiceIF {
 	public List<ServiceDto> getServices(Long orderId);
 	
 	public List<OrderDto> getOrdersByJobStatus(JobStatus jobstatus);
+
+	public List<OrderDto> getAllOrdersOfVendor(Long vendorId);
 }

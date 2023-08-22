@@ -16,6 +16,8 @@ import lombok.*;
 @NoArgsConstructor
 public class PersonDto {
 	
+	private Long id;
+	
 	@NotBlank(message = "first name cannot be blank!!")
 	private String firstName;
 

@@ -43,5 +43,12 @@ public class OrderController {
 		
 		
 	}
+	
+	@GetMapping("/vendor/{vendorId}")
+	public List<OrderDto> getOrdersByVendorId(@PathVariable Long vendorId){
+		
+		return orderService.getAllOrdersOfVendor(vendorId);
+		
+	}
 
 }

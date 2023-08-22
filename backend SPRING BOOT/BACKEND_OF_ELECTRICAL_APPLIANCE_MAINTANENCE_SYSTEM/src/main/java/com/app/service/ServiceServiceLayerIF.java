@@ -15,4 +15,6 @@ public interface ServiceServiceLayerIF {
 	
 	List<ServiceDto> getServicesByCategory(Category category);
 
+	List<Category> getAllCategories();
+
 }
