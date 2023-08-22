@@ -40,7 +40,7 @@ public class PersonDto {
             message = "password must be min 4 and max 12 length containing atleast 1 uppercase, 1 lowercase, 1 special character and 1 digit ")
 	private String password;
 	
-	@NotBlank(message = "address cannot be blank!!")
+	
 	private Address address;
 	
 	@NotBlank(message = "phone number cannot be blank!!")
