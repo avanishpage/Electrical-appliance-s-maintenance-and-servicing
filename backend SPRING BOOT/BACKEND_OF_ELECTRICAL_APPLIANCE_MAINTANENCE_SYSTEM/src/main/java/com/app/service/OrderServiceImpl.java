@@ -91,4 +91,11 @@ public class OrderServiceImpl implements OrderServiceIF {
 		return orderDtos;
 	}
 
+	@Override
+	public OrderDto getOrderBtOrderId(Long orderId) {
+		Order order = orderRepo.findById(orderId).orElseThrow(()-> new OrderNotFoundException("Order Not Found"));
+		
+		return mapper.map(order, OrderDto.class);
+	}
+
 }
