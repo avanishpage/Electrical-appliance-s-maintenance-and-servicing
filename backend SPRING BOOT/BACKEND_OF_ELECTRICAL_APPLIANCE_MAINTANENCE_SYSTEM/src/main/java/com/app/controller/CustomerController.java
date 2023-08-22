@@ -47,7 +47,7 @@ public class CustomerController {
 
 	// get method to get customer details
 	@GetMapping("/{customerId}")
-	public PersonDto getEmpDetails(@PathVariable Long customerId) {
+	public PersonDto getCustomerDetails(@PathVariable Long customerId) {
 		return serviceLayer.getCustomerDetails(customerId);
 	}
 

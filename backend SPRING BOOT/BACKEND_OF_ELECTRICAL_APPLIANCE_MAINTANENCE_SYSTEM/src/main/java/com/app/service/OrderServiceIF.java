@@ -16,5 +16,8 @@ public interface OrderServiceIF {
 	
 	public List<OrderDto> getOrdersByJobStatus(JobStatus jobstatus);
 
-	public ApiResponse changeJobStatus(Long orderId,JobStatus jobStatus);
+	public ApiResponse changeJobStatus(Long orderId, JobStatus jobStatus);
+
+	public List<OrderDto> getAllOrdersOfVendor(Long vendorId);
+
 }

@@ -22,6 +22,8 @@ import lombok.ToString;
 @ToString
 public class ServiceDto {
 
+	private Long id;
+	
 	@NotBlank(message="name cannot be blank")
 	private String name;
 	

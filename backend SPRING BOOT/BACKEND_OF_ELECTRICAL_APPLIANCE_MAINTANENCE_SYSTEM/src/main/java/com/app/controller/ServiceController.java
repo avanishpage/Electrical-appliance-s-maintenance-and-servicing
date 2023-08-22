@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.app.dto.ApiResponse;
 import com.app.dto.ServiceDto;
-import com.app.entity.Service;
 import com.app.enums.Category;
 import com.app.service.ServiceServiceLayerIF;
 
@@ -51,7 +50,19 @@ public class ServiceController {
 	
 		return serviceService.deleteServiceUsingVendorId(vendorId, serviceId);
 	}
+
+	@GetMapping("/categories")
+	public List<Category> getCategoriesOfServices(){
+		
+		return serviceService.getAllCategories();
+		
+	}
 	
+	@GetMapping("/{city}")
+	public List<ServiceDto> getAllServicesByCity(@PathVariable String city){
+		return serviceService.getServicesByCity(city);
+	}
 	
+
 	
 }

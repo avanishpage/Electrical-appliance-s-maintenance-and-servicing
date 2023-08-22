@@ -51,6 +51,4 @@ public class OrderController {
 		
 	}
 	
-//  /order/changejobstatus/orderid  @reqparam jobstatus
-
 }

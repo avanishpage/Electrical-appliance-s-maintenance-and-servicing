@@ -15,6 +15,7 @@ import lombok.ToString;
 @NoArgsConstructor
 public class RatingDto {
 	
+	private Long id;
 	private Stars stars;
 	private String description;
 	
