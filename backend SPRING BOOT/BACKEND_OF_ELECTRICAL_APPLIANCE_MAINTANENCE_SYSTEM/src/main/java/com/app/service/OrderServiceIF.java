@@ -12,7 +12,7 @@ public interface OrderServiceIF {
 
 	public ApiResponse addOrderFromCart(Long cartId);
 
-	public List<ServiceDto> getServices(Long orderId);
+	public List<ServiceDto> getServices(Long orderId,int pageNo,int pageSize);
 	
 	public List<OrderDto> getOrdersByJobStatus(JobStatus jobstatus);
 

@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.app.dto.ApiResponse;
@@ -29,9 +30,9 @@ public class CartController {
 	}
 	
 	@GetMapping("/services")
-	public List<ServiceDto> getServicesFromCart(@PathVariable Long cartId){
+	public List<ServiceDto> getServicesFromCart(@PathVariable Long cartId,@RequestParam int pageNo,@RequestParam int pageSize){
 		
-		return cartServiceLayer.getAllServicesFromCart(cartId);
+		return cartServiceLayer.getAllServicesFromCart(cartId,pageNo,pageSize);
 		
 	}
 	

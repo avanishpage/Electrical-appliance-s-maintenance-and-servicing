@@ -33,8 +33,8 @@ public class OrderController {
 	}
 	
 	@GetMapping("/{orderId}/services")
-	public List<ServiceDto> getServicesOfOrder(@PathVariable Long orderId) {
-		return orderService.getServices(orderId);
+	public List<ServiceDto> getServicesOfOrder(@PathVariable Long orderId,@RequestParam int pageNo,@RequestParam int pageSize) {
+		return orderService.getServices(orderId,pageNo,pageSize);
 	}
 	
 	@GetMapping("/jobstatus")
