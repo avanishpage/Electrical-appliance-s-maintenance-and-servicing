@@ -14,26 +14,27 @@ import lombok.Setter;
 @MappedSuperclass
 public class Person {
 
-
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
-	@Column(name="first_name")
+
+	@Column(name = "first_name")
 	private String firstName;
 
-	@Column(name="last_name")
+	@Column(name = "last_name")
 	private String lastName;
-	
+
 	private String email;
-	
+
 	private String password;
-	
+
 	@Embedded
 	private Address address;
-	
+
 	@Column(name = "phone_number")
 	private String phoneNumber;
+	@Column(name = "image_path")
+	private String imagePath;
 
 	public Person(String firstName, String lastName, String email, String password, Address address,
 			String phoneNumber) {
@@ -45,7 +46,5 @@ public class Person {
 		this.address = address;
 		this.phoneNumber = phoneNumber;
 	}
-	
-	
-	
+
 }
