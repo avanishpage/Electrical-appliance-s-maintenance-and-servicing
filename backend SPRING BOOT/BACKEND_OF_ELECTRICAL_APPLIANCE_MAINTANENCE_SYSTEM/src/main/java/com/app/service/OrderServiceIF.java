@@ -19,10 +19,8 @@ public interface OrderServiceIF {
 	public ApiResponse changeJobStatus(Long orderId, JobStatus jobStatus);
 
 	public List<OrderDto> getAllOrdersOfVendor(Long vendorId);
-<<<<<<< HEAD
-
-=======
 	
 	public OrderDto getOrderBtOrderId(Long orderId);
->>>>>>> 206d3803727cf7a86fa94202d094b6e41dc65825
+
+	public ApiResponse cancelOrder(Long orderId,JobStatus jobstatus);
 }

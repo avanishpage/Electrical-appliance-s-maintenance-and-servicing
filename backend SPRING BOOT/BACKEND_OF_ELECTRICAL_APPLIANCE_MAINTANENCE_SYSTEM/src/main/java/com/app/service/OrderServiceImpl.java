@@ -98,14 +98,22 @@ public class OrderServiceImpl implements OrderServiceIF {
 		return orderDtos;
 	}
 
-<<<<<<< HEAD
-=======
+
 	@Override
 	public OrderDto getOrderBtOrderId(Long orderId) {
 		Order order = orderRepo.findById(orderId).orElseThrow(()-> new OrderNotFoundException("Order Not Found"));
 		
 		return mapper.map(order, OrderDto.class);
 	}
->>>>>>> 206d3803727cf7a86fa94202d094b6e41dc65825
+
+	@Override
+	public ApiResponse cancelOrder(Long orderId ,JobStatus jobstatus) {
+		Order order=orderRepo.findById(orderId).orElseThrow(()->new OrderNotFoundException("invalid order id!!"));		
+		if(order.getJobStatus()==JobStatus.SCHEDULED )
+		order.setJobStatus(JobStatus.CANCELED);
+		else 
+			throw new OrderNotFoundException("Sorry your order cannot be cancelled!!");
+		return new ApiResponse("Your order is canceled !!");
+	}
 
 }

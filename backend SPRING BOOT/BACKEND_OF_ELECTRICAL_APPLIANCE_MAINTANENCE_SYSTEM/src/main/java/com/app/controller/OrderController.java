@@ -42,14 +42,12 @@ public class OrderController {
 		return orderService.getOrdersByJobStatus(jobstatus);		
 	}
 	
-<<<<<<< HEAD
+
 	@PatchMapping("/changeJobStatus/{orderId}")
 	public ApiResponse changeJobStatus(@PathVariable Long orderId,@RequestParam JobStatus jobStatus) {
-		return orderService.changeJobStatus(orderId,jobStatus );
-		
+		return orderService.changeJobStatus(orderId,jobStatus );		
 	}
 	
-=======
 	@GetMapping("/vendor/{vendorId}")
 	public List<OrderDto> getOrdersByVendorId(@PathVariable Long vendorId){	
 		return orderService.getAllOrdersOfVendor(vendorId);
@@ -60,6 +58,9 @@ public class OrderController {
 		return orderService.getOrderBtOrderId(orderId);
 	}
 
+	@PatchMapping("/cancelOrder/{orderId}")
+	public ApiResponse cancelOrder(@PathVariable Long orderId ) {
+		return orderService.cancelOrder(orderId,JobStatus.COMPLETED );		
+	}
 
->>>>>>> 206d3803727cf7a86fa94202d094b6e41dc65825
 }
