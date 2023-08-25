@@ -11,24 +11,24 @@ function HomePage() {
 
                         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                             <li class="">
-                                <a class="nav-link active" aria-current="page" href="#">Electric Aplliances</a>
+                                <a class="nav-link active" aria-current="page" href="/">ApplianceRevive Techs</a>
                             </li>
                         </ul>
                         <div className='buttons'>
                             <ul>
-                                <li class="nav-item">                                  
+                                <li class="nav-item">
                                     <Link to="/">Home</Link>
                                 </li>
-                                <li class="nav-item">                                    
+                                <li class="nav-item">
                                     <Link to="/AboutUsPage">About</Link>
                                 </li>
-                                <li class="nav-item">                                 
+                                <li class="nav-item">
                                     <Link to="/ContactUsPage">ContactUs</Link>
                                 </li>
-                                <li class="nav-item">                                  
+                                <li class="nav-item">
                                     <Link to="/SigninPage">SignIn/Register</Link>
                                 </li>
-                                <li class="nav-item">                                   
+                                <li class="nav-item">
                                     <Link to="/RegistrationPageVendor">Register as vendor</Link>
                                 </li>
                             </ul>
@@ -36,6 +36,11 @@ function HomePage() {
                     </div>
                 </div>
             </nav>
+
+            <div className="welcome-container">
+                <h1 className="welcome-title">Welcome to ApplianceRevive Techs!</h1>
+                <p className="welcome-text">Your trusted experts in appliance repair and servicing</p>              
+            </div>
             <Slider></Slider>
         </div>
     )

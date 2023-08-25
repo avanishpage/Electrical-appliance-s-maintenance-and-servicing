@@ -4,7 +4,20 @@ import { Carousel } from 'react-bootstrap';
 function Slider() {
     return (
 
+
         <Carousel>
+
+            <Carousel.Item>
+                <img
+                    className="d-block w-100"
+                    src="./images/HomeBackground.jpg"
+                    alt="First slide"
+                />
+                <Carousel.Caption>
+                    <h3>Restoring Performance: Our Expert Technicians at Work</h3>
+                </Carousel.Caption>
+            </Carousel.Item>
+
             <Carousel.Item>
                 <img
                     className="d-block w-100"
@@ -86,7 +99,7 @@ function Slider() {
                 <Carousel.Caption>
                     <p>Expert Repairs for a Smooth Laundry Experience: Get Your Washing Machine Fixed Today.</p>
                 </Carousel.Caption>
-            </Carousel.Item>          
+            </Carousel.Item>
 
         </Carousel>
 

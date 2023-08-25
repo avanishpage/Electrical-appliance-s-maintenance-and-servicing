@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
+import { useHistory } from 'react-router-dom';
 import './css/RegistrationPage.css';
 function RegistrationPageVendor() {
+  // const history = useHistory();
   const [formData, setFormData] = useState({
     firstName: '',
     lastName: '',
@@ -29,27 +31,35 @@ function RegistrationPageVendor() {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(formData);
-    
+
     for (const key in formData) {
-      if (formData[key].trim() === '') {
+      if (formData[key].trim() === "") {
         alert(`${key} is required.`);
         return;
       }
     }
 
     if (!/^\d{6}$/.test(formData.pincode)) {
-      alert('Pincode must be 6 digits.');
+      alert("Pincode must be 6 digits.");
       return;
     }
 
     if (!/^\d{10}$/.test(formData.phoneNumber)) {
-      alert('Phone number must be 10 digits.');
+      alert("Phone number must be 10 digits.");
       return;
     }
     if (formData.password !== formData.confirmPassword) {
-      alert('Password and Confirm Password do not match.');
+      alert("Password and Confirm Password do not match.");
       return;
     }
+    const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*])(?=.{4,12})/;
+    if (!passwordRegex.test(formData.password)) {
+      alert("Password must contain at least 1 uppercase letter, 1 lowercase letter, 1 special character, and between 4-12 characters.");
+      return;
+    }
+
+    // setRegistrationSuccess(true);
+    // history.push("/AddImage");
   };
 
   return (
@@ -225,7 +235,7 @@ function RegistrationPageVendor() {
         />
 
 
-        <button type="submit">Register</button>
+        <button type="submit">Continue</button>
         <p>
           Already registered? <Link to="/SignInPageVendor">Login here</Link>
         </p>

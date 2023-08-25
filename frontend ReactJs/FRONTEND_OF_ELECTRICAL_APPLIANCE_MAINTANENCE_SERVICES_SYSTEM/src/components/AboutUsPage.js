@@ -4,7 +4,8 @@ import { Link } from 'react-router-dom';
 const AboutUsPage = () => {
   return (
     <div className="about-us-container">
-      <h2>Welcome to Electrical Appliance's Maintenance and Servicing System!</h2>
+      <h2>Welcome to ApplianceRevive Techs!</h2>
+      <h3>Electrical Appliance's Maintenance and Servicing System</h3>
 
       <p>
         Our application is a comprehensive solution built using cutting-edge technologies to provide you with the best maintenance and servicing experience for your electrical appliances. We've combined Bootstrap, ReactJS, Spring Boot, and MySQL to create a powerful full-stack platform that ensures your appliances are in their best working condition.

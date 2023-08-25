@@ -39,5 +39,23 @@ nav ul {
 
 
   .logins-buttons{
-    padding-right: 20px;
+    padding-right: 25px;
+  }
+
+  .welcome-container {
+    background-color: #f4f4f4;
+    padding: 5px;
+    text-align: center;
+    border-radius: 3px;
+  }
+
+  .welcome-title {
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 10px;
+  }
+  
+  .welcome-text {
+    font-size: 18px;
+    color: #555;
   }

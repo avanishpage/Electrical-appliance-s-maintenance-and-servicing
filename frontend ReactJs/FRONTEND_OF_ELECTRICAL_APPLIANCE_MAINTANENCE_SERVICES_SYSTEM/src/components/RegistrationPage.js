@@ -50,6 +50,11 @@ function RegistrationPage() {
       alert('Password and Confirm Password do not match.');
       return;
     }
+    const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*])(?=.{4,12})/;
+    if (!passwordRegex.test(formData.password)) {
+      alert("Password must contain at least 1 uppercase letter, 1 lowercase letter, 1 special character, and between 4-12 characters.");
+      return;
+    }
   };
 
   return (
