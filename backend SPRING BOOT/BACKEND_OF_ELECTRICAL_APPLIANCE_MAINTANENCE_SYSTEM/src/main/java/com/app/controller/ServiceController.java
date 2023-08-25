@@ -10,12 +10,12 @@ import static org.springframework.http.MediaType.IMAGE_PNG_VALUE;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
-<<<<<<< HEAD
+//<<<<<<< HEAD
 import org.springframework.web.bind.annotation.CrossOrigin;
-=======
+//=======
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
->>>>>>> e0f9e8d19f19ce59e7a7d4786be5f1fbdeba5b7d
+//>>>>>>> e0f9e8d19f19ce59e7a7d4786be5f1fbdeba5b7d
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
