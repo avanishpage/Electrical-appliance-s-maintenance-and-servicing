@@ -11,5 +11,4 @@ public interface OrderRepositoryIF extends JpaRepository<Order, Long>{
 	
 	public ArrayList<Order> findByJobStatus(JobStatus jobstatus);
 
-	
 }

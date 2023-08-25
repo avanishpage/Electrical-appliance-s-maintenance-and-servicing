@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -34,13 +35,19 @@ public class OrderController {
 	}
 	
 	@GetMapping("/{orderId}/services")
-	public List<ServiceDto> getServicesOfOrder(@PathVariable Long orderId) {
-		return orderService.getServices(orderId);
+	public List<ServiceDto> getServicesOfOrder(@PathVariable Long orderId,@RequestParam int pageNo,@RequestParam int pageSize) {
+		return orderService.getServices(orderId,pageNo,pageSize);
 	}
 	
 	@GetMapping("/jobstatus")
 	public List<OrderDto> getOrdersByJobStatus(@RequestParam JobStatus jobstatus){
 		return orderService.getOrdersByJobStatus(jobstatus);		
+	}
+	
+
+	@PatchMapping("/changeJobStatus/{orderId}")
+	public ApiResponse changeJobStatus(@PathVariable Long orderId,@RequestParam JobStatus jobStatus) {
+		return orderService.changeJobStatus(orderId,jobStatus );		
 	}
 	
 	@GetMapping("/vendor/{vendorId}")
@@ -53,5 +60,9 @@ public class OrderController {
 		return orderService.getOrderBtOrderId(orderId);
 	}
 
+	@PatchMapping("/cancelOrder/{orderId}")
+	public ApiResponse cancelOrder(@PathVariable Long orderId ) {
+		return orderService.cancelOrder(orderId,JobStatus.COMPLETED );		
+	}
 
 }

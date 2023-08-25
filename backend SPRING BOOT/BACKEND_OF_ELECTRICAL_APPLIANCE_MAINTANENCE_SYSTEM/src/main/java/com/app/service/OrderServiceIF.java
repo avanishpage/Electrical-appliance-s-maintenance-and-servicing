@@ -12,11 +12,15 @@ public interface OrderServiceIF {
 
 	public ApiResponse addOrderFromCart(Long cartId);
 
-	public List<ServiceDto> getServices(Long orderId);
+	public List<ServiceDto> getServices(Long orderId,int pageNo,int pageSize);
 	
 	public List<OrderDto> getOrdersByJobStatus(JobStatus jobstatus);
+
+	public ApiResponse changeJobStatus(Long orderId, JobStatus jobStatus);
 
 	public List<OrderDto> getAllOrdersOfVendor(Long vendorId);
 	
 	public OrderDto getOrderBtOrderId(Long orderId);
+
+	public ApiResponse cancelOrder(Long orderId,JobStatus jobstatus);
 }
