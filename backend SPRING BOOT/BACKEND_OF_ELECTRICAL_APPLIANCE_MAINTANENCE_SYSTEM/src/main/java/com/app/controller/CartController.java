@@ -42,5 +42,13 @@ public class CartController {
 	public ApiResponse deleteServiceFromCart(@PathVariable Long cartId,@PathVariable Long serviceId) {
 		return cartServiceLayer.removeServiceFromCart(cartId,serviceId);
 	}
+	
+	@GetMapping("/total_cost")
+	public Long getTotalCostOfCart(@PathVariable Long cartId) {
+		
+		return cartServiceLayer.addAllCostOfServicesInCart(cartId);
+		
+		
+	}
 
 }
