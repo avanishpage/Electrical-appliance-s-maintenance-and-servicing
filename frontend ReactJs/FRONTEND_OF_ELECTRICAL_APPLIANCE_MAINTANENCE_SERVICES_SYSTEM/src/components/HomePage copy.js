@@ -1,10 +1,14 @@
 import react from 'react';
 import { Link } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
+import { Carousel } from 'react-bootstrap';
 import './css/HomePage.css'
-import Slider from './Slider'
+import Slider from 'react-slick';
+import './Slider';
 function HomePage() {
     return (
         <div>
+            <Slider></Slider>
             <nav class="navbar navbar-expand-lg bg-body-tertiary">
                 <div class="container-fluid">
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -20,10 +24,10 @@ function HomePage() {
                                     <Link to="/">Home</Link>
                                 </li>
                                 <li class="nav-item">                                    
-                                    <Link to="/AboutUsPage">About</Link>
+                                    <Link to="/AboutUsPage">About Us</Link>
                                 </li>
                                 <li class="nav-item">                                 
-                                    <Link to="/ContactUsPage">ContactUs</Link>
+                                    <Link to="/ContactUsPage">Contact Us</Link>
                                 </li>
                                 <li class="nav-item">                                  
                                     <Link to="/SigninPage">SignIn/Register</Link>
@@ -36,7 +40,7 @@ function HomePage() {
                     </div>
                 </div>
             </nav>
-            <Slider></Slider>
+            
         </div>
     )
 }
