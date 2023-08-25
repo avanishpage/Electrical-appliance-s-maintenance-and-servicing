@@ -1,5 +1,5 @@
 import React from 'react';
-import './css/AboutUsPage.css'; // Import your AboutUsPage-specific styles
+import './css/AboutUsPage.css'; 
 import { Link } from 'react-router-dom';
 const AboutUsPage = () => {
   return (

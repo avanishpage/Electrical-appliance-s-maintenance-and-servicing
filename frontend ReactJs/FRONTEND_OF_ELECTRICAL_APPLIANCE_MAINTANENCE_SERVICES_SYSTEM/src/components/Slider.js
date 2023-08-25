@@ -7,37 +7,87 @@ function Slider() {
         <Carousel>
             <Carousel.Item>
                 <img
-
                     className="d-block w-100"
-                    src="./images/air-conditioner-covid-19-1588000111.jpg"
+                    src="./images/AC.jpg"
                     alt="First slide"
                 />
                 <Carousel.Caption>
-                    <h3>30% - 40% off</h3>
-                    <p>You can always find something you want.</p>
+                    <h3>Flat 40% off on first order</h3>
+                    <p>Chilling Discounts Ahead: Embrace the cool with our limited-time AC servicing offers!</p>
                 </Carousel.Caption>
             </Carousel.Item>
 
             <Carousel.Item>
                 <img
                     className="d-block w-100"
-                    src="./images/phx401.jpg"
+                    src="./images/TV.jpg"
                     alt="Second slide"
                 />
                 <Carousel.Caption>
-                    <h3>Up to 25% off</h3>
-                    <p>I like my money right where I can see it: hanging in my closet.</p>
+                    <h3>Up to 50% off</h3>
+                    <p>Don't Miss Another Moment: Our TV Repair Gets You Back to Binge-Watching.</p>
                 </Carousel.Caption>
             </Carousel.Item>
 
             <Carousel.Item>
                 <img
                     className="d-block w-100"
-                    src="./images/Refimages.jpeg"
+                    src="./images/Laptop.jpg"
                     alt="Third slide"
                 />
-
+                <Carousel.Caption>
+                    <h3>Up to 25% off</h3>
+                    <p>Upgrade Your Experience: Revitalize your laptop with our top-notch services!</p>
+                </Carousel.Caption>
             </Carousel.Item>
+
+            <Carousel.Item>
+                <img
+                    className="d-block w-100"
+                    src="./images/Microwave.jpg"
+                    alt="Fourth slide"
+                />
+                <Carousel.Caption>
+                    <h3>Up to 45% off</h3>
+                    <p>Microwave Mastery: Our services ensure your meals are always on point.</p>
+                </Carousel.Caption>
+            </Carousel.Item>
+
+            <Carousel.Item>
+                <img
+                    className="d-block w-100"
+                    src="./images/Pc.jpg"
+                    alt="Fifth slide"
+                />
+                <Carousel.Caption>
+                    <h3>Flat 50% off</h3>
+                    <p>Your PC's Lifeline: Experience seamless computing with our professional services.</p>
+                </Carousel.Caption>
+            </Carousel.Item>
+
+            <Carousel.Item>
+                <img
+                    className="d-block w-100"
+                    src="./images/Refrigerator.jpg"
+                    alt="Sixth slide"
+                />
+                <Carousel.Caption>
+                    <h3>Book our service now!!</h3>
+                    <p>Cool Confidence, Guaranteed: Trust our refrigerator services for fresh and flawless performance.</p>
+                </Carousel.Caption>
+            </Carousel.Item>
+
+            <Carousel.Item>
+                <img
+                    className="d-block w-100"
+                    src="./images/WashingMachine.jpg"
+                    alt="Seventh slide"
+                />
+                <Carousel.Caption>
+                    <p>Expert Repairs for a Smooth Laundry Experience: Get Your Washing Machine Fixed Today.</p>
+                </Carousel.Caption>
+            </Carousel.Item>          
+
         </Carousel>
 
     )
