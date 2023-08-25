@@ -38,8 +38,10 @@ public class CartServiceImpl implements CartServiceIF {
 
 		Cart cart = cartRepo.findById(cartId).orElseThrow(() -> new CartNotFoundException("no such cart exists"));
 
-		if (((com.app.entity.Service) cart.getServices().toArray()[0]).getVendor().getId() == service.getVendor()
-				.getId() || cart.getServices().size() == 0)
+		if (cart.getServices().size() == 0)
+			cart.associateServiceWithCart(service);
+		else if (((com.app.entity.Service) cart.getServices().toArray()[0]).getVendor().getId() == service.getVendor()
+				.getId())
 			cart.associateServiceWithCart(service);
 		else
 			throw new VendorNotMatchingException(
