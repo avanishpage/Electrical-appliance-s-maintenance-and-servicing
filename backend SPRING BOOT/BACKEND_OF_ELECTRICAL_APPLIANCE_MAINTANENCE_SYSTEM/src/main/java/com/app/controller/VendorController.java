@@ -5,6 +5,7 @@ import java.util.List;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -17,13 +18,13 @@ import org.springframework.web.bind.annotation.RestController;
 import com.app.dto.ApiResponse;
 import com.app.dto.PersonDto;
 import com.app.dto.PersonLoginDto;
-import com.app.dto.RatingDto;
 import com.app.dto.ServiceDto;
 import com.app.service.ServiceServiceLayerIF;
 import com.app.service.VendorServiceLayerIF;
 
 @RestController
 @RequestMapping("/vendor")
+@CrossOrigin(origins = "http://localhost:3000")
 public class VendorController {
 
 	@Autowired
