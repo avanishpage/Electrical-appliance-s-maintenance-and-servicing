@@ -16,6 +16,8 @@ public interface CartServiceIF {
 	public List<ServiceDto> getAllServicesFromCart(Long cartId,int pageNo,int pageSize);
 
 	public ApiResponse removeServiceFromCart(Long cartId, Long serviceId);
+
+	public Long addAllCostOfServicesInCart(Long cartId);
 	
 	
 

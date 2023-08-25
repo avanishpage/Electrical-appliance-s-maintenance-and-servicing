@@ -78,6 +78,11 @@ public class GlobalExceptionHandler {
 		return new ApiResponse(e.getMessage());
 	}
 
+	@ExceptionHandler(VendorNotMatchingException.class)
+	@ResponseStatus(value = HttpStatus.UNAUTHORIZED)
+	public ApiResponse handleCustomerNotFoundException(VendorNotMatchingException e) {
+		return new ApiResponse(e.getMessage());
+	}
 	
 	
 }

@@ -16,6 +16,7 @@ import com.app.dto.ServiceDto;
 import com.app.entity.Cart;
 import com.app.exceptions.CartNotFoundException;
 import com.app.exceptions.ServiceNotFoundException;
+import com.app.exceptions.VendorNotMatchingException;
 import com.app.repository.CartRepository;
 import com.app.repository.ServiceRepositoryIF;
 
@@ -37,14 +38,21 @@ public class CartServiceImpl implements CartServiceIF {
 
 		Cart cart = cartRepo.findById(cartId).orElseThrow(() -> new CartNotFoundException("no such cart exists"));
 
-		cart.associateServiceWithCart(service);
+		if (cart.getServices().size() == 0)
+			cart.associateServiceWithCart(service);
+		else if (((com.app.entity.Service) cart.getServices().toArray()[0]).getVendor().getId() == service.getVendor()
+				.getId())
+			cart.associateServiceWithCart(service);
+		else
+			throw new VendorNotMatchingException(
+					"cart must contain services from same vendor,no 2 vendors are allowed!!");
+
 		return new ApiResponse("service added successfully to the cart");
 
 	}
 
 	@Override
-	public List<ServiceDto> getAllServicesFromCart(Long cartId,int pageNo,int pageSize) {
-
+	public List<ServiceDto> getAllServicesFromCart(Long cartId, int pageNo, int pageSize) {
 
 		Cart cart = cartRepo.findById(cartId).orElseThrow(() -> new CartNotFoundException("invalid cart id!!"));
 
@@ -70,6 +78,23 @@ public class CartServiceImpl implements CartServiceIF {
 		cart.disassociateServiceWithCart(service);
 
 		return new ApiResponse("service removed Successfully!!");
+	}
+
+	@Override
+	public Long addAllCostOfServicesInCart(Long cartId) {
+		Cart cart = cartRepo.findById(cartId).orElseThrow(() -> new CartNotFoundException("Invalid Cart Id"));
+
+		if (cart.getServices().size() != 0) {
+			Long totalCost = 0L;
+
+			for (com.app.entity.Service s : cart.getServices()) {
+				totalCost += s.getPrice();
+			}
+
+			return totalCost;
+		} else
+			throw new ServiceNotFoundException("no services are present");
+
 	}
 
 }
