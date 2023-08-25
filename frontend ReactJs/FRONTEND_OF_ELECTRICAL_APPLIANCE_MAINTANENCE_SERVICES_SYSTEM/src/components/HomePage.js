@@ -1,8 +1,8 @@
 import react from 'react';
 import { Link } from 'react-router-dom';
-import './Home.css'
-import Slider from '../slider/Slider'
-function Home() {
+import './css/HomePage.css'
+import Slider from './Slider'
+function HomePage() {
     return (
         <div>
             <nav class="navbar navbar-expand-lg bg-body-tertiary">
@@ -40,4 +40,4 @@ function Home() {
         </div>
     )
 }
-export default Home;
+export default HomePage;

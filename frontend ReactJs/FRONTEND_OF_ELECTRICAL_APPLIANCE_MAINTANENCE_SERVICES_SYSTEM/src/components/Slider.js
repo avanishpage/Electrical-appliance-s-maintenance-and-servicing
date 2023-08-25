@@ -1,5 +1,5 @@
 import React from "react";
-import './Slider.css'
+import './css/Slider.css'
 import { Carousel } from 'react-bootstrap';
 function Slider() {
     return (
@@ -9,7 +9,7 @@ function Slider() {
                 <img
 
                     className="d-block w-100"
-                    src="../../images/air-conditioner-covid-19-1588000111.jpg"
+                    src="./images/air-conditioner-covid-19-1588000111.jpg"
                     alt="First slide"
                 />
                 <Carousel.Caption>
@@ -21,7 +21,7 @@ function Slider() {
             <Carousel.Item>
                 <img
                     className="d-block w-100"
-                    src="../../images/phx401.jpg"
+                    src="./images/phx401.jpg"
                     alt="Second slide"
                 />
                 <Carousel.Caption>
@@ -33,7 +33,7 @@ function Slider() {
             <Carousel.Item>
                 <img
                     className="d-block w-100"
-                    src="../../images/Refimages.jpeg"
+                    src="./images/Refimages.jpeg"
                     alt="Third slide"
                 />
 
