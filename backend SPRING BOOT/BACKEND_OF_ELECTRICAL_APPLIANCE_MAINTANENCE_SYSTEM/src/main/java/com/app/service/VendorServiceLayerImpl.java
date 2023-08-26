@@ -48,6 +48,7 @@ public class VendorServiceLayerImpl implements VendorServiceLayerIF{
 		System.out.println(id);
 		
 		Vendor vendorEntity=vendorRepo.findById(id).orElseThrow(()->  new VendorNotFoundException("vendor by id "+id+" not present"));
+		vendorDto.setId(id);
 		mapper.map(vendorDto, vendorEntity);
 	}
 
@@ -98,6 +99,7 @@ public class VendorServiceLayerImpl implements VendorServiceLayerIF{
 	@Override
 	public void updateServiceofVendor(ServiceDto servicedto, Long vendorId, Long serviceId) {
 
+		servicedto.setId(serviceId);
 		Vendor vendor = vendorRepo.findById(vendorId).orElseThrow(()->new VendorNotFoundException("invalid vendor id"));
 		
 		com.app.entity.Service service = vendor.getServices().stream()
