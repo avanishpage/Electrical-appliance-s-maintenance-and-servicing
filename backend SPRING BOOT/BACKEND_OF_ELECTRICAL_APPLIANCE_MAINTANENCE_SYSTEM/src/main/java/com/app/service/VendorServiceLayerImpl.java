@@ -48,6 +48,7 @@ public class VendorServiceLayerImpl implements VendorServiceLayerIF{
 		System.out.println(id);
 		
 		Vendor vendorEntity=vendorRepo.findById(id).orElseThrow(()->  new VendorNotFoundException("vendor by id "+id+" not present"));
+		vendorDto.setId(id);
 		mapper.map(vendorDto, vendorEntity);
 	}
 
