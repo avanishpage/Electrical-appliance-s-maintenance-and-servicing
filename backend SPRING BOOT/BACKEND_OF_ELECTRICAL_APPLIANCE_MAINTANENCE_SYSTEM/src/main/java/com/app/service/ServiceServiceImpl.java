@@ -80,7 +80,7 @@ public class ServiceServiceImpl implements ServiceServiceLayerIF {
 	@Override
 	public List<ServiceDto> getServicesByCity(String city) {
 		List<com.app.entity.Service> services = serviceRepo.findAll().stream()
-				.filter(s -> s.getVendor().getAddress().getCity().equals(city)).collect(Collectors.toList());
+				.filter(s -> s.getVendor().getCity().equals(city)).collect(Collectors.toList());
 		if (services.size() == 0)
 			throw new ServiceNotFoundException("invalid city name,cannot find services for city " + city);
 		List<ServiceDto> serviceDtos = new ArrayList<>();

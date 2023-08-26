@@ -12,7 +12,7 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@Embeddable
+//@Embeddable
 public class Address {
 	@NotBlank(message = "flat no cant be blank!!")
 	private String flatNo;

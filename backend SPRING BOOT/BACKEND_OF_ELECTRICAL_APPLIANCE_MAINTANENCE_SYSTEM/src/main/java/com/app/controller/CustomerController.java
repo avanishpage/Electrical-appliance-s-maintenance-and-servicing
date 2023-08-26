@@ -1,11 +1,6 @@
 package com.app.controller;
 
 
-import javax.validation.Valid;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-
 import static org.springframework.http.MediaType.IMAGE_GIF_VALUE;
 import static org.springframework.http.MediaType.IMAGE_JPEG_VALUE;
 import static org.springframework.http.MediaType.IMAGE_PNG_VALUE;
@@ -17,7 +12,7 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -32,6 +27,8 @@ import org.springframework.web.multipart.MultipartFile;
 import com.app.dto.ApiResponse;
 import com.app.dto.PersonDto;
 import com.app.dto.PersonLoginDto;
+import com.app.dto.PersonLoginOutDto;
+import com.app.dto.PersonRegisterDto;
 import com.app.service.CustomerServiceLayerIF;
 import com.app.service.ImageHandlingIF;
 
@@ -47,7 +44,7 @@ public class CustomerController {
 
 	// post method for adding a new customer entry
 	@PostMapping("/add")
-	public ApiResponse createCustomer(@RequestBody @Valid PersonDto custDto) {
+	public ApiResponse createCustomer(@RequestBody @Valid PersonRegisterDto custDto) {
 
 		serviceLayer.addCustomerAndCart(custDto);
 		return new ApiResponse("customer successfully created!");
@@ -78,7 +75,7 @@ public class CustomerController {
 
 	// customer login
 	@PostMapping("/login")
-	public PersonDto loginCustomer(@RequestBody PersonLoginDto customerLoginDto) {
+	public PersonLoginOutDto loginCustomer(@RequestBody PersonLoginDto customerLoginDto) {
 
 		return serviceLayer.verifyCustomer(customerLoginDto);
 	}

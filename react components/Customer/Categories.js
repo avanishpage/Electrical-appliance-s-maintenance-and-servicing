@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Card,Button } from 'react-bootstrap';
 import Slider from 'react-slick';
+import NavigationBar from "./NavigationBar";
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import { Link } from 'react-router-dom';
@@ -12,43 +13,43 @@ const Categories = () => {
     {
       id: 'AC',
       name: 'Air Conditioner',
-      image: 'category-images/ac.jpg',
+      image: '/category-images/ac.jpg',
       details: 'Keep cool with our wide range of ACs.'
     },
     {
       id: 'MICROWAVE',
       name: 'Microwave',
-      image: 'category-images/ac.jpg',
+      image: '/category-images/oven.jpg',
       details: 'Quick and convenient cooking with microwaves.'
     },
     {
       id: 'REFRIGERATOR',
       name: 'Refrigerator',
-      image: 'category-images/fridge.jpg',
+      image: '/category-images/fridge.jpg',
       details: 'Store your food and drinks in style.'
     },
     {
       id: 'LAPTOP',
       name: 'Laptop',
-      image: 'category-images/laptop.jpg',
+      image: '/category-images/laptop.jpg',
       details: 'Stay connected with powerful laptops.'
     },
     {
       id: 'PC',
       name: 'PC',
-      image: 'category-images/pc.jpg',
+      image: '/category-images/pc.jpg',
       details: 'High-performance PCs for your needs.'
     },
     {
       id: 'WASHING_MACHINE',
       name: 'Washing Machine',
-      image: 'category-images/wm.jpeg',
+      image: '/category-images/wm.jpeg',
       details: 'Effortless laundry with advanced washing machines.'
     },
     {
       id: 'WATER_FILTER',
       name: 'Water Filter',
-      image: 'category-images/filter.jpg',
+      image: '/category-images/filter.jpg',
       details: 'Clean and safe drinking water with our filters.'
     },
    
@@ -92,6 +93,7 @@ const Categories = () => {
   // };
 
   return (
+    <><NavigationBar />
     <div className="container categories-container">
       <h2 className="categories-heading">Categories</h2>
       <Slider {...sliderSettings}>
@@ -115,7 +117,7 @@ const Categories = () => {
         ))}
       </Slider>
 
-    </div>
+    </div></>
   );
 };
 

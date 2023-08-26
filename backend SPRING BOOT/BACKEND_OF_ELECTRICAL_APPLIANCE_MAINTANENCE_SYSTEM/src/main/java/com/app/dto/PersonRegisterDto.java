@@ -21,9 +21,8 @@ import lombok.ToString;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class PersonDto {
+public class PersonRegisterDto {
 	
-	private Long id;
 	
 	@NotBlank(message = "first name cannot be blank!!")
 	private String firstName;
@@ -52,7 +51,7 @@ public class PersonDto {
 	
 	
 	
-	public PersonDto(@NotBlank(message = "first name cannot be blank!!") String firstName,
+	public PersonRegisterDto(@NotBlank(message = "first name cannot be blank!!") String firstName,
 			@NotBlank(message = "last name cannot be blank!!") String lastName,
 			@NotBlank(message = "email is mandatory!!") @Email String email,
 			@NotBlank(message = "password is mandatory!!") @Pattern(regexp = "^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{4,12}$", message = "password must be min 4 and max 12 length containing atleast 1 uppercase, 1 lowercase, 1 special character and 1 digit ") String password,

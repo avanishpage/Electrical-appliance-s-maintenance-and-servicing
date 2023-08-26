@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios'; // Import Axios library
 import { useParams } from 'react-router-dom';
+import NavigationBar from './NavigationBar'; // Import your NavigationBar component
+
 import './ServiceList.css'
 
 const ServicesList = () => {
@@ -25,7 +27,7 @@ const ServicesList = () => {
   }, [category]);
 
   return (
-<div className="services-list">
+    <><NavigationBar /><div className="services-list">
       <h2>Services for {category}</h2>
       <table className="table">
         <thead>
@@ -48,7 +50,7 @@ const ServicesList = () => {
           ))}
         </tbody>
       </table>
-    </div>
+    </div></>
   );
 };
 

@@ -1,15 +1,26 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import './NavigationBar.css';
 
 const NavigationBar = () => {
+
+  // const navigate = useNavigate();
+
+  const handleLogout = () => {
+    // Clear user data from local storage
+    localStorage.removeItem('customer');
+    // Navigate to the desired page (e.g., home page)
+    // You can use `useNavigate` if you're using React Router
+    // navigate('/customer/login');
+  };
+
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
       <div className="container">
-        <NavLink className="navbar-brand" to="/">Appliance Service</NavLink>
+        <NavLink className="navbar-brand" to="/customer/categories">Appliance Service</NavLink>
         <button
           className="navbar-toggler"
-          type="button"
+          type="button" 
           data-bs-toggle="collapse"
           data-bs-target="#navbarNav"
           aria-controls="navbarNav"
@@ -28,6 +39,9 @@ const NavigationBar = () => {
             </li>
             <li className="nav-item">
               <NavLink className="nav-link" to="/cart">Cart</NavLink>
+            </li>
+            <li className="nav-item">
+              <NavLink className="nav-link" to="/" onClick={handleLogout}>Logout</NavLink>
             </li>
           </ul>
         </div>

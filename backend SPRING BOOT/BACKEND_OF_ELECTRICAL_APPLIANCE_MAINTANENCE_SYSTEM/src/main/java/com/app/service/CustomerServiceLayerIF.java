@@ -2,11 +2,12 @@ package com.app.service;
 
 import com.app.dto.PersonDto;
 import com.app.dto.PersonLoginDto;
-import com.app.entity.Person;
+import com.app.dto.PersonLoginOutDto;
+import com.app.dto.PersonRegisterDto;
 
 public interface CustomerServiceLayerIF {
 
-	void addCustomerAndCart(PersonDto custDto);
+	void addCustomerAndCart(PersonRegisterDto custDto);
 
 	void updateCust(PersonDto custDto, Long id);
 
@@ -14,6 +15,6 @@ public interface CustomerServiceLayerIF {
 
 	void deleteCustomer(Long customerId);
 
-	PersonDto verifyCustomer(PersonLoginDto customerLoginDto);
+	PersonLoginOutDto verifyCustomer(PersonLoginDto customerLoginDto);
 
 }

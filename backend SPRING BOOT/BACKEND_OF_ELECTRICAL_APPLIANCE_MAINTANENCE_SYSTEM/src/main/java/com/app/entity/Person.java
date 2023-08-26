@@ -27,17 +27,22 @@ public class Person {
 	@Column(unique = true)
 	private String email;
 
+	
 	private String password;
 
-	@Embedded
-	private Address address;
+	@Column
+	private String address;
+	
+	@Column
+	private String city;
 
 	@Column(name = "phone_number")
 	private String phoneNumber;
+	
 	@Column(name = "image_path")
 	private String imagePath;
 
-	public Person(String firstName, String lastName, String email, String password, Address address,
+	public Person(String firstName, String lastName, String email, String password, String address,
 			String phoneNumber) {
 		super();
 		this.firstName = firstName;
