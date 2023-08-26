@@ -98,6 +98,7 @@ public class VendorServiceLayerImpl implements VendorServiceLayerIF{
 	@Override
 	public void updateServiceofVendor(ServiceDto servicedto, Long vendorId, Long serviceId) {
 
+		servicedto.setId(serviceId);
 		Vendor vendor = vendorRepo.findById(vendorId).orElseThrow(()->new VendorNotFoundException("invalid vendor id"));
 		
 		com.app.entity.Service service = vendor.getServices().stream()
