@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./css/AddImage.css"; // Import the CSS file
+import "./css/AddImage.css"; 
 import { useHistory } from 'react-router-dom';
 function AddImage() {
   const [selectedImage, setSelectedImage] = useState(null);
@@ -18,9 +18,7 @@ function AddImage() {
   const handleSubmit = (event) => {
     event.preventDefault();
     if (selectedImage) {
-      // ... your existing handleSubmit logic ...
-
-      // Once registration is successful:
+     
       setRegistrationSuccess(true);
     } else {
       alert("Please select an image before submitting.");

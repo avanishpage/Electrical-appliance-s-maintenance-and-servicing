@@ -1,9 +1,14 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from "react-router-dom";
+import { Link,useNavigate } from "react-router-dom";
 import { useHistory } from 'react-router-dom';
 import './css/RegistrationPage.css';
+import CascadingDropdowns from './CascadingDropdowns';
+import AddImage from './AddImage';
+import Header from './Header';
+import Footer from './Footer';
 function RegistrationPageVendor() {
   // const history = useHistory();
+  const navigate=useNavigate();
   const [formData, setFormData] = useState({
     firstName: '',
     lastName: '',
@@ -32,13 +37,6 @@ function RegistrationPageVendor() {
     e.preventDefault();
     console.log(formData);
 
-    for (const key in formData) {
-      if (formData[key].trim() === "") {
-        alert(`${key} is required.`);
-        return;
-      }
-    }
-
     if (!/^\d{6}$/.test(formData.pincode)) {
       alert("Pincode must be 6 digits.");
       return;
@@ -52,17 +50,19 @@ function RegistrationPageVendor() {
       alert("Password and Confirm Password do not match.");
       return;
     }
-    const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*])(?=.{4,12})/;
+    const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])(?=.{4,12})$/;
     if (!passwordRegex.test(formData.password)) {
-      alert("Password must contain at least 1 uppercase letter, 1 lowercase letter, 1 special character, and between 4-12 characters.");
+      alert("Password must contain at least 1 uppercase letter, 1 lowercase letter, 1 special character,1 numeral and length between 4-12 characters.");
       return;
     }
+    navigate("/AddImage")
 
-    // setRegistrationSuccess(true);
-    // history.push("/AddImage");
   };
 
   return (
+    <div className='form'>
+      <Header></Header>
+      <p></p>
     <div className="registration-form">
       <h2>Register Vendor</h2>
       <form onSubmit={handleSubmit}>
@@ -146,71 +146,7 @@ function RegistrationPageVendor() {
           required
         />
 
-        <label htmlFor="country">Country <span> *</span></label>
-        <select
-          id="country"
-          name="country"
-          value={formData.country}
-          onChange={handleInputChange}
-          required
-        >
-          <option value="" disabled>Select Country</option>
-          <option value="country1">India</option>
-        </select>
-
-        <label htmlFor="state">State <span> *</span></label>
-        <select
-          id="state"
-          name="state"
-          value={formData.state}
-          onChange={handleInputChange}
-          required
-        >
-          <option value="" disabled>Select State</option>
-          <option value="state1">Maharashtra</option>
-          <option value="state2">Karnataka</option>
-          <option value="state3">Telangana</option>
-        </select>
-
-        <label htmlFor="district">District <span> *</span></label>
-        <select
-          id="district"
-          name="district"
-          value={formData.district}
-          onChange={handleInputChange}
-          required
-        >
-          <option value="" disabled>Select District</option>
-          <option value="district1">Pune</option>
-          <option value="district2">Mumbai</option>
-          <option value="district3">Nashik</option>
-          <option value="district4">Nagpur</option>
-          <option value="district5">Bangalore Urban District</option>
-          <option value="district6">Hyderabad District</option>
-        </select>
-
-
-
-        <label htmlFor="city">City <span> *</span></label>
-        <select
-          id="city"
-          name="city"
-          value={formData.city}
-          onChange={handleInputChange}
-          required
-        >
-          <option value="" disabled>Select City</option>
-          <option value="city1">Pune</option>
-          <option value="city2">Pimpri-Chinchwad</option>
-          <option value="city3">Bandra</option>
-          <option value="city4">Juhu</option>
-          <option value="city5">Sinnar</option>
-          <option value="city5">Nagpur</option>
-          <option value="city5">Bangalore city</option>
-          <option value="city6">Hyderabad</option>
-        </select>
-
-
+        <CascadingDropdowns></CascadingDropdowns>
 
         <label htmlFor="pincode">Pincode <span> *</span></label>
         <input
@@ -241,6 +177,9 @@ function RegistrationPageVendor() {
         </p>
       </form>
 
+    </div>
+    <p></p>
+    <Footer></Footer>
     </div>
   );
 }

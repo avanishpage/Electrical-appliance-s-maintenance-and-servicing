@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import './css/SignInPage.css'; 
-
+import Header from './Header';
+import Footer from './Footer';
 function SignInPageVendor() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -21,6 +22,9 @@ function SignInPageVendor() {
   };
 
   return (
+    <div className='form'>
+      <Header></Header>
+      <p></p>
     <div className="sign-in-page">
       <div className="sign-in-container">
         <h2>Sign In</h2>
@@ -50,11 +54,14 @@ function SignInPageVendor() {
           <Link to="/ForgotPasswordPage">Forgot Password?</Link>
           </div>
           <p>
-          Don't have an account? <Link to="/RegistrationPage">Register here</Link>
+          Don't have an account? <Link to="/RegistrationPageVendor">Register here</Link>
         </p>
         </form>
       </div>
      
+    </div>
+    <p></p>
+    <Footer></Footer>
     </div>
   );
 }

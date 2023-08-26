@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import './css/SignInPage.css'; 
-
+import Header from './Header';
+import Footer from './Footer';
 function SignInPage() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -21,6 +22,9 @@ function SignInPage() {
   };
 
   return (
+    <div className='form'>
+      <Header></Header>
+      <p></p>
     <div className="sign-in-page">
       <div className="sign-in-container">
         <h2>Sign In</h2>
@@ -55,6 +59,9 @@ function SignInPage() {
         </form>
       </div>
      
+    </div>
+    <p></p>
+    <Footer></Footer>
     </div>
   );
 }

@@ -24,12 +24,12 @@ function App() {
       <Routes>
         <Route path="/" exact element={<HomePage />} />
         {/* <Route path="/"  element={<Slider />} /> */}
-        <Route path="/AboutUsPage" element={<AboutUsPage />} />
-        <Route path="/ContactUsPage" element={<ContactUsPage />} />
-        <Route path="/RegistrationPage" element={<RegistrationPage />} />
+        <Route path="/about" element={<AboutUsPage />} />
+        <Route path="/contact" element={<ContactUsPage />} />
+        <Route path="/registercustomer" element={<RegistrationPage />} />
         <Route path="/RegistrationPageVendor" element={<RegistrationPageVendor />} />
-        <Route path="/SignInPage" element={<SignInPage />} />
-        <Route path="/SignInPageVendor" element={<SignInPageVendor />} />
+        <Route path="/signincustomer" element={<SignInPage />} />
+        <Route path="/signinvendor" element={<SignInPageVendor />} />
         <Route path="/ForgotPasswordPage" element={<ForgotPasswordPage />} />
 
         <Route path="/Categories" element={<Categories />} />

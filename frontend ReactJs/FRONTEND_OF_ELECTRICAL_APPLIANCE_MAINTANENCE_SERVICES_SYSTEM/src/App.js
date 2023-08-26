@@ -8,7 +8,6 @@ import RegistrationPage from './components/RegistrationPage';
 import RegistrationPageVendor from './components/RegistrationPageVendor';
 import ForgotPasswordPage from './components/ForgotPasswordPage';
 import AboutUsPage from './components/AboutUsPage';
-import AboutImage from './components/AddImage';
 import ContactUsPage from './components/ContactUsPage';
 import AddImage from './components/AddImage';
 function App() {
@@ -24,8 +23,7 @@ function App() {
         <Route path="/SignInPage" element={<SignInPage />} />
         <Route path="/SignInPageVendor" element={<SignInPageVendor />} />
         <Route path="/ForgotPasswordPage" element={<ForgotPasswordPage />} />
-        </Routes>
-        
+        </Routes>        
    
   );
 }

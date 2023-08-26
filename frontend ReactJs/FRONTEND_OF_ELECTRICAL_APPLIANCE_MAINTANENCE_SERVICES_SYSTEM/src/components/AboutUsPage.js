@@ -1,9 +1,15 @@
 import React from 'react';
 import './css/AboutUsPage.css'; 
 import { Link } from 'react-router-dom';
+import Header from './Header';
+import Footer from './Footer';
 const AboutUsPage = () => {
   return (
+    <div className='form'>
+      <Header></Header>
+      <p></p>
     <div className="about-us-container">
+      
       <h2>Welcome to ApplianceRevive Techs!</h2>
       <h3>Electrical Appliance's Maintenance and Servicing System</h3>
 
@@ -51,6 +57,9 @@ const AboutUsPage = () => {
 
       <Link to="/">Go to Home</Link>
 
+    </div>
+    <p></p>
+    <Footer></Footer>
     </div>
   );
 };
