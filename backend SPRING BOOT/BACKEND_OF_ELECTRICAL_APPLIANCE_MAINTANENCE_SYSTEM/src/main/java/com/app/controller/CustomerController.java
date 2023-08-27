@@ -1,6 +1,5 @@
 package com.app.controller;
 
-
 import static org.springframework.http.MediaType.IMAGE_GIF_VALUE;
 import static org.springframework.http.MediaType.IMAGE_JPEG_VALUE;
 import static org.springframework.http.MediaType.IMAGE_PNG_VALUE;
@@ -12,10 +11,9 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-<<<<<<< HEAD
+
 import org.springframework.web.bind.annotation.CrossOrigin;
-=======
->>>>>>> 782f53b658c02c6ba572c3617b1664976e028261
+
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -86,7 +84,7 @@ public class CustomerController {
 	// image handling
 
 	// 6. Upload image
-	
+
 	@PostMapping(value = "/images", consumes = "multipart/form-data")
 	public ResponseEntity<?> uploadImage(@RequestParam long customerId, @RequestParam MultipartFile image)
 			throws IOException {
@@ -95,8 +93,8 @@ public class CustomerController {
 	}
 
 //7. download image
-	
-	@GetMapping(value = "/images/{customerId}", produces =  {IMAGE_GIF_VALUE, IMAGE_JPEG_VALUE, IMAGE_PNG_VALUE})
+
+	@GetMapping(value = "/images/{customerId}", produces = { IMAGE_GIF_VALUE, IMAGE_JPEG_VALUE, IMAGE_PNG_VALUE })
 	public ResponseEntity<?> downloadImage(@PathVariable long customerId) throws IOException {
 		System.out.println("in download image " + customerId);
 		return ResponseEntity.ok(imgServiceLayer.serveImageCustomer(customerId));
