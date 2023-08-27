@@ -6,7 +6,7 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
 
-import com.app.entity.Address;
+import com.app.enums.Role;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -21,7 +21,7 @@ import lombok.ToString;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class PersonDto {
+public class PersonDtoWithRole {
 	
 	private Long id;
 	
@@ -47,7 +47,7 @@ public class PersonDto {
 	@NotBlank(message = "phone number cannot be blank!!")
 	private String phoneNumber;
 
-	
+	private Role role;
 	
 	
 	

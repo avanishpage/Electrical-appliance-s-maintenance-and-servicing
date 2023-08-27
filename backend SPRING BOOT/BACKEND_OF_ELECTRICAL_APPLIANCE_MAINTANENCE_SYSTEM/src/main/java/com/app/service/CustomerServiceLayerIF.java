@@ -1,8 +1,8 @@
 package com.app.service;
 
 import com.app.dto.PersonDto;
+import com.app.dto.PersonDtoWithRole;
 import com.app.dto.PersonLoginDto;
-import com.app.entity.Person;
 
 public interface CustomerServiceLayerIF {
 
@@ -14,6 +14,6 @@ public interface CustomerServiceLayerIF {
 
 	void deleteCustomer(Long customerId);
 
-	PersonDto verifyCustomer(PersonLoginDto customerLoginDto);
+	PersonDtoWithRole verifyCustomer(PersonLoginDto customerLoginDto);
 
 }

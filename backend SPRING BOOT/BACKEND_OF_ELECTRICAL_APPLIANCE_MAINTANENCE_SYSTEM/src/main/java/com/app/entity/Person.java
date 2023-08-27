@@ -1,6 +1,12 @@
 package com.app.entity;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.MappedSuperclass;
+
+import com.app.enums.Role;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -37,6 +43,6 @@ public class Person {
 	@Column(name = "image_path")
 	private String imagePath;
 
-	
+	private Role role;
 
 }
