@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.app.dto.ApiResponse;
+import com.app.dto.ServiceByCategoryDto;
 import com.app.dto.ServiceDto;
 import com.app.entity.Vendor;
 import com.app.enums.Category;
@@ -61,13 +62,19 @@ public class ServiceServiceImpl implements ServiceServiceLayerIF {
 	}
 
 	@Override
-	public List<ServiceDto> getServicesByCategory(Category category) {
+	public List<ServiceByCategoryDto> getServicesByCategory(Category category) {
 
 		List<com.app.entity.Service> services = serviceRepo.findByCategory(category);
 
-		List<ServiceDto> serviceDtos = new ArrayList<>();
+		List<ServiceByCategoryDto> serviceDtos = new ArrayList<>();
 
-		services.forEach(s -> serviceDtos.add(mapper.map(s, ServiceDto.class)));
+		services.forEach(s -> {
+			serviceDtos.add(mapper.map(s, ServiceByCategoryDto.class));
+			serviceDtos.get(serviceDtos.size()-1).setServiceId(s.getId());
+			mapper.map(s.getVendor(),serviceDtos.get(serviceDtos.size()-1));
+			serviceDtos.get(serviceDtos.size()-1).setVendorId(s.getVendor().getId());
+			
+		} );
 		return serviceDtos;
 	}
 
@@ -80,7 +87,7 @@ public class ServiceServiceImpl implements ServiceServiceLayerIF {
 	@Override
 	public List<ServiceDto> getServicesByCity(String city) {
 		List<com.app.entity.Service> services = serviceRepo.findAll().stream()
-				.filter(s -> s.getVendor().getAddress().getCity().equals(city)).collect(Collectors.toList());
+				.filter(s -> s.getVendor().getCity().equals(city)).collect(Collectors.toList());
 		if (services.size() == 0)
 			throw new ServiceNotFoundException("invalid city name,cannot find services for city " + city);
 		List<ServiceDto> serviceDtos = new ArrayList<>();

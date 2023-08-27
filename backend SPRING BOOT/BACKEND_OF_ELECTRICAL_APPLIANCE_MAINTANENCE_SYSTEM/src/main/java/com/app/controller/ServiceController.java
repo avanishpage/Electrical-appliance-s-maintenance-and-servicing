@@ -32,6 +32,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.app.dto.ApiResponse;
+import com.app.dto.ServiceByCategoryDto;
 import com.app.dto.ServiceDto;
 import com.app.enums.Category;
 import com.app.service.ImageHandlingIF;
@@ -61,7 +62,7 @@ public class ServiceController {
 	}
 	
 	@GetMapping("/category")
-	public List<ServiceDto> getServiceByCategory(@RequestParam Category category){
+	public List<ServiceByCategoryDto> getServiceByCategory(@RequestParam Category category){
 		
 		return serviceService.getServicesByCategory(category);
 	}

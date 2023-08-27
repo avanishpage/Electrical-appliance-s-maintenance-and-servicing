@@ -29,23 +29,14 @@ public class Person {
 
 	private String password;
 
-	@Embedded
-	private Address address;
+	private String city;
+	private String address;
 
 	@Column(name = "phone_number")
 	private String phoneNumber;
 	@Column(name = "image_path")
 	private String imagePath;
 
-	public Person(String firstName, String lastName, String email, String password, Address address,
-			String phoneNumber) {
-		super();
-		this.firstName = firstName;
-		this.lastName = lastName;
-		this.email = email;
-		this.password = password;
-		this.address = address;
-		this.phoneNumber = phoneNumber;
-	}
+	
 
 }
