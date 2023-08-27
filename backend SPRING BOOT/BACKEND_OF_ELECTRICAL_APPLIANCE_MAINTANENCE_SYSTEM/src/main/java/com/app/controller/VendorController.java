@@ -32,6 +32,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.app.dto.ApiResponse;
 import com.app.dto.PersonDto;
+import com.app.dto.PersonDtoWithRole;
 import com.app.dto.PersonLoginDto;
 import com.app.dto.ServiceDto;
 import com.app.service.ImageHandlingIF;
@@ -85,7 +86,7 @@ public class VendorController {
 
 	// post method for login
 	@PostMapping("/login")
-	public PersonDto loginVendor(@RequestBody PersonLoginDto vendorLoginDto) {
+	public PersonDtoWithRole loginVendor(@RequestBody PersonLoginDto vendorLoginDto) {
 		return vendorServiceLayer.verifyVendor(vendorLoginDto);
 	}
 

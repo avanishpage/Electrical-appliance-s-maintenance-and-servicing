@@ -43,15 +43,21 @@ public class PersonDto {
 	@NotBlank
 	private String address;
 	
+<<<<<<< HEAD
 	@NotBlank
 	private String city;
+=======
+	private String address;
+>>>>>>> be0318a17ed474e4dc2afb065a80b597bae881f7
 	
+	private String city;
 	@NotBlank(message = "phone number cannot be blank!!")
 	private String phoneNumber;
 
 	
 	
 	
+<<<<<<< HEAD
 	public PersonDto(@NotBlank(message = "first name cannot be blank!!") String firstName,
 			@NotBlank(message = "last name cannot be blank!!") String lastName,
 			@NotBlank(message = "email is mandatory!!") @Email String email,
@@ -66,6 +72,10 @@ public class PersonDto {
 		this.address = address;
 		this.phoneNumber = phoneNumber;
 	}
+=======
+	
+	
+>>>>>>> be0318a17ed474e4dc2afb065a80b597bae881f7
 	
 	
 	

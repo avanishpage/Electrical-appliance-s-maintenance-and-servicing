@@ -1,5 +1,9 @@
 package com.app.controller;
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> be0318a17ed474e4dc2afb065a80b597bae881f7
 import static org.springframework.http.MediaType.IMAGE_GIF_VALUE;
 import static org.springframework.http.MediaType.IMAGE_JPEG_VALUE;
 import static org.springframework.http.MediaType.IMAGE_PNG_VALUE;
@@ -11,9 +15,13 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+<<<<<<< HEAD
 
 import org.springframework.web.bind.annotation.CrossOrigin;
 
+=======
+import org.springframework.web.bind.annotation.CrossOrigin;
+>>>>>>> be0318a17ed474e4dc2afb065a80b597bae881f7
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -27,6 +35,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.app.dto.ApiResponse;
 import com.app.dto.PersonDto;
+import com.app.dto.PersonDtoWithRole;
 import com.app.dto.PersonLoginDto;
 import com.app.dto.PersonLoginOutDto;
 import com.app.dto.PersonRegisterDto;
@@ -76,7 +85,11 @@ public class CustomerController {
 
 	// customer login
 	@PostMapping("/login")
+<<<<<<< HEAD
 	public PersonLoginOutDto loginCustomer(@RequestBody PersonLoginDto customerLoginDto) {
+=======
+	public PersonDtoWithRole loginCustomer(@RequestBody PersonLoginDto customerLoginDto) {
+>>>>>>> be0318a17ed474e4dc2afb065a80b597bae881f7
 
 		return serviceLayer.verifyCustomer(customerLoginDto);
 	}

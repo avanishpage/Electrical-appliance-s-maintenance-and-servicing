@@ -1,6 +1,12 @@
 package com.app.entity;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.MappedSuperclass;
+
+import com.app.enums.Role;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -30,11 +36,16 @@ public class Person {
 	
 	private String password;
 
+<<<<<<< HEAD
 	@Column
 	private String address;
 	
 	@Column
 	private String city;
+=======
+	private String city;
+	private String address;
+>>>>>>> be0318a17ed474e4dc2afb065a80b597bae881f7
 
 	@Column(name = "phone_number")
 	private String phoneNumber;
@@ -42,6 +53,7 @@ public class Person {
 	@Column(name = "image_path")
 	private String imagePath;
 
+<<<<<<< HEAD
 	public Person(String firstName, String lastName, String email, String password, String address,
 			String phoneNumber) {
 		super();
@@ -52,5 +64,8 @@ public class Person {
 		this.address = address;
 		this.phoneNumber = phoneNumber;
 	}
+=======
+	private Role role;
+>>>>>>> be0318a17ed474e4dc2afb065a80b597bae881f7
 
 }
