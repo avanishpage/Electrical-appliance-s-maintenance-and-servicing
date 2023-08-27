@@ -7,10 +7,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.app.dto.PersonDto;
+import com.app.dto.PersonDtoWithRole;
 import com.app.dto.PersonLoginDto;
 import com.app.entity.Cart;
 import com.app.entity.Customer;
-import com.app.entity.Person;
+import com.app.enums.Role;
 import com.app.exceptions.CustomerNotFoundException;
 import com.app.exceptions.CustomerPasswordNotMatchingException;
 import com.app.repository.CartRepository;
@@ -33,11 +34,12 @@ public class CustomerServiceLayerImpl implements CustomerServiceLayerIF {
 
 		Customer customerEntity = new Customer();
 		mapper.map(custDto, customerEntity);
+		customerEntity.setRole(Role.CUSTOMER);
 
 		Cart cart = new Cart();
 
 		cart.addCartToCustomer(customerEntity);
-
+		
 		custRepo.save(customerEntity);
 		cartRepo.save(cart);
 
@@ -72,14 +74,14 @@ public class CustomerServiceLayerImpl implements CustomerServiceLayerIF {
 	// method called during customer login
 
 	@Override
-	public PersonDto verifyCustomer(PersonLoginDto customerLoginDto) {
+	public PersonDtoWithRole verifyCustomer(PersonLoginDto customerLoginDto) {
 		Customer customer = custRepo.findByEmail(customerLoginDto.getEmail());
 		if (customer == null)
 			throw new CustomerNotFoundException("no such customer exists!");
 		if (!customer.getPassword().equals(customerLoginDto.getPassword())) {
 			throw new CustomerPasswordNotMatchingException("wrong password");
 		}
-		return mapper.map(customer, PersonDto.class);
+		return mapper.map(customer, PersonDtoWithRole.class);
 
 	}
 

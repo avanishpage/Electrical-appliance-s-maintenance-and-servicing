@@ -10,11 +10,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.app.dto.PersonDto;
+import com.app.dto.PersonDtoWithRole;
 import com.app.dto.PersonLoginDto;
 import com.app.dto.RatingDto;
 import com.app.dto.ServiceDto;
 import com.app.entity.Rating;
 import com.app.entity.Vendor;
+import com.app.enums.Role;
 import com.app.exceptions.ResourceNotFound;
 import com.app.exceptions.VendorNotFoundException;
 import com.app.exceptions.VendorPasswordNotMatchingException;
@@ -23,31 +25,31 @@ import com.app.repository.VendorRepositoryIF;
 
 @Service
 @Transactional
-public class VendorServiceLayerImpl implements VendorServiceLayerIF{
+public class VendorServiceLayerImpl implements VendorServiceLayerIF {
 
-	
 	@Autowired
 	private VendorRepositoryIF vendorRepo;
 	@Autowired
 	private ModelMapper mapper;
 	@Autowired
 	private ServiceRepositoryIF serviceRepo;
-	
+
 	@Override
 	public void addVendor(PersonDto vendorDto) {
-		
-		Vendor vendorEntity=new Vendor();
-				mapper.map(vendorDto, vendorEntity);
-		
-				vendorRepo.save(vendorEntity);
-		
+
+		Vendor vendorEntity = new Vendor();
+		mapper.map(vendorDto, vendorEntity);
+		vendorEntity.setRole(Role.VENDOR);
+		vendorRepo.save(vendorEntity);
+
 	}
 
 	@Override
 	public void updateVendor(PersonDto vendorDto, Long id) {
 		System.out.println(id);
-		
-		Vendor vendorEntity=vendorRepo.findById(id).orElseThrow(()->  new VendorNotFoundException("vendor by id "+id+" not present"));
+
+		Vendor vendorEntity = vendorRepo.findById(id)
+				.orElseThrow(() -> new VendorNotFoundException("vendor by id " + id + " not present"));
 		vendorDto.setId(id);
 		mapper.map(vendorDto, vendorEntity);
 	}
@@ -55,7 +57,9 @@ public class VendorServiceLayerImpl implements VendorServiceLayerIF{
 	@Override
 	public PersonDto getVendorDetails(Long vendorId) {
 
-		return mapper.map(vendorRepo.findById(vendorId).orElseThrow(() -> new VendorNotFoundException("Invalid vendor id !!!!!")),PersonDto.class) ;
+		return mapper.map(
+				vendorRepo.findById(vendorId).orElseThrow(() -> new VendorNotFoundException("Invalid vendor id !!!!!")),
+				PersonDto.class);
 
 	}
 
@@ -63,54 +67,51 @@ public class VendorServiceLayerImpl implements VendorServiceLayerIF{
 	public void deleteVendor(Long vendorId) {
 
 		vendorRepo.deleteById(vendorId);
-		
+
 	}
 
-	//method called during vendor login
+	// method called during vendor login
 	@Override
-	public PersonDto verifyVendor(PersonLoginDto vendorLoginDto) {
-		
-		Vendor vendor= vendorRepo.findByEmail(vendorLoginDto.getEmail());
-		if(vendor==null)
+	public PersonDtoWithRole verifyVendor(PersonLoginDto vendorLoginDto) {
+
+		Vendor vendor = vendorRepo.findByEmail(vendorLoginDto.getEmail());
+		if (vendor == null)
 			throw new VendorNotFoundException("invalid email!!");
-		if(!vendor.getPassword().equals(vendorLoginDto.getPassword()))
+		if (!vendor.getPassword().equals(vendorLoginDto.getPassword()))
 			throw new VendorPasswordNotMatchingException("wrong password!!");
-		
-		return mapper.map(vendor, PersonDto.class);
-		
-		
+
+		return mapper.map(vendor, PersonDtoWithRole.class);
+
 	}
 
 	@Override
 	public List<ServiceDto> getAllServicesOf(Long vendorId) {
-		
-		Vendor vendor=vendorRepo.findById(vendorId).orElseThrow(()->new VendorNotFoundException("invalid vendor id"));
-		
-		List<com.app.entity.Service> services=vendor.getServices();
+
+		Vendor vendor = vendorRepo.findById(vendorId)
+				.orElseThrow(() -> new VendorNotFoundException("invalid vendor id"));
+
+		List<com.app.entity.Service> services = vendor.getServices();
 		services.size();
-		
-		List<ServiceDto> servicesDto=new ArrayList<>();
-		
-		services.forEach((s)->servicesDto.add(mapper.map(s, ServiceDto.class)));
+
+		List<ServiceDto> servicesDto = new ArrayList<>();
+
+		services.forEach((s) -> servicesDto.add(mapper.map(s, ServiceDto.class)));
 		return servicesDto;
 	}
-
 
 	@Override
 	public void updateServiceofVendor(ServiceDto servicedto, Long vendorId, Long serviceId) {
 
 		servicedto.setId(serviceId);
-		Vendor vendor = vendorRepo.findById(vendorId).orElseThrow(()->new VendorNotFoundException("invalid vendor id"));
-		
-		com.app.entity.Service service = vendor.getServices().stream()
-                .filter(p -> p.getId().equals(serviceId))
-                .findFirst()
-                .orElseThrow(() -> new ResourceNotFound("Service not found for this vendor"));
-		
-		mapper.map(servicedto,service);
+		Vendor vendor = vendorRepo.findById(vendorId)
+				.orElseThrow(() -> new VendorNotFoundException("invalid vendor id"));
+
+		com.app.entity.Service service = vendor.getServices().stream().filter(p -> p.getId().equals(serviceId))
+				.findFirst().orElseThrow(() -> new ResourceNotFound("Service not found for this vendor"));
+
+		mapper.map(servicedto, service);
 		serviceRepo.save(service);
-		
-	
-}
+
+	}
 
 }
