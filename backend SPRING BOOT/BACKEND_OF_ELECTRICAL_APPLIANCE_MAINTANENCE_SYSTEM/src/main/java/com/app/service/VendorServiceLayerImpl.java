@@ -1,5 +1,6 @@
 package com.app.service;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -8,6 +9,7 @@ import javax.transaction.Transactional;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.app.dto.PersonDto;
 import com.app.dto.PersonDtoWithRole;
@@ -33,14 +35,23 @@ public class VendorServiceLayerImpl implements VendorServiceLayerIF {
 	private ModelMapper mapper;
 	@Autowired
 	private ServiceRepositoryIF serviceRepo;
+	@Autowired
+	private ImageHandlingIF imgService;
 
 	@Override
-	public void addVendor(PersonDto vendorDto) {
+	public void addVendor(PersonDto vendorDto,MultipartFile img) {
 
 		Vendor vendorEntity = new Vendor();
 		mapper.map(vendorDto, vendorEntity);
 		vendorEntity.setRole(Role.VENDOR);
 		vendorRepo.save(vendorEntity);
+		
+		try {
+			imgService.uploadImageVendor(vendorEntity.getId(), img);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			throw new RuntimeException(e);
+		}
 
 	}
 
