@@ -13,6 +13,10 @@
     animation: link-click-animation 0.3s;
   }
   
+  .navbar-brand.navbar-brand.active {
+    background-color: #212529
+  }
+
   /* Keyframes for link click animation */
   @keyframes link-click-animation {
     0% {

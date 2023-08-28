@@ -5,7 +5,7 @@ import NavigationBar from "./NavigationBar";
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import { Link } from 'react-router-dom';
-import './Categories.css'; // Custom styling
+// import './Categories.css'; // Custom styling
 import { useNavigate } from 'react-router-dom';
 
 const Categories = () => {
@@ -13,43 +13,43 @@ const Categories = () => {
     {
       id: 'AC',
       name: 'Air Conditioner',
-      image: '/category-images/ac.jpg',
+      image: '/images/acc.jpg',
       details: 'Keep cool with our wide range of ACs.'
     },
     {
       id: 'MICROWAVE',
       name: 'Microwave',
-      image: '/category-images/Microwave.jpg',
+      image: '/images/Microwave.jpg',
       details: 'Quick and convenient cooking with microwaves.'
     },
     {
       id: 'REFRIGERATOR',
       name: 'Refrigerator',
-      image: '/category-images/fridge.jpg',
+      image: '/images/fridge.jpg',
       details: 'Store your food and drinks in style.'
     },
     {
       id: 'LAPTOP',
       name: 'Laptop',
-      image: '/category-images/lappy.jpg',
+      image: '/images/lappy.jpg',
       details: 'Stay connected with powerful laptops.'
     },
     {
       id: 'PC',
       name: 'PC',
-      image: '/category-images/pc.jpg',
+      image: '/images/pcc.jpg',
       details: 'High-performance PCs for your needs.'
     },
     {
       id: 'WASHING_MACHINE',
       name: 'Washing Machine',
-      image: '/category-images/wm.jpeg',
+      image: '/images/wm.jpeg',
       details: 'Effortless laundry with advanced washing machines.'
     },
     {
       id: 'WATER_FILTER',
       name: 'Water Filter',
-      image: '/category-images/filter.jpg',
+      image: '/images/filter.jpg',
       details: 'Clean and safe drinking water with our filters.'
     },
    

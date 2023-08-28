@@ -7,16 +7,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.app.dto.PersonDto;
-import com.app.dto.PersonDtoWithRole;
 import com.app.dto.PersonLoginDto;
 import com.app.dto.PersonLoginOutDto;
 import com.app.dto.PersonRegisterDto;
+import com.app.dto.PersonUpdateDto;
 import com.app.entity.Cart;
 import com.app.entity.Customer;
-<<<<<<< HEAD
-=======
 import com.app.enums.Role;
->>>>>>> be0318a17ed474e4dc2afb065a80b597bae881f7
 import com.app.exceptions.CustomerNotFoundException;
 import com.app.exceptions.CustomerPasswordNotMatchingException;
 import com.app.repository.CartRepository;
@@ -51,7 +48,7 @@ public class CustomerServiceLayerImpl implements CustomerServiceLayerIF {
 	}
 
 	@Override
-	public void updateCust(PersonDto custDto, Long id) {
+	public void updateCust(PersonUpdateDto custDto, Long id) {
 		System.out.println(id);
 		custDto.setId(id);
 		Customer customerEntity = custRepo.findById(id)
@@ -79,24 +76,17 @@ public class CustomerServiceLayerImpl implements CustomerServiceLayerIF {
 	// method called during customer login
 
 	@Override
-<<<<<<< HEAD
+
 	public PersonLoginOutDto verifyCustomer(PersonLoginDto customerLoginDto) {
-=======
-	public PersonDtoWithRole verifyCustomer(PersonLoginDto customerLoginDto) {
->>>>>>> be0318a17ed474e4dc2afb065a80b597bae881f7
+
 		Customer customer = custRepo.findByEmail(customerLoginDto.getEmail());
 		if (customer == null)
 			throw new CustomerNotFoundException("no such customer exists!");
 		if (!customer.getPassword().equals(customerLoginDto.getPassword())) {
 			throw new CustomerPasswordNotMatchingException("wrong password");
 		}
-<<<<<<< HEAD
 		return mapper.map(customer, PersonLoginOutDto.class);
-		
-=======
-		return mapper.map(customer, PersonDtoWithRole.class);
 
->>>>>>> be0318a17ed474e4dc2afb065a80b597bae881f7
 	}
 
 //	

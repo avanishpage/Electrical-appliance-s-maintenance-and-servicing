@@ -4,11 +4,14 @@ import './NavigationBar.css';
 
 const NavigationBar = () => {
 
-  // const navigate = useNavigate();
+   const navigate = useNavigate();
 
   const handleLogout = () => {
     // Clear user data from local storage
+
     localStorage.removeItem('customer');
+    //setIsLoggedInCustomer(false);
+    navigate("/");
     // Navigate to the desired page (e.g., home page)
     // You can use `useNavigate` if you're using React Router
     // navigate('/customer/login');
@@ -17,7 +20,7 @@ const NavigationBar = () => {
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
       <div className="container">
-        <NavLink className="navbar-brand" to="/customer/categories">Appliance Service</NavLink>
+        <NavLink className="navbar-brand" to="/customer/categories">Tech Revive</NavLink>
         <button
           className="navbar-toggler"
           type="button" 

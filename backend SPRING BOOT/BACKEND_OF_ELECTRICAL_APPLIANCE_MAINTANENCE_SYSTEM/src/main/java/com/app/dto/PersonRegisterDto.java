@@ -2,6 +2,7 @@
 package com.app.dto;
 
 
+import javax.persistence.Column;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
@@ -19,7 +20,7 @@ import lombok.ToString;
 @ToString
 @Getter
 @Setter
-@AllArgsConstructor
+
 @NoArgsConstructor
 public class PersonRegisterDto {
 	
@@ -40,10 +41,27 @@ public class PersonRegisterDto {
 	private String password;
 	
 	@NotBlank
-	private String address;
+	private String flatNo;
+	
+	@NotBlank
+	private String area;
 	
 	@NotBlank
 	private String city;
+
+	@NotBlank
+	private String district;
+	
+	@NotBlank
+	private String state;
+	
+	@NotBlank
+	private String country;
+	
+	
+	private Long pincode;
+	
+
 	
 	@NotBlank(message = "phone number cannot be blank!!")
 	private String phoneNumber;
@@ -55,14 +73,26 @@ public class PersonRegisterDto {
 			@NotBlank(message = "last name cannot be blank!!") String lastName,
 			@NotBlank(message = "email is mandatory!!") @Email String email,
 			@NotBlank(message = "password is mandatory!!") @Pattern(regexp = "^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{4,12}$", message = "password must be min 4 and max 12 length containing atleast 1 uppercase, 1 lowercase, 1 special character and 1 digit ") String password,
-			@NotBlank(message = "address cannot be blank!!") String address,
+			@NotBlank(message = "flatNo cannot be blank!!") String flatNo,
+			@NotBlank(message = "area cannot be blank!!") String area,
+			@NotBlank(message = "city cannot be blank!!") String city,
+			@NotBlank(message = "district cannot be blank!!") String district,
+			@NotBlank(message = "state cannot be blank!!") String state,
+			@NotBlank(message = "country cannot be blank!!") String country,
+			 Long pincode,
 			@NotBlank(message = "phone number cannot be blank!!") String phoneNumber) {
 		super();
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.email = email;
 		this.password = password;
-		this.address = address;
+		this.flatNo = flatNo;
+		this.area=area;
+		this.city=city;
+		this.district=district;
+		this.state=state;
+		this.country=country;
+		this.pincode=pincode;
 		this.phoneNumber = phoneNumber;
 	}
 	

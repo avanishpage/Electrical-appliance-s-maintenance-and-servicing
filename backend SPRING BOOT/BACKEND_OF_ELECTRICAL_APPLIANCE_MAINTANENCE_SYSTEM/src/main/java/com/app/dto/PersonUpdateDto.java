@@ -2,6 +2,7 @@
 package com.app.dto;
 
 
+import javax.persistence.Column;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
@@ -19,9 +20,9 @@ import lombok.ToString;
 @ToString
 @Getter
 @Setter
-@AllArgsConstructor
+
 @NoArgsConstructor
-public class PersonDto {
+public class PersonUpdateDto {
 	
 	private Long id;
 	
@@ -34,12 +35,6 @@ public class PersonDto {
 	@NotBlank(message = "email is mandatory!!")
 	@Email
 	private String email;
-	
-	@NotBlank(message = "password is mandatory!!")
-	@Pattern(regexp = "^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{4,12}$",
-            message = "password must be min 4 and max 12 length containing atleast 1 uppercase, 1 lowercase, 1 special character and 1 digit ")
-	private String password;
-	
 	
 	@NotBlank
 	private String flatNo;
@@ -62,17 +57,17 @@ public class PersonDto {
 	
 	private Long pincode;
 	
+
+	
 	@NotBlank(message = "phone number cannot be blank!!")
 	private String phoneNumber;
 
 	
 	
 	
-
-	public PersonDto(@NotBlank(message = "first name cannot be blank!!") String firstName,
+	public PersonUpdateDto(@NotBlank(message = "first name cannot be blank!!") String firstName,
 			@NotBlank(message = "last name cannot be blank!!") String lastName,
 			@NotBlank(message = "email is mandatory!!") @Email String email,
-			@NotBlank(message = "password is mandatory!!") @Pattern(regexp = "^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{4,12}$", message = "password must be min 4 and max 12 length containing atleast 1 uppercase, 1 lowercase, 1 special character and 1 digit ") String password,
 			@NotBlank(message = "flatNo cannot be blank!!") String flatNo,
 			@NotBlank(message = "area cannot be blank!!") String area,
 			@NotBlank(message = "city cannot be blank!!") String city,
@@ -85,7 +80,6 @@ public class PersonDto {
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.email = email;
-		this.password = password;
 		this.flatNo = flatNo;
 		this.area=area;
 		this.city=city;
@@ -95,7 +89,7 @@ public class PersonDto {
 		this.pincode=pincode;
 		this.phoneNumber = phoneNumber;
 	}
-
+	
 	
 	
 }

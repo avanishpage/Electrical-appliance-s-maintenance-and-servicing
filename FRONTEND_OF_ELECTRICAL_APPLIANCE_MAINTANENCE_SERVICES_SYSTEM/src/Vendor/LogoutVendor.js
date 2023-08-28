@@ -8,8 +8,8 @@ function LogoutVendor({setIsLoggedInVendor}) {
 
   function logout() {
     localStorage.removeItem('vendor');
-    navigate("/");
     setIsLoggedInVendor(false);
+    navigate("/");
   }
 
   return (
