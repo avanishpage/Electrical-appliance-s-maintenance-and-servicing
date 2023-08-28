@@ -34,7 +34,7 @@ public class Cart {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	@OneToOne(fetch = FetchType.LAZY)
+	@OneToOne(fetch = FetchType.LAZY,cascade = CascadeType.ALL,orphanRemoval = true)
 	@MapsId
 	private Customer customer;
 	
@@ -48,10 +48,11 @@ public class Cart {
 	
 	//helper methods of cart
 	public void addCartToCustomer(Customer customer) {
-		
 		this.customer=customer;
 		
-		
+	}
+	public void removeCartFromCustomer() {
+		this.customer=null;
 	}
 	
 	//to add a service to cart

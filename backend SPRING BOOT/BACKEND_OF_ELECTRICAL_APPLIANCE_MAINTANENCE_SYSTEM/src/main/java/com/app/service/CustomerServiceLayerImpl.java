@@ -15,7 +15,7 @@ import com.app.entity.Cart;
 import com.app.entity.Customer;
 
 import com.app.enums.Role;
-
+import com.app.exceptions.CartNotFoundException;
 import com.app.exceptions.CustomerNotFoundException;
 import com.app.exceptions.CustomerPasswordNotMatchingException;
 import com.app.repository.CartRepository;
@@ -70,8 +70,11 @@ public class CustomerServiceLayerImpl implements CustomerServiceLayerIF {
 
 	@Override
 	public void deleteCustomer(Long customerId) {
-
-		custRepo.deleteById(customerId);
+		
+		cartRepo.deleteById(customerId);
+		
+		
+		
 
 	}
 

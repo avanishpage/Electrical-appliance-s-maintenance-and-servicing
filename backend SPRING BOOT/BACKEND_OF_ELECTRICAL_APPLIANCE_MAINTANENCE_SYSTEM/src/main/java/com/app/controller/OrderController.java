@@ -8,15 +8,18 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.app.dto.ApiResponse;
+import com.app.dto.CardDto;
 import com.app.dto.OrderDto;
 import com.app.dto.OrderDtoWithCustomerDetails;
 import com.app.dto.ServiceDto;
 import com.app.enums.JobStatus;
+import com.app.service.CardService;
 import com.app.service.OrderServiceIF;
 
 @RestController
@@ -26,11 +29,14 @@ public class OrderController {
 	
 	@Autowired
 	private OrderServiceIF orderService;
+	@Autowired
+	private CardService cardService;
 	
 	
 	
 	@PostMapping("/add/cart/{cartId}")
-	public ApiResponse createOrderFromCart(@PathVariable Long cartId) {	
+	public ApiResponse createOrderFromCart(@PathVariable Long cartId,@RequestBody CardDto cardDto) {	
+		
 		return orderService.addOrderFromCart(cartId);
 		
 	}
