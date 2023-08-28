@@ -36,6 +36,7 @@ public class Person {
 	@Column
 	private String password;
 
+<<<<<<< HEAD
 	@Column
 	private String flatNo;
 	
@@ -56,6 +57,12 @@ public class Person {
 	
 	@Column
 	private Long pincode;
+=======
+
+	private String city;
+	private String address;
+
+>>>>>>> 4bcf322f1a801febac2e0c39bb339e122786b614
 
 	@Column(name = "phone_number")
 	private String phoneNumber;
@@ -63,6 +70,7 @@ public class Person {
 	@Column(name = "image_path")
 	private String imagePath;
 
+<<<<<<< HEAD
 	public Person(String firstName, String lastName, String email, String password, String flatNo, String area,String city
 ,String district,String state,	String country,Long pincode,		String phoneNumber) {
 		super();
@@ -80,5 +88,11 @@ public class Person {
 		this.phoneNumber = phoneNumber;
 	}
 	private Role role;
+=======
+
+
+	private Role role;
+
+>>>>>>> 4bcf322f1a801febac2e0c39bb339e122786b614
 
 }

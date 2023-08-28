@@ -41,6 +41,7 @@ public class PersonDto {
 	private String password;
 	
 	
+<<<<<<< HEAD
 	@NotBlank
 	private String flatNo;
 	
@@ -61,6 +62,11 @@ public class PersonDto {
 	
 	
 	private Long pincode;
+=======
+
+	
+
+>>>>>>> 4bcf322f1a801febac2e0c39bb339e122786b614
 	
 	@NotBlank(message = "phone number cannot be blank!!")
 	private String phoneNumber;
@@ -69,6 +75,7 @@ public class PersonDto {
 	
 	
 
+<<<<<<< HEAD
 	public PersonDto(@NotBlank(message = "first name cannot be blank!!") String firstName,
 			@NotBlank(message = "last name cannot be blank!!") String lastName,
 			@NotBlank(message = "email is mandatory!!") @Email String email,
@@ -96,6 +103,14 @@ public class PersonDto {
 		this.phoneNumber = phoneNumber;
 	}
 
+=======
+
+
+	
+	
+
+	
+>>>>>>> 4bcf322f1a801febac2e0c39bb339e122786b614
 	
 	
 }
