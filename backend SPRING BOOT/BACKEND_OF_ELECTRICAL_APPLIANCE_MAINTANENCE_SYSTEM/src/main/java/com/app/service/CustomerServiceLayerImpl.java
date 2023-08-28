@@ -7,23 +7,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.app.dto.PersonDto;
+import com.app.dto.PersonDtoWithRole;
 import com.app.dto.PersonLoginDto;
-import com.app.dto.PersonLoginOutDto;
 import com.app.dto.PersonRegisterDto;
 import com.app.dto.PersonUpdateDto;
 import com.app.entity.Cart;
 import com.app.entity.Customer;
-<<<<<<< HEAD
 import com.app.enums.Role;
-=======
-
-import com.app.enums.Role;
-<<<<<<< HEAD
-import com.app.exceptions.CartNotFoundException;
-=======
-
->>>>>>> 4bcf322f1a801febac2e0c39bb339e122786b614
->>>>>>> 49a0b46d7ff9d9f9865a5d4e36478046aa8b23a4
 import com.app.exceptions.CustomerNotFoundException;
 import com.app.exceptions.CustomerPasswordNotMatchingException;
 import com.app.repository.CartRepository;
@@ -90,11 +80,9 @@ public class CustomerServiceLayerImpl implements CustomerServiceLayerIF {
 
 	@Override
 
-<<<<<<< HEAD
-	public PersonLoginOutDto verifyCustomer(PersonLoginDto customerLoginDto) {
-=======
+
 	public PersonDtoWithRole verifyCustomer(PersonLoginDto customerLoginDto) {
->>>>>>> 4bcf322f1a801febac2e0c39bb339e122786b614
+
 
 		Customer customer = custRepo.findByEmail(customerLoginDto.getEmail());
 		if (customer == null)
@@ -102,10 +90,7 @@ public class CustomerServiceLayerImpl implements CustomerServiceLayerIF {
 		if (!customer.getPassword().equals(customerLoginDto.getPassword())) {
 			throw new CustomerPasswordNotMatchingException("wrong password");
 		}
-<<<<<<< HEAD
-		return mapper.map(customer, PersonLoginOutDto.class);
 
-=======
 
 		
 		
@@ -113,7 +98,7 @@ public class CustomerServiceLayerImpl implements CustomerServiceLayerIF {
 		return mapper.map(customer, PersonDtoWithRole.class);
 
 
->>>>>>> 4bcf322f1a801febac2e0c39bb339e122786b614
+
 	}
 
 //	
