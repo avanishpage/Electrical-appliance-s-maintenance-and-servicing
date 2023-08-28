@@ -12,17 +12,7 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-<<<<<<< HEAD
 import org.springframework.web.bind.annotation.CrossOrigin;
-=======
-
-
-import org.springframework.web.bind.annotation.CrossOrigin;
-
-
-
-
->>>>>>> 4bcf322f1a801febac2e0c39bb339e122786b614
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -36,8 +26,8 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.app.dto.ApiResponse;
 import com.app.dto.PersonDto;
+import com.app.dto.PersonDtoWithRole;
 import com.app.dto.PersonLoginDto;
-import com.app.dto.PersonLoginOutDto;
 import com.app.dto.PersonRegisterDto;
 import com.app.dto.PersonUpdateDto;
 import com.app.service.CustomerServiceLayerIF;
@@ -87,12 +77,10 @@ public class CustomerController {
 	// customer login
 	@PostMapping("/login")
 
-<<<<<<< HEAD
-	public PersonLoginOutDto loginCustomer(@RequestBody PersonLoginDto customerLoginDto) {
-=======
+
 	public PersonDtoWithRole loginCustomer(@RequestBody PersonLoginDto customerLoginDto) {
 
->>>>>>> 4bcf322f1a801febac2e0c39bb339e122786b614
+
 
 		return serviceLayer.verifyCustomer(customerLoginDto);
 	}

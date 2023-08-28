@@ -37,7 +37,11 @@ public class OrderController {
 	@PostMapping("/add/cart/{cartId}")
 	public ApiResponse createOrderFromCart(@PathVariable Long cartId,@RequestBody CardDto cardDto) {	
 		
+		cardService.verifyCardDetails(cardDto);
+		
 		return orderService.addOrderFromCart(cartId);
+		
+		
 		
 	}
 	
