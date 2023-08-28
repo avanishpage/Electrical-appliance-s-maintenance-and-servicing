@@ -75,5 +75,11 @@ public class OrderController {
 	public ApiResponse cancelOrder(@PathVariable Long orderId ) {
 		return orderService.cancelOrder(orderId,JobStatus.COMPLETED );		
 	}
+	
+	@GetMapping("/customer/{customerId}")
+	public List<OrderDto> getAllOrdersOfCustomer(@PathVariable Long customerId){
+		return orderService.getAllOrdersForCustomer(customerId);
+	}
+	
 
 }

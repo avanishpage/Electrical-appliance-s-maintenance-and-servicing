@@ -24,4 +24,6 @@ public interface OrderServiceIF {
 	public OrderDto getOrderBtOrderId(Long orderId);
 
 	public ApiResponse cancelOrder(Long orderId,JobStatus jobstatus);
+
+	public List<OrderDto> getAllOrdersForCustomer(Long customerId);
 }
