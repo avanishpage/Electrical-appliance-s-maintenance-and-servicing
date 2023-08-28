@@ -16,10 +16,12 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.app.dto.ApiResponse;
 import com.app.entity.Customer;
+import com.app.entity.Vendor;
 import com.app.exceptions.CustomerNotFoundException;
 import com.app.exceptions.ServiceNotFoundException;
 import com.app.exceptions.VendorNotFoundException;
 import com.app.repository.CustomerRepositoryIF;
+import com.app.repository.VendorRepositoryIF;
 
 @Service
 @Transactional
@@ -32,6 +34,8 @@ public class ImageHandlingImpl implements ImageHandlingIF {
 
 	@Autowired
 	private CustomerRepositoryIF customerRepo;
+	@Autowired
+	VendorRepositoryIF vendorRepo;
 
 	@PostConstruct
 	public void init() throws IOException {
@@ -84,8 +88,8 @@ public class ImageHandlingImpl implements ImageHandlingIF {
 	@Override
 	public ApiResponse uploadImageVendor(Long vendorId, MultipartFile image) throws IOException {
 		// get emp from emp id
-		Customer customer = customerRepo.findById(vendorId)
-				.orElseThrow(() -> new VendorNotFoundException("Invalid emp ID!!!!"));
+		Vendor vendor = vendorRepo.findById(vendorId)
+				.orElseThrow(() -> new VendorNotFoundException("Invalid Vendor ID!!!!"));
 		// emp found --> PERSISTENT
 		// store the image on server side folder
 		String path = uploadFolder.concat(image.getOriginalFilename());
@@ -93,7 +97,7 @@ public class ImageHandlingImpl implements ImageHandlingIF {
 		// Use FileUtils method : writeByte[] --> File
 		writeByteArrayToFile(new File(path), image.getBytes());
 		// set image path
-		customer.setImagePath(path);
+		vendor.setImagePath(path);
 		// OR to store the img directly in DB as a BLOB
 		// emp.setImage(image.getBytes());
 		return new ApiResponse("Image file uploaded successfully for vendor id " + vendorId);

@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -21,6 +22,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -54,10 +56,10 @@ public class VendorController {
 	private ImageHandlingIF imgServiceLayer;
 
 	// create vendor
-	@PostMapping(value="/add",consumes = "multipart/form-data")
-	public ApiResponse createVendor(@RequestBody @Valid PersonDto vendorDto,@RequestBody MultipartFile addImage) {
+	@PostMapping(value="/add",consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+	public ApiResponse createVendor(@ModelAttribute @Valid PersonDto vendorDto) {
 
-		vendorServiceLayer.addVendor(vendorDto,addImage);
+		vendorServiceLayer.addVendor(vendorDto);
 		return new ApiResponse("Vendor is added successfully");
 
 	}
