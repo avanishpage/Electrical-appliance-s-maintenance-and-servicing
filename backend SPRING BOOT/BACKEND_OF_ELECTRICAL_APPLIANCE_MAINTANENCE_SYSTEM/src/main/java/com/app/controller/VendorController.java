@@ -55,9 +55,9 @@ public class VendorController {
 
 	// create vendor
 	@PostMapping(value="/add",consumes = "multipart/form-data")
-	public ApiResponse createVendor(@RequestBody @Valid PersonDto vendorDto,@RequestBody MultipartFile image) {
+	public ApiResponse createVendor(@RequestBody @Valid PersonDto vendorDto,@RequestBody MultipartFile addImage) {
 
-		vendorServiceLayer.addVendor(vendorDto,image);
+		vendorServiceLayer.addVendor(vendorDto,addImage);
 		return new ApiResponse("Vendor is added successfully");
 
 	}
