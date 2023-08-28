@@ -40,14 +40,34 @@ public class PersonDto {
             message = "password must be min 4 and max 12 length containing atleast 1 uppercase, 1 lowercase, 1 special character and 1 digit ")
 	private String password;
 	
+	
+<<<<<<< HEAD
 	@NotBlank
-	private String address;
+	private String flatNo;
 	
-
+	@NotBlank
+	private String area;
 	
-
-	
+	@NotBlank
 	private String city;
+
+	@NotBlank
+	private String district;
+	
+	@NotBlank
+	private String state;
+	
+	@NotBlank
+	private String country;
+	
+	
+	private Long pincode;
+=======
+
+	
+
+>>>>>>> 4bcf322f1a801febac2e0c39bb339e122786b614
+	
 	@NotBlank(message = "phone number cannot be blank!!")
 	private String phoneNumber;
 
@@ -55,12 +75,42 @@ public class PersonDto {
 	
 	
 
+<<<<<<< HEAD
+	public PersonDto(@NotBlank(message = "first name cannot be blank!!") String firstName,
+			@NotBlank(message = "last name cannot be blank!!") String lastName,
+			@NotBlank(message = "email is mandatory!!") @Email String email,
+			@NotBlank(message = "password is mandatory!!") @Pattern(regexp = "^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{4,12}$", message = "password must be min 4 and max 12 length containing atleast 1 uppercase, 1 lowercase, 1 special character and 1 digit ") String password,
+			@NotBlank(message = "flatNo cannot be blank!!") String flatNo,
+			@NotBlank(message = "area cannot be blank!!") String area,
+			@NotBlank(message = "city cannot be blank!!") String city,
+			@NotBlank(message = "district cannot be blank!!") String district,
+			@NotBlank(message = "state cannot be blank!!") String state,
+			@NotBlank(message = "country cannot be blank!!") String country,
+			 Long pincode,
+			@NotBlank(message = "phone number cannot be blank!!") String phoneNumber) {
+		super();
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.email = email;
+		this.password = password;
+		this.flatNo = flatNo;
+		this.area=area;
+		this.city=city;
+		this.district=district;
+		this.state=state;
+		this.country=country;
+		this.pincode=pincode;
+		this.phoneNumber = phoneNumber;
+	}
+
+=======
 
 
 	
 	
 
 	
+>>>>>>> 4bcf322f1a801febac2e0c39bb339e122786b614
 	
 	
 }

@@ -19,7 +19,7 @@ function Header() {
         <header>
             <nav>
                 <div className="nav-left">
-                    <a href="/" className="company-name">ApplianceReviveTechs</a>
+                    <a href="/" className="company-name">Tech Revive</a>
                 </div>
                 <div className="nav-right">
                     <ul>

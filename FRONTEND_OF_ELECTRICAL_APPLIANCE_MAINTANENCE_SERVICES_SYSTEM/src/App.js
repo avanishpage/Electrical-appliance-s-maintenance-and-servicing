@@ -21,11 +21,17 @@ import VendorServices from './Vendor/VendorServices';
 import UpdateOrderStatus from './Vendor/UpdateOrderStatus';
 import AddService from './Vendor/AddService';
 import LogoutVendor from './Vendor/LogoutVendor';
+import NavigationBar from './components/NavigationBar';
 function App() {
   const [isLoggedInVendor, setIsLoggedInVendor] = useState(false);
+  const [isLoggedInCustomer, setIsLoggedInCustomer] = useState(false);
+
+  var customer = localStorage.getItem('customer');
+
   return (
     <div>
-      <Header></Header>
+      {!customer && <Header></Header>}
+      
       <p></p>
       <p></p>      
         <p></p>
@@ -40,7 +46,6 @@ function App() {
         <Route path="/signin/customer" element={<SignInPage />} />
         <Route path="/signin/vendor" element={<SignInPageVendor setIsLoggedInVendor={setIsLoggedInVendor} />} />
         <Route path="/forgotpassword" element={<ForgotPasswordPage />} />
-        <Route path="/customer/categories" element={<Categories />} />
 
       </Routes>
 
@@ -58,6 +63,13 @@ function App() {
               <Route path="/logoutVendor" element={<LogoutVendor setIsLoggedInVendor={setIsLoggedInVendor}/>} />
             </Routes>
           </Sidebar>
+        )}   
+        {customer && ( 
+            <Routes>
+        <Route path="/customer/categories" element={<Categories />} />
+
+        </Routes>
+          
         )}
     </div>
   );

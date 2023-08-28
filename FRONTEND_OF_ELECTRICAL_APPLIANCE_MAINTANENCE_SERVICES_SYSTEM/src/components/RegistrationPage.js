@@ -58,17 +58,18 @@ function RegistrationPage() {
   };
 
   const handleSubmit = async(e) => {
+    debugger
     e.preventDefault();
     console.log(formData);
     const validationErrors = {};
 
-    // if (!formData.firstName) validationErrors.firstName = 'First name is required';
-    // if (!formData.lastName) validationErrors.lastName = 'Last name is required';
-    // if (!formData.email) validationErrors.email = 'Email is required';
-    // if (!formData.password) validationErrors.password = 'Password is required';
+    if (!formData.firstName) validationErrors.firstName = 'First name is required';
+    if (!formData.lastName) validationErrors.lastName = 'Last name is required';
+    if (!formData.email) validationErrors.email = 'Email is required';
+    if (!formData.password) validationErrors.password = 'Password is required';
     // if (!formData.address) validationErrors.address = 'Address is required';
-    // if (!formData.city) validationErrors.city = 'City is required';
-    // if (!formData.phoneNumber) validationErrors.phoneNumber = 'Phone number is required'; 
+    if (!formData.city) validationErrors.city = 'City is required';
+    if (!formData.phoneNumber) validationErrors.phoneNumber = 'Phone number is required'; 
 
     if (!/^\d{6}$/.test(formData.pincode)) {
       validationErrors.pincode='Pincode must be 6 digits.';
@@ -83,17 +84,19 @@ function RegistrationPage() {
       validationErrors.password='Password and Confirm Password do not match.';
       return;
     }
-    const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])(?=.{4,12})$/;
-    if (!passwordRegex.test(formData.password)) {
-      validationErrors.password="Password must contain at least 1 uppercase letter, 1 lowercase letter, 1 special character, 1 numeral and length between 4-12 characters.";
-      return;
-    }
+    // const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])(?=.{4,12})$/;
+    // if (!passwordRegex.test(formData.password)) {
+    //   validationErrors.password="Password must contain at least 1 uppercase letter, 1 lowercase letter, 1 special character, 1 numeral and length between 4-12 characters.";
+    //   return;
+    // }
 
     setErrors(validationErrors);
 
+    console.log('si')
     if (Object.keys(validationErrors).length === 0) {
       // Submit the form or call an API here
     
+      console.log('siuu')
       const user = {
         firstName: formData.firstName,
         lastName: formData.lastName,
