@@ -16,12 +16,15 @@ import com.app.dto.OrderDto;
 import com.app.dto.OrderDtoWithCustomerDetails;
 import com.app.dto.ServiceDto;
 import com.app.entity.Cart;
+import com.app.entity.Customer;
 import com.app.entity.Order;
 import com.app.enums.JobStatus;
 import com.app.exceptions.CartNotFoundException;
+import com.app.exceptions.CustomerNotFoundException;
 import com.app.exceptions.OrderNotFoundException;
 import com.app.exceptions.VendorNotFoundException;
 import com.app.repository.CartRepository;
+import com.app.repository.CustomerRepositoryIF;
 import com.app.repository.OrderRepositoryIF;
 import com.app.repository.ServiceRepositoryIF;
 import com.app.repository.VendorRepositoryIF;
@@ -40,6 +43,8 @@ public class OrderServiceImpl implements OrderServiceIF {
 	private VendorRepositoryIF vendorRepo;
 	@Autowired
 	private ServiceRepositoryIF serviceRepo;
+	@Autowired
+	private CustomerRepositoryIF custRepo;
 
 	@Override
 	public ApiResponse addOrderFromCart(Long cartId) {
@@ -125,6 +130,18 @@ public class OrderServiceImpl implements OrderServiceIF {
 		else
 			throw new OrderNotFoundException("Sorry your order cannot be cancelled!!");
 		return new ApiResponse("Your order is canceled !!");
+	}
+
+	@Override
+	public List<OrderDto> getAllOrdersForCustomer(Long customerId) {
+		
+		Customer customer=custRepo.findById(customerId).orElseThrow(()->new CustomerNotFoundException("invalid customer id"));
+		
+		List<Order> order=orderRepo.findByCustomer(customer);
+		List<OrderDto> orderDtos=new ArrayList<>();
+		order.forEach(o->orderDtos.add(mapper.map(o, OrderDto.class)));
+		
+		return orderDtos;
 	}
 
 }
