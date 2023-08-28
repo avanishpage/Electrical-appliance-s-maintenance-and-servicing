@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.app.dto.ApiResponse;
 import com.app.dto.OrderDto;
+import com.app.dto.OrderDtoWithCustomerDetails;
 import com.app.dto.ServiceDto;
 import com.app.enums.JobStatus;
 import com.app.service.OrderServiceIF;
@@ -51,7 +52,7 @@ public class OrderController {
 	}
 	
 	@GetMapping("/vendor/{vendorId}")
-	public List<OrderDto> getOrdersByVendorId(@PathVariable Long vendorId){	
+	public List<OrderDtoWithCustomerDetails> getOrdersByVendorId(@PathVariable Long vendorId){	
 		return orderService.getAllOrdersOfVendor(vendorId);
 	}
 	

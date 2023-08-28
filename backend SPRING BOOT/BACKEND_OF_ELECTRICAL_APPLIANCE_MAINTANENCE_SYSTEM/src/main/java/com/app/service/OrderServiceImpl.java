@@ -13,10 +13,10 @@ import org.springframework.stereotype.Service;
 
 import com.app.dto.ApiResponse;
 import com.app.dto.OrderDto;
+import com.app.dto.OrderDtoWithCustomerDetails;
 import com.app.dto.ServiceDto;
 import com.app.entity.Cart;
 import com.app.entity.Order;
-import com.app.entity.Vendor;
 import com.app.enums.JobStatus;
 import com.app.exceptions.CartNotFoundException;
 import com.app.exceptions.OrderNotFoundException;
@@ -93,13 +93,19 @@ public class OrderServiceImpl implements OrderServiceIF {
 		return new ApiResponse("Job status updated successfully!!");
 	}
 
-	public List<OrderDto> getAllOrdersOfVendor(Long vendorId) {
+	public List<OrderDtoWithCustomerDetails> getAllOrdersOfVendor(Long vendorId) {
 		List<Order> orders = vendorRepo.findById(vendorId)
 				.orElseThrow(() -> new VendorNotFoundException("invalid vendor ID!")).getOrders();
 
-		List<OrderDto> orderDtos = new ArrayList<>();
+		List<OrderDtoWithCustomerDetails> orderDtos = new ArrayList<>();
 
-		orders.forEach(o -> orderDtos.add(mapper.map(o, OrderDto.class)));
+		orders.forEach(o -> {
+		orderDtos.add(mapper.map(o, OrderDtoWithCustomerDetails.class));
+		orderDtos.get(orderDtos.size()-1).setOrderId(o.getId());
+		mapper.map(o.getCustomer(),orderDtos.get(orderDtos.size()-1) );
+		orderDtos.get(orderDtos.size()-1).setCustomerId(o.getCustomer().getId());
+		
+		});
 
 		return orderDtos;
 	}
