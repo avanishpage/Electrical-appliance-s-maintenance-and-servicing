@@ -9,14 +9,13 @@ import javax.transaction.Transactional;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.multipart.MultipartFile;
 
 import com.app.dto.PersonDto;
 import com.app.dto.PersonDtoWithRole;
 import com.app.dto.PersonLoginDto;
-import com.app.dto.RatingDto;
+import com.app.dto.PersonLoginOutDto;
+import com.app.dto.PersonRegisterDto;
 import com.app.dto.ServiceDto;
-import com.app.entity.Rating;
 import com.app.entity.Vendor;
 import com.app.enums.Role;
 import com.app.exceptions.ResourceNotFound;
@@ -39,7 +38,7 @@ public class VendorServiceLayerImpl implements VendorServiceLayerIF {
 	private ImageHandlingIF imgService;
 
 	@Override
-	public void addVendor(PersonDto vendorDto) {
+	public void addVendor(PersonRegisterDto vendorDto) {
 
 		Vendor vendorEntity = new Vendor();
 		mapper.map(vendorDto, vendorEntity);
@@ -66,11 +65,11 @@ public class VendorServiceLayerImpl implements VendorServiceLayerIF {
 	}
 
 	@Override
-	public PersonDto getVendorDetails(Long vendorId) {
+	public PersonLoginOutDto getVendorDetails(Long vendorId) {
 
 		return mapper.map(
 				vendorRepo.findById(vendorId).orElseThrow(() -> new VendorNotFoundException("Invalid vendor id !!!!!")),
-				PersonDto.class);
+				PersonLoginOutDto.class);
 
 	}
 

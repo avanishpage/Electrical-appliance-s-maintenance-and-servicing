@@ -2,20 +2,20 @@ package com.app.service;
 
 import java.util.List;
 
-import org.springframework.web.multipart.MultipartFile;
-
 import com.app.dto.PersonDto;
 import com.app.dto.PersonDtoWithRole;
 import com.app.dto.PersonLoginDto;
+import com.app.dto.PersonLoginOutDto;
+import com.app.dto.PersonRegisterDto;
 import com.app.dto.ServiceDto;
 
 public interface VendorServiceLayerIF {
 	
-	public void addVendor(PersonDto custDto);
+	public void addVendor(PersonRegisterDto custDto);
 
 	public void updateVendor(PersonDto custDto, Long id);
 
-	public PersonDto getVendorDetails(Long vendorId);
+	public PersonLoginOutDto getVendorDetails(Long vendorId);
 
 	public void deleteVendor(Long vendorId);
 

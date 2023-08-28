@@ -7,6 +7,8 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import com.app.entity.Address;
 
 import lombok.AllArgsConstructor;
@@ -66,6 +68,7 @@ public class PersonRegisterDto {
 	@NotBlank(message = "phone number cannot be blank!!")
 	private String phoneNumber;
 
+	private MultipartFile image;
 	
 	
 	

@@ -7,8 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.app.dto.PersonDto;
-import com.app.dto.PersonDtoWithRole;
 import com.app.dto.PersonLoginDto;
+import com.app.dto.PersonLoginOutDto;
 import com.app.dto.PersonRegisterDto;
 import com.app.dto.PersonUpdateDto;
 import com.app.entity.Cart;
@@ -58,11 +58,11 @@ public class CustomerServiceLayerImpl implements CustomerServiceLayerIF {
 	}
 
 	@Override
-	public PersonDto getCustomerDetails(Long customerId) {
+	public PersonLoginOutDto getCustomerDetails(Long customerId) {
 
 		Customer customer = custRepo.findById(customerId)
 				.orElseThrow(() -> new RuntimeException("Invalid Customer id !!!!!"));
-		PersonDto person = mapper.map(customer, PersonDto.class);
+		PersonLoginOutDto person = mapper.map(customer, PersonLoginOutDto.class);
 		return person;
 	}
 
@@ -81,7 +81,7 @@ public class CustomerServiceLayerImpl implements CustomerServiceLayerIF {
 	@Override
 
 
-	public PersonDtoWithRole verifyCustomer(PersonLoginDto customerLoginDto) {
+	public PersonLoginOutDto verifyCustomer(PersonLoginDto customerLoginDto) {
 
 
 		Customer customer = custRepo.findByEmail(customerLoginDto.getEmail());
@@ -95,7 +95,7 @@ public class CustomerServiceLayerImpl implements CustomerServiceLayerIF {
 		
 		
 
-		return mapper.map(customer, PersonDtoWithRole.class);
+		return mapper.map(customer, PersonLoginOutDto.class);
 
 
 

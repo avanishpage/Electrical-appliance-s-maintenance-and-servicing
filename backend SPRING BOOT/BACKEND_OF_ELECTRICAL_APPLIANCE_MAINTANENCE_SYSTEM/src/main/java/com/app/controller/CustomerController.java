@@ -28,6 +28,7 @@ import com.app.dto.ApiResponse;
 import com.app.dto.PersonDto;
 import com.app.dto.PersonDtoWithRole;
 import com.app.dto.PersonLoginDto;
+import com.app.dto.PersonLoginOutDto;
 import com.app.dto.PersonRegisterDto;
 import com.app.dto.PersonUpdateDto;
 import com.app.service.CustomerServiceLayerIF;
@@ -63,7 +64,7 @@ public class CustomerController {
 
 	// get method to get customer details
 	@GetMapping("/{customerId}")
-	public PersonDto getCustomerDetails(@PathVariable Long customerId) {
+	public PersonLoginOutDto getCustomerDetails(@PathVariable Long customerId) {
 		return serviceLayer.getCustomerDetails(customerId);
 	}
 
@@ -78,7 +79,7 @@ public class CustomerController {
 	@PostMapping("/login")
 
 
-	public PersonDtoWithRole loginCustomer(@RequestBody PersonLoginDto customerLoginDto) {
+	public PersonLoginOutDto loginCustomer(@RequestBody PersonLoginDto customerLoginDto) {
 
 
 

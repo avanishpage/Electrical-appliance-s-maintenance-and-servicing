@@ -10,16 +10,10 @@ import java.util.List;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
-
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-
 import org.springframework.web.bind.annotation.CrossOrigin;
-
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -36,6 +30,8 @@ import com.app.dto.ApiResponse;
 import com.app.dto.PersonDto;
 import com.app.dto.PersonDtoWithRole;
 import com.app.dto.PersonLoginDto;
+import com.app.dto.PersonLoginOutDto;
+import com.app.dto.PersonRegisterDto;
 import com.app.dto.ServiceDto;
 import com.app.service.ImageHandlingIF;
 import com.app.service.ServiceServiceLayerIF;
@@ -57,7 +53,7 @@ public class VendorController {
 
 	// create vendor
 	@PostMapping(value="/add",consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-	public ApiResponse createVendor(@ModelAttribute @Valid PersonDto vendorDto) {
+	public ApiResponse createVendor(@ModelAttribute @Valid PersonRegisterDto vendorDto) {
 
 		vendorServiceLayer.addVendor(vendorDto);
 		return new ApiResponse("Vendor is added successfully");
@@ -74,7 +70,7 @@ public class VendorController {
 
 	// get method for getting vendor information
 	@GetMapping("/{vendorId}")
-	public PersonDto getVendorDetails(@PathVariable Long vendorId) {
+	public PersonLoginOutDto getVendorDetails(@PathVariable Long vendorId) {
 		//System.out.println("in get customer " + vendorId);
 		return vendorServiceLayer.getVendorDetails(vendorId);
 	}

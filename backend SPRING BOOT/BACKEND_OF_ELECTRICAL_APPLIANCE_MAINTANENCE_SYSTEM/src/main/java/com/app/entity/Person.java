@@ -60,8 +60,7 @@ public class Person {
 
 
 
-	private String address;
-
+	
 
 
 	@Column(name = "phone_number")
