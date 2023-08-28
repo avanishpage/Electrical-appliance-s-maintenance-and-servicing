@@ -11,7 +11,7 @@ import com.app.dto.ServiceDto;
 
 public interface VendorServiceLayerIF {
 	
-	public void addVendor(PersonDto custDto,MultipartFile img);
+	public void addVendor(PersonDto custDto);
 
 	public void updateVendor(PersonDto custDto, Long id);
 

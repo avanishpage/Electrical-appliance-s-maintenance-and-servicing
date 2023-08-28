@@ -39,7 +39,7 @@ public class VendorServiceLayerImpl implements VendorServiceLayerIF {
 	private ImageHandlingIF imgService;
 
 	@Override
-	public void addVendor(PersonDto vendorDto,MultipartFile img) {
+	public void addVendor(PersonDto vendorDto) {
 
 		Vendor vendorEntity = new Vendor();
 		mapper.map(vendorDto, vendorEntity);
@@ -47,9 +47,9 @@ public class VendorServiceLayerImpl implements VendorServiceLayerIF {
 		vendorRepo.save(vendorEntity);
 		
 		try {
-			imgService.uploadImageVendor(vendorEntity.getId(), img);
+			imgService.uploadImageVendor(vendorEntity.getId(), vendorDto.getImage());
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
+			e.printStackTrace();
 			throw new RuntimeException(e);
 		}
 
