@@ -27,11 +27,11 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.app.dto.ApiResponse;
-import com.app.dto.PersonDto;
 import com.app.dto.PersonDtoWithRole;
 import com.app.dto.PersonLoginDto;
 import com.app.dto.PersonLoginOutDto;
 import com.app.dto.PersonRegisterDto;
+import com.app.dto.PersonUpdateDto;
 import com.app.dto.ServiceDto;
 import com.app.service.ImageHandlingIF;
 import com.app.service.ServiceServiceLayerIF;
@@ -65,7 +65,7 @@ public class VendorController {
 
 	// put method for updating vendor information
 	@PutMapping("/update/{id}")
-	public ApiResponse updateVendor(@RequestBody PersonDto vendorDto, @PathVariable Long id) {
+	public ApiResponse updateVendor(@RequestBody PersonUpdateDto vendorDto, @PathVariable Long id) {
 
 		vendorServiceLayer.updateVendor(vendorDto, id);
 		return new ApiResponse("Vendor Updating");

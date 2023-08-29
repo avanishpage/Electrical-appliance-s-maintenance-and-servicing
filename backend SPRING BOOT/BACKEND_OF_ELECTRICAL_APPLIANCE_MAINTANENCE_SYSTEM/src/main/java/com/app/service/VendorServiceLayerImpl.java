@@ -10,11 +10,11 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.app.dto.PersonDto;
 import com.app.dto.PersonDtoWithRole;
 import com.app.dto.PersonLoginDto;
 import com.app.dto.PersonLoginOutDto;
 import com.app.dto.PersonRegisterDto;
+import com.app.dto.PersonUpdateDto;
 import com.app.dto.ServiceDto;
 import com.app.entity.Vendor;
 import com.app.enums.Role;
@@ -56,7 +56,7 @@ public class VendorServiceLayerImpl implements VendorServiceLayerIF {
 	}
 
 	@Override
-	public void updateVendor(PersonDto vendorDto, Long id) {
+	public void updateVendor(PersonUpdateDto vendorDto, Long id) {
 		System.out.println(id);
 
 		Vendor vendorEntity = vendorRepo.findById(id)
