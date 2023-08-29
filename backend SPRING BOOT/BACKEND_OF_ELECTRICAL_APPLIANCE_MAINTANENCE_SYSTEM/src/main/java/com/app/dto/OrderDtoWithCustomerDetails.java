@@ -3,6 +3,7 @@ package com.app.dto;
 import java.time.LocalDateTime;
 import java.util.Set;
 
+import javax.persistence.Column;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
@@ -40,6 +41,27 @@ public class OrderDtoWithCustomerDetails {
 
 	private String email;
 
-	private String address;
+	
+	private String flatNo;
+	
+	
+	private String area;
+	
+	
+	private String city;
+
+	
+	private String district;
+	
+	
+	private String state;
+	
+	
+	private String country;
+	
+	
+	private Long pincode;
+	
+	private String phoneNumber;
 
 }

@@ -123,5 +123,12 @@ public class VendorController {
 			return ResponseEntity.ok(imgServiceLayer.serveImageCustomer(vendorId));
 		}
 
+		
+		@GetMapping("/service/{serviceId}")
+		public ServiceDto getSingleServiceById(@PathVariable Long serviceId) {
+			
+			return vendorServiceLayer.getSingleService(serviceId);
+			
+		}
 	
 }

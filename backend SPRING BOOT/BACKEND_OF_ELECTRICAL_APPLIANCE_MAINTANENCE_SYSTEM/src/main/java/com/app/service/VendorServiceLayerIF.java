@@ -25,4 +25,6 @@ public interface VendorServiceLayerIF {
 	
 	public void updateServiceofVendor(ServiceDto servicedto,Long vendorId, Long serviceId);
 
+	public ServiceDto getSingleService(Long serviceId);
+
 }

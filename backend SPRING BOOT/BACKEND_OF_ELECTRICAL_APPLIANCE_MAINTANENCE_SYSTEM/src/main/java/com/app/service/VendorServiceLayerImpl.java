@@ -19,6 +19,7 @@ import com.app.dto.ServiceDto;
 import com.app.entity.Vendor;
 import com.app.enums.Role;
 import com.app.exceptions.ResourceNotFound;
+import com.app.exceptions.ServiceNotFoundException;
 import com.app.exceptions.VendorNotFoundException;
 import com.app.exceptions.VendorPasswordNotMatchingException;
 import com.app.repository.ServiceRepositoryIF;
@@ -122,6 +123,12 @@ public class VendorServiceLayerImpl implements VendorServiceLayerIF {
 		mapper.map(servicedto, service);
 		serviceRepo.save(service);
 
+	}
+
+	@Override
+	public ServiceDto getSingleService(Long serviceId) {
+		
+		return mapper.map(serviceRepo.findById(serviceId).orElseThrow(()-> new ServiceNotFoundException("service id not valid")), ServiceDto.class);
 	}
 
 }
