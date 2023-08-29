@@ -55,6 +55,9 @@ public class VendorController {
 	@PostMapping(value="/add",consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
 	public ApiResponse createVendor(@ModelAttribute @Valid PersonRegisterDto vendorDto) {
 
+		if(vendorDto.getAddImage()!=null)
+		System.out.println(vendorDto.getEmail());
+		
 		vendorServiceLayer.addVendor(vendorDto);
 		return new ApiResponse("Vendor is added successfully");
 
@@ -109,7 +112,7 @@ public class VendorController {
 		public ResponseEntity<?> uploadImage(@RequestParam long vendorId, @RequestParam MultipartFile image)
 				throws IOException {
 			System.out.println("in upload image " + vendorId);
-			return ResponseEntity.status(HttpStatus.CREATED).body(imgServiceLayer.uploadImageCustomer(vendorId, image));
+			return ResponseEntity.status(HttpStatus.CREATED).body(imgServiceLayer.uploadImageVendor(vendorId, image));
 		}
 
 	// download image

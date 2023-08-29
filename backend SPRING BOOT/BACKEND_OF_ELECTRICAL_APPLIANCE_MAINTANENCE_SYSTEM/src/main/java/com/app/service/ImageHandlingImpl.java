@@ -100,7 +100,7 @@ public class ImageHandlingImpl implements ImageHandlingIF {
 		vendor.setImagePath(path);
 		// OR to store the img directly in DB as a BLOB
 		// emp.setImage(image.getBytes());
-		return new ApiResponse("Image file uploaded successfully for vendor id " + vendorId);
+		return new ApiResponse("Image file uploaded successfully for vendor id for path " + vendorId+path);
 	}
 
 	@Override

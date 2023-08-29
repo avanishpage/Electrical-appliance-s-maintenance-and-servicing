@@ -46,7 +46,7 @@ public class VendorServiceLayerImpl implements VendorServiceLayerIF {
 		vendorRepo.save(vendorEntity);
 		
 		try {
-			imgService.uploadImageVendor(vendorEntity.getId(), vendorDto.getImage());
+			System.out.println(imgService.uploadImageVendor(vendorEntity.getId(), vendorDto.getAddImage()).getMessage());
 		} catch (IOException e) {
 			e.printStackTrace();
 			throw new RuntimeException(e);
