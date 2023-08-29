@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -34,6 +35,7 @@ import com.app.dto.PersonLoginDto;
 import com.app.dto.PersonLoginOutDto;
 import com.app.dto.PersonRegisterDto;
 import com.app.dto.PersonUpdateDto;
+import com.app.security.CustomUserDetailsServiceImpl;
 import com.app.service.CustomerServiceLayerIF;
 import com.app.service.ImageHandlingIF;
 
@@ -46,12 +48,17 @@ public class CustomerController {
 	private CustomerServiceLayerIF serviceLayer;
 	@Autowired
 	private ImageHandlingIF imgServiceLayer;
+	@Autowired
+	private CustomUserDetailsServiceImpl userService;
 
 	// post method for adding a new customer entry
 	@PostMapping(value="/add",consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
 	public ApiResponse createCustomer(@ModelAttribute @Valid CustomerRegisterDto custDto) {
 
 		serviceLayer.addCustomerAndCart(custDto);
+		
+		userService.saveCustomer(custDto.getEmail());
+		
 		return new ApiResponse("customer successfully created!");
 
 	}
@@ -67,6 +74,7 @@ public class CustomerController {
 
 	// get method to get customer details
 	@GetMapping("/{customerId}")
+	@PreAuthorize("hasRole('CUSTOMER')")
 	public PersonLoginOutDto getCustomerDetails(@PathVariable Long customerId) {
 		return serviceLayer.getCustomerDetails(customerId);
 	}
@@ -75,6 +83,7 @@ public class CustomerController {
 	@DeleteMapping("/delete/{customerId}")
 	public ApiResponse deleteCustomer(@PathVariable Long customerId) {
 		serviceLayer.deleteCustomer(customerId);
+		
 		return new ApiResponse("customer successfully deleted!");
 	}
 
