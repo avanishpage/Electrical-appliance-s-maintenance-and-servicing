@@ -6,10 +6,9 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.app.dto.PersonDto;
+import com.app.dto.CustomerRegisterDto;
 import com.app.dto.PersonLoginDto;
 import com.app.dto.PersonLoginOutDto;
-import com.app.dto.PersonRegisterDto;
 import com.app.dto.PersonUpdateDto;
 import com.app.entity.Cart;
 import com.app.entity.Customer;
@@ -31,7 +30,7 @@ public class CustomerServiceLayerImpl implements CustomerServiceLayerIF {
 	private CartRepository cartRepo;
 
 	@Override
-	public void addCustomerAndCart(PersonRegisterDto custDto) {
+	public void addCustomerAndCart(CustomerRegisterDto custDto) {
 		// System.out.println(custDto);
 
 		Customer customerEntity = new Customer();
