@@ -1,5 +1,7 @@
 package com.app.service;
 
+import java.util.List;
+
 import javax.transaction.Transactional;
 
 import org.modelmapper.ModelMapper;
@@ -13,9 +15,9 @@ import com.app.dto.PersonLoginOutDto;
 import com.app.dto.PersonUpdateDto;
 import com.app.entity.Cart;
 import com.app.entity.Customer;
+import com.app.entity.Order;
 import com.app.entity.UserEntity;
 import com.app.entity.UserRole;
-import com.app.enums.Role;
 import com.app.exceptions.CustomerNotFoundException;
 import com.app.exceptions.CustomerPasswordNotMatchingException;
 import com.app.repository.CartRepository;
@@ -93,6 +95,14 @@ public class CustomerServiceLayerImpl implements CustomerServiceLayerIF {
 		userService.deleteUser(customer.getEmail());
 		
 		cartRepo.deleteById(customerId);
+		
+		List<Order> orders=customer.getOrders();
+		
+		
+		orders.forEach(o->o.setCustomer(null));
+		
+		customer.getOrders().clear();
+		
 		
 		
 		

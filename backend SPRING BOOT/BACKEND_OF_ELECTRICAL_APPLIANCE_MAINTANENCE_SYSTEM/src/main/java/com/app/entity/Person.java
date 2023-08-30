@@ -71,7 +71,7 @@ public class Person {
 	private String imagePath;
 
 
-@Enumerated
+	@Enumerated
 	private UserRole role;
 
 

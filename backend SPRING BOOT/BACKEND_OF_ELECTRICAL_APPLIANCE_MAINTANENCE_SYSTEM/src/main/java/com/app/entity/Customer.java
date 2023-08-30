@@ -27,8 +27,7 @@ public class Customer extends Person {
 	@OneToMany(mappedBy = "customer",cascade = CascadeType.ALL,orphanRemoval = true)
 	private List<Order> orders=new ArrayList<>();
 	
-	@Column(name="total_payment_made")
-	private Long totalPaymentMade;
+
 	
 	
 	

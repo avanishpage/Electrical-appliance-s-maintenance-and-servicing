@@ -8,7 +8,6 @@ import javax.transaction.Transactional;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -18,10 +17,11 @@ import com.app.dto.PersonLoginOutDto;
 import com.app.dto.PersonRegisterDto;
 import com.app.dto.PersonUpdateDto;
 import com.app.dto.ServiceDto;
+import com.app.entity.Order;
+import com.app.entity.Rating;
 import com.app.entity.UserEntity;
 import com.app.entity.UserRole;
 import com.app.entity.Vendor;
-import com.app.enums.Role;
 import com.app.exceptions.ResourceNotFound;
 import com.app.exceptions.ServiceNotFoundException;
 import com.app.exceptions.VendorNotFoundException;
@@ -102,6 +102,18 @@ public class VendorServiceLayerImpl implements VendorServiceLayerIF {
 				.orElseThrow(() -> new VendorNotFoundException("invalid vendor id"));
 		
 		userService.deleteUser(vendor.getEmail());
+		
+		List<com.app.entity.Service> services=vendor.getServices();
+		List<Order> orders=vendor.getOrders();
+		List<Rating> ratings=vendor.getRatings();
+		
+		services.forEach(s->s.setVendor(null));
+		orders.forEach(o->o.setVendor(null));
+		ratings.forEach(r->r.setVendor(null));
+		
+		services.clear();
+		orders.clear();
+		ratings.clear();
 	
 
 		vendorRepo.deleteById(vendorId);
