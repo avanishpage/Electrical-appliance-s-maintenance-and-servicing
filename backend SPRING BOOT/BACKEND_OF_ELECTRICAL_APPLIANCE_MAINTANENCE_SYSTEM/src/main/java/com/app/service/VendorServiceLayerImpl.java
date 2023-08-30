@@ -8,6 +8,7 @@ import javax.transaction.Transactional;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.app.dto.PersonDtoWithRole;
@@ -16,14 +17,19 @@ import com.app.dto.PersonLoginOutDto;
 import com.app.dto.PersonRegisterDto;
 import com.app.dto.PersonUpdateDto;
 import com.app.dto.ServiceDto;
+import com.app.entity.Order;
+import com.app.entity.Rating;
+import com.app.entity.UserEntity;
+import com.app.entity.UserRole;
 import com.app.entity.Vendor;
-import com.app.enums.Role;
 import com.app.exceptions.ResourceNotFound;
 import com.app.exceptions.ServiceNotFoundException;
 import com.app.exceptions.VendorNotFoundException;
 import com.app.exceptions.VendorPasswordNotMatchingException;
 import com.app.repository.ServiceRepositoryIF;
+import com.app.repository.UserEntityRepository;
 import com.app.repository.VendorRepositoryIF;
+import com.app.security.CustomUserDetailsServiceImpl;
 
 @Service
 @Transactional
@@ -37,13 +43,24 @@ public class VendorServiceLayerImpl implements VendorServiceLayerIF {
 	private ServiceRepositoryIF serviceRepo;
 	@Autowired
 	private ImageHandlingIF imgService;
+	@Autowired
+	private PasswordEncoder pwdEncoder;
+	@Autowired
+	private UserEntityRepository userRepo;
+	@Autowired
+	private CustomUserDetailsServiceImpl userService;
 
 	@Override
 	public void addVendor(PersonRegisterDto vendorDto) {
 
 		Vendor vendorEntity = new Vendor();
 		mapper.map(vendorDto, vendorEntity);
-		vendorEntity.setRole(Role.VENDOR);
+		vendorEntity.setRole(UserRole.ROLE_VENDOR);
+		vendorEntity.setPassword(pwdEncoder.encode(vendorEntity.getPassword()));
+		
+		
+		
+		
 		vendorRepo.save(vendorEntity);
 		
 		try {
@@ -63,6 +80,10 @@ public class VendorServiceLayerImpl implements VendorServiceLayerIF {
 				.orElseThrow(() -> new VendorNotFoundException("vendor by id " + id + " not present"));
 		vendorDto.setId(id);
 		mapper.map(vendorDto, vendorEntity);
+		
+		UserEntity user=userRepo.findByEmail(vendorEntity.getEmail()).orElseThrow(()->new RuntimeException("enter valid id"));
+		
+		mapper.map(vendorEntity, user);
 	}
 
 	@Override
@@ -76,6 +97,24 @@ public class VendorServiceLayerImpl implements VendorServiceLayerIF {
 
 	@Override
 	public void deleteVendor(Long vendorId) {
+		
+		Vendor vendor = vendorRepo.findById(vendorId)
+				.orElseThrow(() -> new VendorNotFoundException("invalid vendor id"));
+		
+		userService.deleteUser(vendor.getEmail());
+		
+		List<com.app.entity.Service> services=vendor.getServices();
+		List<Order> orders=vendor.getOrders();
+		List<Rating> ratings=vendor.getRatings();
+		
+		services.forEach(s->s.setVendor(null));
+		orders.forEach(o->o.setVendor(null));
+		ratings.forEach(r->r.setVendor(null));
+		
+		services.clear();
+		orders.clear();
+		ratings.clear();
+	
 
 		vendorRepo.deleteById(vendorId);
 

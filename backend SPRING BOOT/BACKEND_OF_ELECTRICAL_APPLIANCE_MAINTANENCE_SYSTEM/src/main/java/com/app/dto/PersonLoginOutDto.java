@@ -5,6 +5,7 @@ package com.app.dto;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 
+import com.app.entity.UserRole;
 import com.app.enums.Role;
 
 import lombok.AllArgsConstructor;
@@ -58,10 +59,10 @@ public class PersonLoginOutDto {
 	@NotBlank(message = "phone number cannot be blank!!")
 	private String phoneNumber;
 
-	private Role role;
+	private UserRole role;
 	
 	
-	
+	private String jwt;
 	
 	
 	

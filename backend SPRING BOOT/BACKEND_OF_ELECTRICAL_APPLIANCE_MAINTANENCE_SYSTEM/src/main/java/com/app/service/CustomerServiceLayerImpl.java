@@ -1,9 +1,12 @@
 package com.app.service;
 
+import java.util.List;
+
 import javax.transaction.Transactional;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.app.dto.CustomerRegisterDto;
@@ -12,11 +15,15 @@ import com.app.dto.PersonLoginOutDto;
 import com.app.dto.PersonUpdateDto;
 import com.app.entity.Cart;
 import com.app.entity.Customer;
-import com.app.enums.Role;
+import com.app.entity.Order;
+import com.app.entity.UserEntity;
+import com.app.entity.UserRole;
 import com.app.exceptions.CustomerNotFoundException;
 import com.app.exceptions.CustomerPasswordNotMatchingException;
 import com.app.repository.CartRepository;
 import com.app.repository.CustomerRepositoryIF;
+import com.app.repository.UserEntityRepository;
+import com.app.security.CustomUserDetailsServiceImpl;
 
 @Service
 @Transactional
@@ -28,18 +35,28 @@ public class CustomerServiceLayerImpl implements CustomerServiceLayerIF {
 	private ModelMapper mapper;
 	@Autowired
 	private CartRepository cartRepo;
-
+	@Autowired
+	private UserEntityRepository userRepo;
+	@Autowired
+	private PasswordEncoder pwdEncoder;
+@Autowired
+	private CustomUserDetailsServiceImpl userService;
+	
+	
+	
 	@Override
 	public void addCustomerAndCart(CustomerRegisterDto custDto) {
 		// System.out.println(custDto);
 
 		Customer customerEntity = new Customer();
 		mapper.map(custDto, customerEntity);
-		customerEntity.setRole(Role.CUSTOMER);
+		customerEntity.setRole(UserRole.ROLE_CUSTOMER);
 
 		Cart cart = new Cart();
 
 		cart.addCartToCustomer(customerEntity);
+		
+		customerEntity.setPassword(pwdEncoder.encode(customerEntity.getPassword()));
 		
 		custRepo.save(customerEntity);
 		cartRepo.save(cart);
@@ -53,7 +70,11 @@ public class CustomerServiceLayerImpl implements CustomerServiceLayerIF {
 		Customer customerEntity = custRepo.findById(id)
 				.orElseThrow(() -> new CustomerNotFoundException("customer by id " + id + " not present"));
 		mapper.map(custDto, customerEntity);
-
+		
+		UserEntity user=userRepo.findByEmail(customerEntity.getEmail()).orElseThrow(()->new RuntimeException("enter valid id"));
+		
+		mapper.map(customerEntity, user);
+		
 	}
 
 	@Override
@@ -68,7 +89,20 @@ public class CustomerServiceLayerImpl implements CustomerServiceLayerIF {
 	@Override
 	public void deleteCustomer(Long customerId) {
 		
+		Customer customer = custRepo.findById(customerId)
+				.orElseThrow(() -> new RuntimeException("Invalid Customer id !!!!!"));
+		
+		userService.deleteUser(customer.getEmail());
+		
 		cartRepo.deleteById(customerId);
+		
+		List<Order> orders=customer.getOrders();
+		
+		
+		orders.forEach(o->o.setCustomer(null));
+		
+		customer.getOrders().clear();
+		
 		
 		
 		

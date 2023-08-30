@@ -33,6 +33,7 @@ import com.app.dto.PersonLoginOutDto;
 import com.app.dto.PersonRegisterDto;
 import com.app.dto.PersonUpdateDto;
 import com.app.dto.ServiceDto;
+import com.app.security.CustomUserDetailsServiceImpl;
 import com.app.service.ImageHandlingIF;
 import com.app.service.ServiceServiceLayerIF;
 import com.app.service.VendorServiceLayerIF;
@@ -50,15 +51,19 @@ public class VendorController {
 	
 	@Autowired
 	private ImageHandlingIF imgServiceLayer;
+	@Autowired
+	private CustomUserDetailsServiceImpl userService;
 
 	// create vendor
 	@PostMapping(value="/add",consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
 	public ApiResponse createVendor(@ModelAttribute @Valid PersonRegisterDto vendorDto) {
 
-		if(vendorDto.getAddImage()!=null)
-		System.out.println(vendorDto.getEmail());
+		
 		
 		vendorServiceLayer.addVendor(vendorDto);
+		
+		userService.saveVendor(vendorDto.getEmail());
+		
 		return new ApiResponse("Vendor is added successfully");
 
 	}
